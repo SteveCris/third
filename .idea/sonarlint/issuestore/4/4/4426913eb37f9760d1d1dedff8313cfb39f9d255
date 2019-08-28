@@ -1,0 +1,10 @@
+
+Dsquid:S1602",Remove useless curly braces around statement(‹ÙáÔ
+Jsquid:S1199Ø"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+dsquid:S1192Û"LDefine a constant instead of duplicating this literal "addressArea" 4 times.(‹Æö 
+Ysquid:S2259Ş"AA "NullPointerException" could be thrown; "one" is nullable here.(´áµ‡
+isquid:S1192H"MDefine a constant instead of duplicating this literal "identifyInfo" 4 times.(Å÷”øÿÿÿÿ
+esquid:S1192F"IDefine a constant instead of duplicating this literal "backFile" 3 times.(¢‚¢ºûÿÿÿÿ
+jsquid:S3776È"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(¶Í•õ
+fsquid:S1192F"JDefine a constant instead of duplicating this literal "frontFile" 3 times.(¢‚¢ºûÿÿÿÿ
+dsquid:S1192Ù"LDefine a constant instead of duplicating this literal "addressCity" 4 times.(¤¸Øµ

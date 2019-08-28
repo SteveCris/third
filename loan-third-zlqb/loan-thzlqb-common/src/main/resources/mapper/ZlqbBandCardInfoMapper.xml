@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thzlqb.dao.ZlqbBandCardInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thzlqb.entity.ZlqbBandCardInfo">
+    <id column="bind_id" jdbcType="VARCHAR" property="bindId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bind_id, order_no, id_card, bank_card_no, create_time, ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zlqb_bandcard_info
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zlqb_bandcard_info
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thzlqb.entity.ZlqbBandCardInfo">
+    insert into zlqb_bandcard_info (bind_id, order_no, id_card, 
+      bank_card_no, create_time, ext1, 
+      ext2)
+    values (#{bindId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thzlqb.entity.ZlqbBandCardInfo">
+    insert into zlqb_bandcard_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bindId != null">
+        bind_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bindId != null">
+        #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thzlqb.entity.ZlqbBandCardInfo">
+    update zlqb_bandcard_info
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thzlqb.entity.ZlqbBandCardInfo">
+    update zlqb_bandcard_info
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </update>
+  <select id="getBankCardByIdCard" parameterType="String" resultType="String">
+     select bank_card_no as bankCardNo
+     FROM zlqb_bandcard_info
+     where id_card = #{idCard}   order by create_time desc  limit 1
+  </select>
+</mapper>

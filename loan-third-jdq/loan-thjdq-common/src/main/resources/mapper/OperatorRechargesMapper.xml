@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorRechargesMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorRecharges">
+    <id column="operator_recharges_id" jdbcType="VARCHAR" property="operatorRechargesId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="details_id" jdbcType="VARCHAR" property="detailsId" />
+    <result column="recharge_time" jdbcType="VARCHAR" property="rechargeTime" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_recharges_id, operator_data_id, user_info_id, details_id, recharge_time, 
+    amount, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_recharges
+    where operator_recharges_id = #{operatorRechargesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_recharges
+    where operator_recharges_id = #{operatorRechargesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorRecharges">
+    insert into jdq_operator_recharges (operator_recharges_id, operator_data_id, 
+      user_info_id, details_id, recharge_time, 
+      amount, type)
+    values (#{operatorRechargesId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, 
+      #{userInfoId,jdbcType=VARCHAR}, #{detailsId,jdbcType=VARCHAR}, #{rechargeTime,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorRecharges">
+    insert into jdq_operator_recharges
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorRechargesId != null">
+        operator_recharges_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="detailsId != null">
+        details_id,
+      </if>
+      <if test="rechargeTime != null">
+        recharge_time,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorRechargesId != null">
+        #{operatorRechargesId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsId != null">
+        #{detailsId,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeTime != null">
+        #{rechargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorRecharges">
+    update jdq_operator_recharges
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsId != null">
+        details_id = #{detailsId,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeTime != null">
+        recharge_time = #{rechargeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_recharges_id = #{operatorRechargesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorRecharges">
+    update jdq_operator_recharges
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      details_id = #{detailsId,jdbcType=VARCHAR},
+      recharge_time = #{rechargeTime,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where operator_recharges_id = #{operatorRechargesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

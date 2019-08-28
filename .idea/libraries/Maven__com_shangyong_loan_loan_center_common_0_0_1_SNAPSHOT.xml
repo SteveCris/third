@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.shangyong.loan:loan-center-common:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-center-common/0.0.1-SNAPSHOT/loan-center-common-0.0.1-20190819.034656-51.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-center-common/0.0.1-SNAPSHOT/loan-center-common-0.0.1-20190819.034656-51-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-center-common/0.0.1-SNAPSHOT/loan-center-common-0.0.1-20190819.034656-51-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

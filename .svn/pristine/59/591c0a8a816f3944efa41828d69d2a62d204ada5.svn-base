@@ -1,0 +1,119 @@
+package com.shangyong.rest.feign;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.shangyong.common.entity.RestResult;
+import com.shangyong.rest.feign.OrderRepaymentCloudHystrixService.HystrixClientFallbackFactory;
+import com.shangyong.thcore.dto.OrderRepaymentH5Dto;
+import com.shangyong.thcore.vo.OrderRepaymentH5Vo;
+import com.shangyong.thcore.vo.OrderRepaymentPlanVo;
+
+import feign.hystrix.FallbackFactory;
+
+/**
+ * 订单还款服务模块
+ * 
+ * @author caijunjun
+ * @date 2019年3月15日
+ */
+@FeignClient(name = "api-thorder", path = "/thorder/orderRepayment", fallbackFactory = HystrixClientFallbackFactory.class)
+public interface OrderRepaymentCloudHystrixService {
+
+	/**
+	 * 获取还款h5链接信息
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @param orderRepaymentH5Dto
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/repaymentH5Search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public RestResult<OrderRepaymentH5Vo> repaymentH5Search(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId, @RequestBody OrderRepaymentH5Dto orderRepaymentH5Dto);
+
+	/**
+	 * 试算接口
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/pilotcalculation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public RestResult<OrderRepaymentPlanVo> pilotcalculation(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId);
+
+	/**
+	 * 查询总订单还款计划
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/plan/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public RestResult<OrderRepaymentPlanVo> orderRepaymentPlanSearch(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId);
+
+	/**
+	 * 查询总订单还款计划（还款成功）
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/planSuccess/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public RestResult<OrderRepaymentPlanVo> orderRepaymentPlanSuccessSearch(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId);
+
+	public static class HystrixClientFallbackFactory implements FallbackFactory<OrderRepaymentCloudHystrixService> {
+
+		private Logger logger = LoggerFactory.getLogger(HystrixClientFallbackFactory.class);
+
+		@Override
+		public OrderRepaymentCloudHystrixService create(Throwable cause) {
+			return new OrderRepaymentCloudHystrixService() {
+
+				@Override
+				public RestResult<OrderRepaymentH5Vo> repaymentH5Search(String appid, String orderId,
+						OrderRepaymentH5Dto orderRepaymentH5Dto) {
+					logger.error(
+							"error cause orderRepaymentCloudHystrixService repaymentH5Search appid:{};orderId:{};orderRepaymentH5Dto:{}",
+							appid, orderId, orderRepaymentH5Dto, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<OrderRepaymentPlanVo> pilotcalculation(String appid, String orderId) {
+					logger.error("error cause orderRepaymentCloudHystrixService pilotcalculation appid:{};orderId:{}",
+							appid, orderId, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<OrderRepaymentPlanVo> orderRepaymentPlanSearch(String appid, String orderId) {
+					logger.error(
+							"error cause orderRepaymentCloudHystrixService orderRepaymentPlanSearch appid:{};orderId:{}",
+							appid, orderId, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<OrderRepaymentPlanVo> orderRepaymentPlanSuccessSearch(String appid, String orderId) {
+					logger.error(
+							"error cause orderRepaymentCloudHystrixService orderRepaymentPlanSuccessSearch appid:{};orderId:{}",
+							appid, orderId, cause);
+					return null;
+				}
+
+			};
+		}
+
+	}
+}

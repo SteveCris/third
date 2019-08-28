@@ -1,0 +1,52 @@
+package com.shangyong.thryt.enums;
+
+public enum RytResultEnum {
+	SUCCESS("0", "处理成功"), //
+	FAILURE("500", "处理失败"), //
+	ERROR("99999", "系统异常"), //
+
+	COMMON_FAILURE("1000", "通用处理失败"), //
+	CLICK_REPEAT("1001", "重复点击"), //
+	PARAM_ERROR("1002", "参数校验异常"), //
+	PARAM_MISSING_ERROR("1003", "参数缺少"), //
+	NULL_ERROR("1004", "空异常"), //
+	UNSUPPORTED_ENCODING("1005", "不支持的编码异常"), //
+	SIGN_ERROR("1006", "签名异常"), //
+	NO_CHANNEL("1007", "不存在的渠道"), //
+	IO_EXCEPTION("1008", "文件流操作异常"), //
+	MONGODB_UPDATE_ERROR("1009", "mongodb更新失败"), //
+	REMOTE_ERROR("1010", "调用远程接口异常"), //
+	SAVE_ERROR("1011", "保存异常"), //
+	THIRD_REMOTE_ERROR("1012", "调用第三方平台远程接口异常"), //
+	; // 加注释，防止格式化格式
+
+	private RytResultEnum(String code, String message) {
+		this.code = code;
+		this.message = message;
+	}
+
+	/**
+	 * 错误码
+	 */
+	private String code;
+	/**
+	 * 错误描述
+	 */
+	private String message;
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public <T> RytResult<T> with(T body) {
+		return new RytResult<>(this, body);
+	}
+
+	public <T> RytResult<T> with() {
+		return with((T) null);
+	}
+}

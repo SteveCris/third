@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderBorrowApplyMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderBorrowApply">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="finance_order_id" jdbcType="VARCHAR" property="financeOrderId" />
+    <result column="periods" jdbcType="INTEGER" property="periods" />
+    <result column="cycle" jdbcType="INTEGER" property="cycle" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="pre_borrow_amount" jdbcType="DECIMAL" property="preBorrowAmount" />
+    <result column="borrow_amount" jdbcType="DECIMAL" property="borrowAmount" />
+    <result column="credit_use_uuid" jdbcType="VARCHAR" property="creditUseUuid" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="if_valid" jdbcType="BIT" property="ifValid" />
+    <result column="repayment_plan_time" jdbcType="TIMESTAMP" property="repaymentPlanTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    apply_id, finance_order_id, periods, cycle, product_code, pre_borrow_amount, borrow_amount, 
+    credit_use_uuid, ext, ext2, appid, order_id, if_valid, repayment_plan_time, create_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_borrow_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_borrow_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderBorrowApply">
+    insert into order_borrow_apply (apply_id, finance_order_id, periods, 
+      cycle, product_code, pre_borrow_amount, 
+      borrow_amount, credit_use_uuid, ext, 
+      ext2, appid, order_id, 
+      if_valid, repayment_plan_time, create_time, 
+      remark)
+    values (#{applyId,jdbcType=VARCHAR}, #{financeOrderId,jdbcType=VARCHAR}, #{periods,jdbcType=INTEGER}, 
+      #{cycle,jdbcType=INTEGER}, #{productCode,jdbcType=VARCHAR}, #{preBorrowAmount,jdbcType=DECIMAL}, 
+      #{borrowAmount,jdbcType=DECIMAL}, #{creditUseUuid,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{ifValid,jdbcType=BIT}, #{repaymentPlanTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderBorrowApply">
+    insert into order_borrow_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        apply_id,
+      </if>
+      <if test="financeOrderId != null">
+        finance_order_id,
+      </if>
+      <if test="periods != null">
+        periods,
+      </if>
+      <if test="cycle != null">
+        cycle,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="preBorrowAmount != null">
+        pre_borrow_amount,
+      </if>
+      <if test="borrowAmount != null">
+        borrow_amount,
+      </if>
+      <if test="creditUseUuid != null">
+        credit_use_uuid,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="ifValid != null">
+        if_valid,
+      </if>
+      <if test="repaymentPlanTime != null">
+        repayment_plan_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeOrderId != null">
+        #{financeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="periods != null">
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        #{cycle,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="preBorrowAmount != null">
+        #{preBorrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowAmount != null">
+        #{borrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUseUuid != null">
+        #{creditUseUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="repaymentPlanTime != null">
+        #{repaymentPlanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderBorrowApply">
+    update order_borrow_apply
+    <set>
+      <if test="financeOrderId != null">
+        finance_order_id = #{financeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="periods != null">
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        cycle = #{cycle,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="preBorrowAmount != null">
+        pre_borrow_amount = #{preBorrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowAmount != null">
+        borrow_amount = #{borrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUseUuid != null">
+        credit_use_uuid = #{creditUseUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        if_valid = #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="repaymentPlanTime != null">
+        repayment_plan_time = #{repaymentPlanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderBorrowApply">
+    update order_borrow_apply
+    set finance_order_id = #{financeOrderId,jdbcType=VARCHAR},
+      periods = #{periods,jdbcType=INTEGER},
+      cycle = #{cycle,jdbcType=INTEGER},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      pre_borrow_amount = #{preBorrowAmount,jdbcType=DECIMAL},
+      borrow_amount = #{borrowAmount,jdbcType=DECIMAL},
+      credit_use_uuid = #{creditUseUuid,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      if_valid = #{ifValid,jdbcType=BIT},
+      repayment_plan_time = #{repaymentPlanTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+<!--  -->
+   <select id="getOrderBorrowVo" resultType="com.shangyong.thcore.vo.OrderBorrowVo">
+    select 
+     periods, cycle, pre_borrow_amount preBorrowAmount, borrow_amount borrowAmount
+    from order_borrow_apply
+    where appid = #{appid,jdbcType=VARCHAR} and order_id=#{orderId,jdbcType=VARCHAR} 
+    and if_valid=1 order by create_time desc limit 1
+  </select>
+  
+  <select id="getOrderBorrowBo" resultType="com.shangyong.thcore.bo.OrderBorrowBo">
+    select 
+    finance_order_id financeOrderId, 
+    borrow_amount borrowAmount, 
+    pre_borrow_amount preBorrowAmount,
+    credit_use_uuid creditUseUuid, 
+    appid,
+    order_id orderId,
+    periods,
+    cycle,
+    create_time createTime,
+    repayment_plan_time repaymentPlanTime
+    from order_borrow_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR} and if_valid=1
+  </select>
+  
+   <select id="getOrderBorrowBoByAO" resultType="com.shangyong.thcore.bo.OrderBorrowBo">
+    select 
+    finance_order_id financeOrderId, 
+    borrow_amount borrowAmount, 
+    pre_borrow_amount preBorrowAmount,
+    credit_use_uuid creditUseUuid, 
+    appid,
+    order_id orderId,
+    periods,
+    cycle,
+    create_time createTime,
+    repayment_plan_time repaymentPlanTime
+    from order_borrow_apply
+    where appid = #{appid,jdbcType=VARCHAR} and order_id=#{orderId,jdbcType=VARCHAR} 
+    and if_valid=1
+  </select>
+  
+  <select id="getOrderBorrowInsuranceBo" resultType="com.shangyong.thorder.bo.OrderBorrowInsuranceBo">
+    select 
+    apply_id applyId,
+    finance_order_id financeOrderId, 
+    create_time createTime
+    from order_borrow_apply
+    where appid = #{appid,jdbcType=VARCHAR} and order_id=#{orderId,jdbcType=VARCHAR} 
+    and if_valid=1
+  </select>
+  
+  
+  </mapper>

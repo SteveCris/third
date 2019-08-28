@@ -1,0 +1,103 @@
+package com.shangyong.thzlqb.service;
+
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thzlqb.bo.OrderSimpleBo;
+import com.shangyong.thzlqb.entity.ZlqbOrder;
+
+/**
+ * 订单处理服务
+ * 
+ * @author caijunjun
+ * @date 2019年7月19日
+ */
+public interface CoreOrderService {
+
+	/**
+	 * 比较状态是否是期望值
+	 * 
+	 * @param orderNo
+	 * @param expectStatus
+	 * @return
+	 */
+	boolean checkStatus(String orderNo, int expectStatus);
+
+	/**
+	 * 修改订单状态
+	 * 
+	 * @param orderNo
+	 * @param newStatus
+	 * @param oldStatus
+	 * @param ifFinish
+	 * @param remark
+	 * @return
+	 */
+	boolean updateOrderStatus(String orderNo, int newStatus, int oldStatus, boolean ifFinish, String remark);
+
+	/**
+	 * 判断是否存在该订单信息
+	 * 
+	 * @param orderNo
+	 * @return
+	 */
+	boolean isExist(String orderNo);
+
+	/**
+	 * 创建订单
+	 * 
+	 * @param zlqbOrder
+	 * @return
+	 */
+	boolean create(ZlqbOrder zlqbOrder);
+
+	/**
+	 * 获得订单简要信息
+	 * 
+	 * @param orderNo
+	 * @return
+	 */
+	OrderSimpleBo getOrderSimpleBo(String orderNo);
+
+	/**
+	 * 获取订单简要信息
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	OrderSimpleBo getOrderSimpleBoByOrderId(String orderId);
+
+	/**
+	 * 获取远程订单信息
+	 * 
+	 * @param orderNo
+	 * @return
+	 */
+	OrderLoanVo getRemoteOrder(String orderNo);
+
+	/**
+	 * 创建远程订单
+	 * 
+	 * @param orderNo
+	 * @return
+	 */
+	OrderLoanVo createRemoteOrder(String orderNo);
+
+	/**
+	 * 推送至待审核 远程订单
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	boolean toWaitAuditRemoteOrder(String orderId);
+
+	/**
+	 * 是否拥有远程在途订单
+	 * 
+	 * @param identityNo
+	 * @return
+	 */
+	boolean checkHasOnWayRemoteOrder(String identityNo);
+
+
+
+	boolean updateOrderisSign(String orderNo);
+}

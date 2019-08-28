@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorPackagesItemsMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorPackagesItems">
+    <id column="operator_packages_items_id" jdbcType="VARCHAR" property="operatorPackagesItemsId" />
+    <result column="operator_packages_id" jdbcType="VARCHAR" property="operatorPackagesId" />
+    <result column="item" jdbcType="VARCHAR" property="item" />
+    <result column="total" jdbcType="VARCHAR" property="total" />
+    <result column="used" jdbcType="VARCHAR" property="used" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_packages_items_id, operator_packages_id, item, total, used, unit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_packages_items
+    where operator_packages_items_id = #{operatorPackagesItemsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_packages_items
+    where operator_packages_items_id = #{operatorPackagesItemsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorPackagesItems">
+    insert into jdq_operator_packages_items (operator_packages_items_id, operator_packages_id, 
+      item, total, used, 
+      unit)
+    values (#{operatorPackagesItemsId,jdbcType=VARCHAR}, #{operatorPackagesId,jdbcType=VARCHAR}, 
+      #{item,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, #{used,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorPackagesItems">
+    insert into jdq_operator_packages_items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorPackagesItemsId != null">
+        operator_packages_items_id,
+      </if>
+      <if test="operatorPackagesId != null">
+        operator_packages_id,
+      </if>
+      <if test="item != null">
+        item,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="used != null">
+        used,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorPackagesItemsId != null">
+        #{operatorPackagesItemsId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorPackagesId != null">
+        #{operatorPackagesId,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null">
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="used != null">
+        #{used,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorPackagesItems">
+    update jdq_operator_packages_items
+    <set>
+      <if test="operatorPackagesId != null">
+        operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null">
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="used != null">
+        used = #{used,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_packages_items_id = #{operatorPackagesItemsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorPackagesItems">
+    update jdq_operator_packages_items
+    set operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR},
+      item = #{item,jdbcType=VARCHAR},
+      total = #{total,jdbcType=VARCHAR},
+      used = #{used,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR}
+    where operator_packages_items_id = #{operatorPackagesItemsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

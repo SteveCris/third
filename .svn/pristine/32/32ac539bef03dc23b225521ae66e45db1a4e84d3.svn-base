@@ -1,0 +1,322 @@
+package com.shangyong.thorder.service.impl;
+
+import java.math.BigDecimal;
+import java.text.MessageFormat;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import com.shangyong.center.client.CenterClientFactory;
+import com.shangyong.center.client.exception.RemoteServerException;
+import com.shangyong.center.dto.ApplicationRequestDto;
+import com.shangyong.center.dto.CompositeBehindDto;
+import com.shangyong.center.dto.CompositeDto;
+import com.shangyong.center.dto.RuleDto;
+import com.shangyong.center.vo.CenterSceneVo;
+import com.shangyong.center.vo.CompositeVo;
+import com.shangyong.center.vo.ContractRuleVo;
+import com.shangyong.center.vo.InsuranceRepaymentPlanInfosVo;
+import com.shangyong.center.vo.SceneSuperVo;
+import com.shangyong.common.entity.RestResult;
+import com.shangyong.common.utils.LoadBalanceUtil;
+import com.shangyong.common.utils.LocalDateUtil;
+import com.shangyong.loan.autoconfigure.SleuthLoggerExclude;
+import com.shangyong.rest.feign.BaseCloudHystrixService;
+import com.shangyong.thcore.bo.OrderPreCreditBo;
+import com.shangyong.thcore.bo.OrderUserBo;
+import com.shangyong.thcore.dto.OrderPreCreditDto;
+import com.shangyong.thcore.event.PreSignEvent;
+import com.shangyong.thcore.event.SignEvent;
+import com.shangyong.thcore.event.dto.EventPreSign;
+import com.shangyong.thcore.event.dto.EventSign;
+import com.shangyong.thcore.vo.OrderPreCreditVo;
+import com.shangyong.thcore.vo.OrderRepaymentPlanVo;
+import com.shangyong.thcore.vo.OrderRuleVo;
+import com.shangyong.thcore.vo.ProductConfigVo;
+import com.shangyong.thorder.contants.RedisPrefix;
+import com.shangyong.thorder.contants.UuidPrefix;
+import com.shangyong.thorder.dao.OrderCreditRuleMapper;
+import com.shangyong.thorder.dao.OrderPreCreditMapper;
+import com.shangyong.thorder.dao.OrderUserMapper;
+import com.shangyong.thorder.entity.OrderCreditRule;
+import com.shangyong.thorder.enums.CoreResultEnum;
+import com.shangyong.thorder.exception.CalfException;
+import com.shangyong.thorder.sender.mq.Sender;
+import com.shangyong.thorder.service.OrderCreditService;
+import com.shangyong.thorder.service.OrderRuleService;
+import com.shangyong.thorder.service.process.CreditProcessFactory;
+import com.shangyong.thorder.utils.EventUtil;
+import com.shangyong.thorder.utils.IdUtil;
+import com.shangyong.thorder.vo.OrderBussinessPreCreditVo;
+import com.shangyong.thorder.vo.OrderSceneCommonVo;
+import com.shangyong.thorder.vo.OrderSceneVo;
+
+@Service
+public class OrderCreditServiceImpl implements OrderCreditService {
+
+	private Logger logger = LoggerFactory.getLogger(OrderCreditServiceImpl.class);
+
+	@Autowired
+	private Sender sender;
+
+	@Autowired
+	private OrderRuleService orderRuleService;
+
+	@Autowired
+	private BaseCloudHystrixService baseCloudHystrixService;
+
+	@Autowired
+	private CenterClientFactory centerClientFactory;
+
+	@Autowired
+	private CreditProcessFactory creditProcessFactory;
+
+	@Autowired
+	private OrderCreditRuleMapper orderCreditRuleMapper;
+
+	@Autowired
+	private OrderPreCreditMapper orderPreCreditMapper;
+
+	@Autowired
+	private OrderUserMapper orderUserMapper;
+
+	@Override
+	public OrderRuleVo getOrderRuleVoHasCredit(String appid, String orderId) {
+		OrderPreCreditVo orderPreCreditVo = orderPreCreditMapper.getOrderPreCreditVo(appid, orderId);
+		if (orderPreCreditVo == null) {
+			throw new CalfException(CoreResultEnum.NULL_ERROR);
+		}
+		return orderCreditRuleMapper.getOrderRuleVo(appid, orderId, orderPreCreditVo.getCreditAmount());
+	}
+
+	@Override
+	public OrderRuleVo getOrderRuleVo(String appid, String orderId, BigDecimal creditLine) {
+
+		if (creditLine == null) {
+			RestResult<ProductConfigVo> restResult = baseCloudHystrixService.getProductConfigVo(appid);
+			if (restResult == null || !restResult.isSuccess()) {
+				throw new CalfException(CoreResultEnum.REMOTE_ERROR);
+			}
+			creditLine = restResult.getData().getBody().getPrice();
+		}
+
+		OrderRuleVo orderRuleVo = orderCreditRuleMapper.getOrderRuleVo(appid, orderId, creditLine);
+		if (orderRuleVo == null) {
+
+			List<SceneSuperVo> list = orderRuleService.contractSceneSuper(appid, creditLine);
+			SceneSuperVo sceneSuperVo = LoadBalanceUtil.getLoadBalance(list, ss -> Integer.parseInt(ss.getExt1()));
+
+			RuleDto ruleDto = new RuleDto();
+			ruleDto.setLimit(creditLine);
+			ruleDto.setSsType(sceneSuperVo.getSsType());
+
+			ContractRuleVo contractRuleVo = centerClientFactory.getCenterClient(appid).contractRuleWithScene(ruleDto);
+			OrderCreditRule orderCreditRule = new OrderCreditRule();
+			orderCreditRule.setAppid(appid);
+			orderCreditRule.setCreateTime(new Date());
+			orderCreditRule.setOrderId(orderId);
+			orderCreditRule.setRuleId(IdUtil.getNumberUuid(UuidPrefix.OREDER_RULE));
+			orderCreditRule.setRule(contractRuleVo.getRule());
+			orderCreditRule.setSceneRule(contractRuleVo.getSceneRule());
+			orderCreditRule.setCreditLine(creditLine);
+
+			orderCreditRule.setExt(String.valueOf(sceneSuperVo.getSsType()));
+			if (orderCreditRuleMapper.insertOrIgnore(orderCreditRule) > 0) {
+				orderRuleVo = new OrderRuleVo();
+				BeanUtils.copyProperties(orderCreditRule, orderRuleVo);
+				orderRuleVo.setSsType(sceneSuperVo.getSsType());
+			} else {
+				throw new CalfException(CoreResultEnum.CLICK_REPEAT);
+			}
+		}
+
+		return orderRuleVo;
+	}
+
+	@Override
+	public boolean preCredit(String appid, BigDecimal creditLine, String orderId, OrderPreCreditDto orderPreCreditDto) {
+
+		// 获取规则
+		OrderRuleVo orderRuleVo = getOrderRuleVo(appid, orderId, creditLine);
+		int ruleType = Integer.parseInt(orderRuleVo.getRule().split(",")[0]);
+		// 获得场景值
+		int sceneId = Integer.parseInt(orderRuleVo.getSceneRule().split(",")[0]);
+
+		// 组装请求数据
+		CompositeDto compositeDto = new CompositeDto();
+
+		OrderUserBo orderUserBo = orderUserMapper.getOrderUserBo(appid, orderId);
+
+		compositeDto.setCreditCode(orderPreCreditDto.getProductCode());
+		compositeDto.setCreditLine(creditLine);
+		compositeDto.setCode(IdUtil.getNumberUuid(UuidPrefix.CONTRACT));
+		compositeDto.setCreditSelfCode(orderId);
+		compositeDto.setUserId(orderUserBo.getIdentityNo());
+		compositeDto.setSubType(sceneId);
+
+		// 事件
+		PreSignEvent preSignEvent = new PreSignEvent();
+		// 事件id
+		String messageId = EventUtil.getMessageId();
+
+		try {
+			CompositeVo compositeVo = creditProcessFactory.getCreditProcess(ruleType).applyBefore(appid, orderId,
+					compositeDto);
+			// 事件头
+			preSignEvent.setEventHeader(EventUtil.buildEventHeader(messageId, appid, orderId, "", true));
+
+			// 事件主体
+			EventPreSign eventPreSign = new EventPreSign();
+			eventPreSign.setContractCode(compositeDto.getCode());
+			eventPreSign.setCreditAmount(creditLine);
+			eventPreSign.setCreditSelfCode(compositeDto.getCreditSelfCode());
+			eventPreSign.setCreditUuid(compositeVo.getCreditUuid());
+			eventPreSign.setProductCode(compositeDto.getCreditCode());
+			preSignEvent.setEventPreSign(eventPreSign);
+
+			return sender.sendMq("/third", "ex.event.preSign", MessageFormat.format("preSign.{0}.rKey", appid),
+					preSignEvent, true);
+		} catch (RemoteServerException e) {
+			logger.error("前置授信失败，appid:{};orderId:{};orderPreCreditDto:{};message:{}", appid, orderId,
+					orderPreCreditDto, e.getMessage());
+			// 事件头
+			preSignEvent.setEventHeader(EventUtil.buildEventHeader(messageId, appid, orderId, "", false));
+			// 事件失败原因
+			preSignEvent.setEventFailureResult(EventUtil.buildEventFailureResult(e));
+
+			sender.sendMq("/third", "ex.event.preSign", MessageFormat.format("preSign.{0}.rKey", appid), preSignEvent,
+					true);
+			throw new CalfException(e.getMessage(), CoreResultEnum.REMOTE_ERROR);
+		}
+	}
+
+	@Override
+	public boolean credit(String appid, String orderId) {
+
+		// 组装请求数据
+		OrderPreCreditVo orderPreCreditVo = orderPreCreditMapper.getOrderPreCreditVo(appid, orderId);
+
+		// 获取规则
+		OrderRuleVo orderRuleVo = orderCreditRuleMapper.getOrderRuleVo(appid, orderId,
+				orderPreCreditVo.getCreditAmount());
+		int ruleType = Integer.parseInt(orderRuleVo.getRule().split(",")[1]);
+		// 获得场景值
+		int sceneId = Integer.parseInt(orderRuleVo.getSceneRule().split(",")[1]);
+
+		CompositeBehindDto compositeBehindDto = new CompositeBehindDto();
+		compositeBehindDto.setCode(IdUtil.getNumberUuid(UuidPrefix.CONTRACT));
+		compositeBehindDto.setSelfCode(orderId);
+		compositeBehindDto.setCreditUuid(orderPreCreditVo.getCreditUuid());
+		compositeBehindDto.setSubType(sceneId);
+
+		// 事件
+		SignEvent signEvent = new SignEvent();
+		// 事件id
+		String messageId = EventUtil.getMessageId();
+
+		try {
+			CompositeVo compositeVo = creditProcessFactory.getCreditProcess(ruleType).applyBehind(appid, orderId,
+					compositeBehindDto);
+			// 事件头
+			signEvent.setEventHeader(EventUtil.buildEventHeader(messageId, appid, orderId, "", true));
+
+			// 事件主体
+			EventSign eventSign = new EventSign();
+			eventSign.setCreditUseUuid(compositeVo.getCreditUseUuid());
+			eventSign.setCreditUuid(compositeVo.getCreditUuid());
+			eventSign.setContractCode(compositeBehindDto.getCode());
+			eventSign.setCreditAmount(orderPreCreditVo.getCreditAmount());
+			eventSign.setProductCode(orderPreCreditVo.getProductCode());
+			eventSign.setCreditSelfCode(orderId);
+
+			signEvent.setEventSign(eventSign);
+
+			return sender.sendMq("/third", "ex.event.sign", MessageFormat.format("sign.{0}.rKey", appid), signEvent,
+					true);
+		} catch (RemoteServerException e) {
+			logger.error("后置授信失败，appid:{};orderId:{};message:{}", appid, orderId, e.getMessage());
+			// 事件头
+			signEvent.setEventHeader(EventUtil.buildEventHeader(messageId, appid, orderId, "", false));
+			// 事件失败原因
+			signEvent.setEventFailureResult(EventUtil.buildEventFailureResult(e));
+
+			sender.sendMq("/third", "ex.event.sign", MessageFormat.format("sign.{0}.rKey", appid), signEvent, true);
+			throw new CalfException(e.getMessage(), CoreResultEnum.REMOTE_ERROR);
+		}
+	}
+
+	@Override
+	public OrderBussinessPreCreditVo getOrderBussinessPreCreditVo(String appid, String orderId) {
+		RestResult<ProductConfigVo> restResult = baseCloudHystrixService.getProductConfigVo(appid);
+		if (restResult == null || !restResult.isSuccess()) {
+			return null;
+		}
+
+		ProductConfigVo productConfigVo = restResult.getData().getBody();
+
+		// 获取申请时间相关
+		OrderPreCreditBo orderPreCreditBo = orderPreCreditMapper.getOrderPreCreditBo(appid, orderId);
+		if (orderPreCreditBo == null) {
+			throw new CalfException(CoreResultEnum.STATUS_ERROR);
+		}
+
+		OrderBussinessPreCreditVo orderBussinessPreCreditVo = new OrderBussinessPreCreditVo();
+		orderBussinessPreCreditVo
+				.setPreCreateTime(LocalDateUtil.plus(orderPreCreditBo.getCreateTime(), 1, ChronoUnit.DAYS));
+		ApplicationRequestDto applicationRequestDto = new ApplicationRequestDto();
+
+		applicationRequestDto.setAppID(appid);
+		applicationRequestDto.setProductCode(orderPreCreditBo.getProductCode());
+		applicationRequestDto.setCycle(productConfigVo.getCycle());
+		applicationRequestDto.setRealMoney(productConfigVo.getPrice().toString());
+		applicationRequestDto.setInsuranceMoney(productConfigVo.getPrePrice().toString());
+
+		InsuranceRepaymentPlanInfosVo insuranceRepaymentPlanInfosVo = centerClientFactory.getCenterClient(appid)
+				.pilotcalculation(applicationRequestDto);
+		OrderRepaymentPlanVo orderRepaymentPlanVo = new OrderRepaymentPlanVo();
+		BeanUtils.copyProperties(insuranceRepaymentPlanInfosVo.getRepaymentPlanInfo(), orderRepaymentPlanVo);
+		orderBussinessPreCreditVo.setOrderRepaymentPlanVo(orderRepaymentPlanVo);
+
+		return orderBussinessPreCreditVo;
+	}
+
+	@SleuthLoggerExclude(excludeInput = false, excludeOut = true)
+	@Cacheable(key = "'" + RedisPrefix.CONFIG_BASE
+			+ "'+#appid+':'+#sceneId+':'+#creditLine", value = "COMMON#600", unless = "#result==null")
+	@Override
+	public OrderSceneVo getOrderSceneVo(String appid, int sceneId, BigDecimal creditLine) {
+
+		OrderSceneVo orderSceneVo = new OrderSceneVo();
+		CenterSceneVo centerSceneVo = orderRuleService
+				.getCenterSceneVo(orderRuleService.listCenterSceneVo(appid, sceneId), creditLine);
+		orderSceneVo.setCenterSceneVo(centerSceneVo);
+		orderSceneVo.setCenterSceneInsuranceVoList(
+				orderRuleService.listCenterSceneInsuranceVo(appid, centerSceneVo.getsCode()));
+
+		return orderSceneVo;
+	}
+
+	@SleuthLoggerExclude(excludeInput = false, excludeOut = true)
+	@Cacheable(key = "'" + RedisPrefix.CONFIG_BASE_C
+			+ "'+#appid+':'+#sceneId+':'+#creditLine", value = "COMMON#600", unless = "#result==null")
+	@Override
+	public OrderSceneCommonVo getOrderSceneCommonVo(String appid, int sceneId, BigDecimal creditLine) {
+
+		OrderSceneCommonVo orderSceneCommonVo = new OrderSceneCommonVo();
+		CenterSceneVo centerSceneVo = orderRuleService
+				.getCenterSceneVo(orderRuleService.listCenterSceneVo(appid, sceneId), creditLine);
+		orderSceneCommonVo.setCenterSceneVo(centerSceneVo);
+		orderSceneCommonVo.setCenterSceneCommonVoList(
+				orderRuleService.listSceneCommonVo(appid, sceneId, centerSceneVo.getsCode()));
+
+		return orderSceneCommonVo;
+	}
+
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thryt.dao.RytCheckRMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thryt.entity.RytCheckR">
+    <id column="check_id" jdbcType="VARCHAR" property="checkId" />
+    <result column="mobile_mask" jdbcType="VARCHAR" property="mobileMask" />
+    <result column="id_card_mask" jdbcType="VARCHAR" property="idCardMask" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="m_c_md5" jdbcType="VARCHAR" property="mCMd5" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="valid" jdbcType="INTEGER" property="valid" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="can_loan_time" jdbcType="VARCHAR" property="canLoanTime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    check_id, mobile_mask, id_card_mask, user_name, m_c_md5, create_time, valid, user_type, 
+    can_loan_time, reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ryt_check_r
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ryt_check_r
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thryt.entity.RytCheckR">
+    insert into ryt_check_r (check_id, mobile_mask, id_card_mask, 
+      user_name, m_c_md5, create_time, 
+      valid, user_type, can_loan_time, 
+      reason)
+    values (#{checkId,jdbcType=VARCHAR}, #{mobileMask,jdbcType=VARCHAR}, #{idCardMask,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{mCMd5,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{valid,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}, #{canLoanTime,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thryt.entity.RytCheckR">
+    insert into ryt_check_r
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        check_id,
+      </if>
+      <if test="mobileMask != null">
+        mobile_mask,
+      </if>
+      <if test="idCardMask != null">
+        id_card_mask,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="mCMd5 != null">
+        m_c_md5,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="valid != null">
+        valid,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="canLoanTime != null">
+        can_loan_time,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMask != null">
+        #{mobileMask,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardMask != null">
+        #{idCardMask,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mCMd5 != null">
+        #{mCMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="canLoanTime != null">
+        #{canLoanTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thryt.entity.RytCheckR">
+    update ryt_check_r
+    <set>
+      <if test="mobileMask != null">
+        mobile_mask = #{mobileMask,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardMask != null">
+        id_card_mask = #{idCardMask,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mCMd5 != null">
+        m_c_md5 = #{mCMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="canLoanTime != null">
+        can_loan_time = #{canLoanTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thryt.entity.RytCheckR">
+    update ryt_check_r
+    set mobile_mask = #{mobileMask,jdbcType=VARCHAR},
+      id_card_mask = #{idCardMask,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      m_c_md5 = #{mCMd5,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      valid = #{valid,jdbcType=INTEGER},
+      user_type = #{userType,jdbcType=INTEGER},
+      can_loan_time = #{canLoanTime,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR}
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </update>
+</mapper>

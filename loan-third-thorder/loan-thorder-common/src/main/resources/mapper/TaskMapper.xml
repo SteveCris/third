@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.TaskMapper">
+
+	<select id="listOrderLoanBo"
+		resultType="com.shangyong.thcore.bo.OrderLoanBo">
+		SELECT
+			appid,
+			order_id orderId,
+			status status,
+			if_finish ifFinish,
+			repayment_status repaymentStatus 
+		FROM
+			order_loan 
+		WHERE
+			repayment_status = 10
+		<if test="beforeTime != null">
+			AND create_time BETWEEN #{beforeTime,jdbcType=TIMESTAMP} 
+			AND #{afterTime,jdbcType=TIMESTAMP}
+		</if>
+		ORDER BY create_time ASC
+	</select>
+	
+	<select id="listOrderLoanBoNoBorrow"
+		resultType="com.shangyong.thorder.bo.OrderAuditExpireBo">
+		
+		SELECT
+			A.appid,
+			A.order_id orderId,
+			A.`status` status,
+			B.create_time createTime
+		FROM
+			order_loan  AS A LEFT JOIN order_user AS B ON A.appid=B.appid AND A.order_id=B.order_id
+		WHERE
+			A.repayment_status = 0 
+			AND A.if_finish = 0 
+			<if test="beforeTime != null">
+				AND A.create_time BETWEEN #{beforeTime,jdbcType=TIMESTAMP} 
+				AND #{afterTime,jdbcType=TIMESTAMP}
+			</if>
+			AND B.if_valid=1
+		ORDER BY
+			B.create_time ASC
+	</select>
+	
+	
+	
+	
+	<select id="getOrderBorrowBo" resultType="com.shangyong.thcore.bo.OrderBorrowBo">
+	    select 
+	    repayment_plan_time repaymentPlanTime
+	    from order_borrow_apply
+	    where appid = #{appid,jdbcType=VARCHAR} and order_id=#{orderId,jdbcType=VARCHAR} 
+	    and if_valid=1
+  </select>
+	
+	
+	
+
+</mapper>

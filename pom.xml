@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.shangyong.loan</groupId>
+	<artifactId>loan-third</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>${project.artifactId}</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- 下载源码 -->
+		<downloadSources>true</downloadSources>
+		<!-- 关闭测试 -->
+		<junit.close>true</junit.close>
+	</properties>
+
+	<dependencies>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${junit.close}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<modules>
+		<!-- 三方借贷 核心模块（公共引用） -->
+		<module>loan-third-core</module>
+		<!-- 三方借贷-借点钱 业务模块 -->
+		<module>loan-third-jdq</module>
+		<!-- 三方借贷-融易推 业务模块 -->
+		<module>loan-third-ryt</module>
+		<!-- 三方借贷-助力钱包 业务模块 -->
+		<module>loan-third-zlqb</module>
+		<!-- 三方借贷 基础模块 -->
+		<module>loan-third-thbase</module>
+		<!-- 三方借贷 订单模块 -->
+		<module>loan-third-thorder</module>
+		
+		
+
+		
+		<!-- 三方借贷 通用交互模块 -->
+		<module>loan-third-interact</module>
+        <module>loan-third-mep</module>
+
+
+    </modules>
+</project>

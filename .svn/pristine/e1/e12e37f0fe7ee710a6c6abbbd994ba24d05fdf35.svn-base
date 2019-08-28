@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="init.properties" />
+
+
+	<!-- 指定数据连接驱动jar地址 -->
+	<!-- <classPathEntry location="${dataJarPath}" /> -->
+
+	<!-- 一个数据库一个context -->
+	<!-- 因为没有table标签，所以报错，这个错误可以忽略的 -->
+	<context id="loan" targetRuntime="MyBatis3">
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="com.mybatis.plugin.GenPlugin" /><!-- 反向生成通用中文插件 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" /><!-- 
+			序列化插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" /><!-- 
+			对象toString插件 -->
+
+		<!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" 
+			/> --><!-- 对象EqualsHashCodePlugin插件 -->
+
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释带时间戳 -->
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="${jdbc_driverClassName}"
+			connectionURL="${jdbc_url}" userId="${jdbc_username}"
+			password="${jdbc_password}" />
+
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成实体类地址 -->
+		<!-- <javaModelGenerator targetPackage="${model_path}" targetProject="${project_java_path}"> 
+			是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] 
+			<property name="enableSubPackages" value="false" /> 是否针对string类型的字段在set的时候进行trim调用 
+			<property name="trimStrings" value="true" /> </javaModelGenerator> -->
+
+		<!-- 生成实体类地址(生成到其它项目中) -->
+		<javaModelGenerator targetPackage="${model_path}"
+			targetProject="${depend_project_java_path}">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="${mapper_path}"
+			targetProject="${project_resources_path}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="${dao_path}"
+			targetProject="${project_java_path}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 生成过后请放入这里注释掉，防止重复生成 ，命名最好参照user_info，复制一份即可 -->
+		<!-- 
+		
+		<table schema="center_app" tableName="center_app"
+			domainObjectName="CenterApp" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			
+			<ignoreColumn column="remark"/>
+			<ignoreColumn column="create_man"/>
+			<ignoreColumn column="modify_time"/>
+			<ignoreColumn column="modify_man"/>
+		</table>
+		<table schema="th_bank_config" tableName="th_bank_config"
+			domainObjectName="ThBankConfig" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="th_center_config" tableName="th_center_config"
+			domainObjectName="ThCenterConfig" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="th_product_config" tableName="th_product_config"
+			domainObjectName="ThProductConfig" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+	
+		<table schema="th_user_info" tableName="th_user_info"
+			domainObjectName="ThUserInfo" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="th_user_quarantine" tableName="th_user_quarantine"
+			   domainObjectName="ThUserQuarantine" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="th_param_config" tableName="th_param_config"
+			   domainObjectName="ThParamConfig" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="th_bank_match" tableName="th_bank_match"
+			   domainObjectName="ThBankMatch" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 -->
+		
+		
+		<!-- 首要排除字段-->
+		<!--
+		
+			<ignoreColumn column="remark"/>
+			<ignoreColumn column="create_man"/>
+			<ignoreColumn column="modify_time"/>
+			<ignoreColumn column="modify_man"/>
+			<ignoreColumn column="ext1"/>
+			<ignoreColumn column="ext2"/>
+		 -->
+		<!-- mvn mybatis-generator:generate -->
+		<!-- useActualColumnNames false使用下划线转驼峰命名，true不变 -->
+
+	</context>
+</generatorConfiguration>

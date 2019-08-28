@@ -1,0 +1,77 @@
+package com.shangyong.thzlqb.service.impl;
+
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.loan.autoconfigure.SleuthLoggerExclude;
+import com.shangyong.loan.ext.util.JsonNodeUtil;
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thzlqb.contants.CoreContants;
+import com.shangyong.thzlqb.entity.ZlqbOrder;
+import com.shangyong.thzlqb.event.PushEvent;
+import com.shangyong.thzlqb.send.Sender;
+import com.shangyong.thzlqb.service.CoreOrderService;
+import com.shangyong.thzlqb.service.MongodbService;
+import com.shangyong.thzlqb.service.ZlqbOrderService;
+
+@Service
+public class ZlqbOrderServiceImpl implements ZlqbOrderService {
+
+	private Logger logger = LoggerFactory.getLogger(ZlqbOrderServiceImpl.class);
+
+	@Autowired
+	private Sender sender;
+
+	@Autowired
+	private MongodbService mongodbService;
+
+	@Autowired
+	private CoreOrderService coreOrderService;
+
+	@SleuthLoggerExclude(excludeInput = true, excludeOut = false)
+	@Override
+	public boolean processPushOrder(ObjectNode request) {
+
+		String orderNo = JsonNodeUtil.getJsonNodeByPath(request, "basicInfo/orderNo").asText();
+		logger.info("接受订单，订单号：{}",orderNo);
+		// 判断订单存在否
+		if (coreOrderService.isExist(orderNo)) {
+			logger.info("订单已经存在，重复推送，订单号：{}", orderNo);
+			return true;
+		}
+
+		// 创建远程订单
+		OrderLoanVo orderLoanVo = coreOrderService.createRemoteOrder(orderNo);
+
+		// 创建 mongodb订单
+		if (mongodbService.saveData(CoreContants.PUSH_COLLECTION, orderNo, request)) {
+			// 创建本地订单
+			coreOrderService.create(sealZlabOrderDto(orderNo, orderLoanVo));
+
+			PushEvent pushEvent = new PushEvent();
+			pushEvent.setOrderNo(orderNo);
+			sender.sendMq("/third", "ex.push.zlqb.time", "push.rKey", pushEvent, true);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// **********************私有方法**********************
+	// 组装订单新增Dto
+	private ZlqbOrder sealZlabOrderDto(String orderNo, OrderLoanVo orderLoanVo) {
+		ZlqbOrder zlqbOrder = new ZlqbOrder();
+		zlqbOrder.setIfFinish(false);
+		zlqbOrder.setCreateTime(new Date());
+		zlqbOrder.setStatus(0);
+		zlqbOrder.setOrderNo(orderNo);
+		zlqbOrder.setOrderId(orderLoanVo.getOrderId());
+		return zlqbOrder;
+	}
+
+}

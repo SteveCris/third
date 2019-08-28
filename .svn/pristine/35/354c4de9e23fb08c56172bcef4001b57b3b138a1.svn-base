@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="init.properties" />
+
+
+	<!-- 指定数据连接驱动jar地址 -->
+	<!-- <classPathEntry location="${dataJarPath}" /> -->
+
+	<!-- 一个数据库一个context -->
+	<!-- 因为没有table标签，所以报错，这个错误可以忽略的 -->
+	<context id="loan" targetRuntime="MyBatis3">
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="com.mybatis.plugin.GenPlugin" /><!-- 反向生成通用中文插件 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" /><!-- 
+			序列化插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" /><!-- 
+			对象toString插件 -->
+
+		<!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" 
+			/> --><!-- 对象EqualsHashCodePlugin插件 -->
+
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释带时间戳 -->
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="${jdbc_driverClassName}"
+			connectionURL="${jdbc_url}" userId="${jdbc_username}"
+			password="${jdbc_password}" />
+
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成实体类地址 -->
+		<!-- <javaModelGenerator targetPackage="${model_path}" targetProject="${project_java_path}"> 
+			是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] 
+			<property name="enableSubPackages" value="false" /> 是否针对string类型的字段在set的时候进行trim调用 
+			<property name="trimStrings" value="true" /> </javaModelGenerator> -->
+
+		<!-- 生成实体类地址(生成到其它项目中) -->
+		<javaModelGenerator targetPackage="${model_path}"
+			targetProject="${depend_project_java_path}">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="${mapper_path}"
+			targetProject="${project_resources_path}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="${dao_path}"
+			targetProject="${project_java_path}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 生成过后请放入这里注释掉，防止重复生成 ，命名最好参照user_info，复制一份即可 -->
+		<!-- 
+		
+		
+		<table schema="order_loan" tableName="order_loan"
+			domainObjectName="OrderLoan" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+			<ignoreColumn column="remark"/>
+			<ignoreColumn column="create_man"/>
+			<ignoreColumn column="modify_time"/>
+			<ignoreColumn column="modify_man"/>
+		</table>
+		
+		<table schema="order_credit_rule" tableName="order_credit_rule"
+			domainObjectName="OrderCreditRule" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 
+		  <table schema="order_audit_r" tableName="order_audit_r"
+			domainObjectName="OrderAuditR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 <table schema="order_bank_bind_r" tableName="order_bank_bind_r"
+			domainObjectName="OrderBankBindR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="order_pre_credit_r" tableName="order_pre_credit_r"
+			domainObjectName="OrderPreCreditR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 <table schema="order_credit_r" tableName="order_credit_r"
+			domainObjectName="OrderCreditR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 <table schema="order_actual_loan_r" tableName="order_actual_loan_r"
+			domainObjectName="OrderActualLoanR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 <table schema="order_repayment_r" tableName="order_repayment_r"
+			domainObjectName="OrderRepaymentR" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 
+		 
+		 <table schema="order_user" tableName="order_user"
+			domainObjectName="OrderUser" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		 <table schema="order_bank_bind" tableName="order_bank_bind"
+			domainObjectName="OrderBankBind" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		
+		<table schema="order_pre_credit" tableName="order_pre_credit"
+			domainObjectName="OrderPreCredit" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="order_credit" tableName="order_credit"
+			domainObjectName="OrderCredit" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		
+		
+	
+		
+		
+			 
+		 <table schema="order_borrow_apply" tableName="order_borrow_apply"
+			domainObjectName="OrderBorrowApply" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="order_actual_loan" tableName="order_actual_loan"
+			domainObjectName="OrderActualLoan" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="order_repayment" tableName="order_repayment"
+			domainObjectName="OrderRepayment" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table schema="order_equity" tableName="order_equity"
+			domainObjectName="OrderEquity" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		-->
+		 
+		
+		
+		
+		 
+		<!-- 首要排除字段-->
+		<!--
+		
+			<ignoreColumn column="remark"/>
+			<ignoreColumn column="create_man"/>
+			<ignoreColumn column="modify_time"/>
+			<ignoreColumn column="modify_man"/>
+			<ignoreColumn column="ext1"/>
+			<ignoreColumn column="ext2"/>
+		 -->
+		<!-- mvn mybatis-generator:generate -->
+		<!-- useActualColumnNames false使用下划线转驼峰命名，true不变 -->
+
+	</context>
+</generatorConfiguration>

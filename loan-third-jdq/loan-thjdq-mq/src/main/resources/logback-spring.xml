@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<springProperty scope="context" name="springLogdir" source="logdir"/>
+	<springProperty scope="context" name="springAppName"
+		source="spring.application.name" defaultValue="bootstrap" />
+	<!-- 日志路径(相对路径)，如果部署到linux上的tomcat下，会输出到tomcat/bin目录下 -->
+	<property name="log.path" value="${springLogdir}" />
+	<!-- 模块名称，影响日志文件名 -->
+	<property name="log.moduleName" value="${springAppName}" />
+	<!-- 日志滚动时间(日) -->
+	<property name="log.maxHistory" value="60" />
+
+	<!-- 日志追踪模块相关日志 -->
+	<property name="log.sleuthModule"
+		value="%clr([${springAppName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-Span-Export},%X{uid}]){faint}" />
+
+	<!-- 日志输出格式 -->
+	<property name="encoder.pattern"
+		value="%date{yyyy-MM-dd HH:mm:ss.SSS} ${log.sleuthModule} %-5level %thread %logger{56} - %msg%n" />
+
+	<!-- 控制台输出 -->
+	<appender name="stdout"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${encoder.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 普通日志文件输出 -->
+	<appender name="file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.path}/${log.moduleName}.log</File>
+		<!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.path}/backup/${log.moduleName}.log.%d{yyyy-MM-dd}</FileNamePattern>
+			<!-- 设置日志的滚动时间 -->
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<!-- 日志输出的文件的格式 -->
+		<encoder>
+			<!--格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>${encoder.pattern}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<!-- <filter class="ch.qos.logback.classic.filter.LevelFilter"> <level>ERROR</level> 
+			<onMatch>DENY</onMatch> <onMismatch>ACCEPT</onMismatch> </filter> -->
+	</appender>
+
+	<!-- 异常日志文件输出 -->
+	<appender name="errorFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.path}/${log.moduleName}Exception.log</File>
+		<!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.path}/backup/${log.moduleName}Exception.log.%d{yyyy-MM-dd}</FileNamePattern>
+			<!-- 设置日志的滚动时间 -->
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<!-- 日志输出的文件的格式 -->
+		<encoder>
+			<!--格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>${encoder.pattern}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!-- 普通日志异步输出 -->
+	<appender name="asyncFile"
+		class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>512</queueSize>
+		<!-- 如果设置了neverBlock=true则写日志队列时候会调用ArrayBlockingQueue对的offer方法而不是put,而offer是非阻塞的 -->
+		<neverBlock>true</neverBlock>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="file" />
+	</appender>
+
+
+	<!--生产环境 -->
+	<springProfile name="product">
+		<root level="INFO">
+			<appender-ref ref="stdout" />
+			<appender-ref ref="asyncFile" />
+			<appender-ref ref="errorFile" />
+		</root>
+	</springProfile>
+
+	<!--测试环境 -->
+	<springProfile name="test">
+		<!-- 打印sql -->
+		<root level="INFO">
+			<appender-ref ref="stdout" />
+			<appender-ref ref="asyncFile" />
+			<appender-ref ref="errorFile" />
+		</root>
+	</springProfile>
+
+	<!--开发环境 -->
+	<springProfile name="dev">
+		<root level="INFO">
+			<appender-ref ref="stdout" />
+			<appender-ref ref="asyncFile" />
+		</root>
+	</springProfile>
+
+</configuration>

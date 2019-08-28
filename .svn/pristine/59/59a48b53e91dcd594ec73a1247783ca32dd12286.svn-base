@@ -1,0 +1,93 @@
+package com.shangyong.thcore.event.dto;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+/**
+ * 事件前置签约对象
+ * 
+ * @author caijunjun
+ * @date 2019年3月14日
+ */
+public class EventPreSign implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3729605586608335020L;
+
+	// 授信申请uuid
+	private String creditUuid;
+
+	// 授信申请透传参数
+	private String creditSelfCode;
+
+	// 合同编号
+	private String contractCode;
+
+	// 产品编号
+	private String productCode;
+
+	// 授信额度
+	private BigDecimal creditAmount;
+
+	public String getCreditUuid() {
+		return creditUuid;
+	}
+
+	public void setCreditUuid(String creditUuid) {
+		this.creditUuid = creditUuid;
+	}
+
+	public String getCreditSelfCode() {
+		return creditSelfCode;
+	}
+
+	public void setCreditSelfCode(String creditSelfCode) {
+		this.creditSelfCode = creditSelfCode;
+	}
+
+	public String getContractCode() {
+		return contractCode;
+	}
+
+	public void setContractCode(String contractCode) {
+		this.contractCode = contractCode;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	public BigDecimal getCreditAmount() {
+		return creditAmount;
+	}
+
+	public void setCreditAmount(BigDecimal creditAmount) {
+		this.creditAmount = creditAmount;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EventPreSign [creditUuid=");
+		builder.append(creditUuid);
+		builder.append(", creditSelfCode=");
+		builder.append(creditSelfCode);
+		builder.append(", contractCode=");
+		builder.append(contractCode);
+		builder.append(", productCode=");
+		builder.append(productCode);
+		builder.append(", creditAmount=");
+		builder.append(creditAmount);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+
+}

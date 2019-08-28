@@ -1,0 +1,131 @@
+package com.shangyong.thcore.event.dto;
+
+import java.io.Serializable;
+
+/**
+ * 事件头信息
+ * @author caijunjun
+ * @date 2019年3月14日
+ */
+public class EventHeader implements Serializable {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8841295231807976877L;
+
+	/**
+	 * 消息唯一序列号
+	 */
+	private String messageId;
+
+	/**
+	 * 应用appid
+	 */
+	private String appid;
+
+	/**
+	 * 应用标识
+	 */
+	private String appName;
+	
+	/**
+	 * 订单id
+	 */
+	private String orderId;
+
+	/**
+	 * 事件发生时间戳
+	 */
+	private long happenTime;
+
+	/**
+	 * 事件结果 成功还是失败
+	 */
+	private boolean success;
+	
+	/**
+	 * 描述信息
+	 */
+	private String remark;
+
+	public String getMessageId() {
+		return messageId;
+	}
+
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
+	}
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public long getHappenTime() {
+		return happenTime;
+	}
+
+	public void setHappenTime(long happenTime) {
+		this.happenTime = happenTime;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EventHeader [messageId=");
+		builder.append(messageId);
+		builder.append(", appid=");
+		builder.append(appid);
+		builder.append(", appName=");
+		builder.append(appName);
+		builder.append(", orderId=");
+		builder.append(orderId);
+		builder.append(", happenTime=");
+		builder.append(happenTime);
+		builder.append(", success=");
+		builder.append(success);
+		builder.append(", remark=");
+		builder.append(remark);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
+}

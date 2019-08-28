@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/loan-third-interact/loan-interact-api/loan-interact-api.iml" filepath="$PROJECT_DIR$/loan-third-interact/loan-interact-api/loan-interact-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-interact/loan-interact-common/loan-interact-common.iml" filepath="$PROJECT_DIR$/loan-third-interact/loan-interact-common/loan-interact-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-core/loan-rest-common-thbase/loan-rest-common-thbase.iml" filepath="$PROJECT_DIR$/loan-third-core/loan-rest-common-thbase/loan-rest-common-thbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-core/loan-rest-common-thorder/loan-rest-common-thorder.iml" filepath="$PROJECT_DIR$/loan-third-core/loan-rest-common-thorder/loan-rest-common-thorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-api/loan-thbase-api.iml" filepath="$PROJECT_DIR$/loan-third-thbase/loan-thbase-api/loan-thbase-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-common/loan-thbase-common.iml" filepath="$PROJECT_DIR$/loan-third-thbase/loan-thbase-common/loan-thbase-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-mq/loan-thbase-mq.iml" filepath="$PROJECT_DIR$/loan-third-thbase/loan-thbase-mq/loan-thbase-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-core/loan-thcore-common/loan-thcore-common.iml" filepath="$PROJECT_DIR$/loan-third-core/loan-thcore-common/loan-thcore-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-core/loan-thcore-util/loan-thcore-util.iml" filepath="$PROJECT_DIR$/loan-third-core/loan-thcore-util/loan-thcore-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third.iml" filepath="$PROJECT_DIR$/loan-third.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-core/loan-third-core.iml" filepath="$PROJECT_DIR$/loan-third-core/loan-third-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-interact/loan-third-interact.iml" filepath="$PROJECT_DIR$/loan-third-interact/loan-third-interact.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-jdq/loan-third-jdq.iml" filepath="$PROJECT_DIR$/loan-third-jdq/loan-third-jdq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-ryt/loan-third-ryt.iml" filepath="$PROJECT_DIR$/loan-third-ryt/loan-third-ryt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thbase/loan-third-thbase.iml" filepath="$PROJECT_DIR$/loan-third-thbase/loan-third-thbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thorder/loan-third-thorder.iml" filepath="$PROJECT_DIR$/loan-third-thorder/loan-third-thorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-zlqb/loan-third-zlqb.iml" filepath="$PROJECT_DIR$/loan-third-zlqb/loan-third-zlqb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-api/loan-thjdq-api.iml" filepath="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-api/loan-thjdq-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-common/loan-thjdq-common.iml" filepath="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-common/loan-thjdq-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-mq/loan-thjdq-mq.iml" filepath="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-mq/loan-thjdq-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/loan-thmep-api.iml" filepath="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/loan-thmep-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-common/loan-thmep-common.iml" filepath="$PROJECT_DIR$/loan-third-mep/loan-thmep-common/loan-thmep-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-mq/loan-thmep-mq.iml" filepath="$PROJECT_DIR$/loan-third-mep/loan-thmep-mq/loan-thmep-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-api/loan-thorder-api.iml" filepath="$PROJECT_DIR$/loan-third-thorder/loan-thorder-api/loan-thorder-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-common/loan-thorder-common.iml" filepath="$PROJECT_DIR$/loan-third-thorder/loan-thorder-common/loan-thorder-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-mq/loan-thorder-mq.iml" filepath="$PROJECT_DIR$/loan-third-thorder/loan-thorder-mq/loan-thorder-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/loan-thryt-api.iml" filepath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/loan-thryt-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-common/loan-thryt-common.iml" filepath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-common/loan-thryt-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-mq/loan-thryt-mq.iml" filepath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-mq/loan-thryt-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/loan-thzlqb-api.iml" filepath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/loan-thzlqb-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/loan-thzlqb-common.iml" filepath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/loan-thzlqb-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/loan-thzlqb-mq.iml" filepath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/loan-thzlqb-mq.iml" />
+    </modules>
+  </component>
+</project>

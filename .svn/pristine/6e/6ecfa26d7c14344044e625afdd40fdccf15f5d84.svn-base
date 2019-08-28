@@ -1,0 +1,8 @@
+#服务层日志开关
+ext.sleuth.service.logger.enabled=true
+#控制层日志开关
+ext.sleuth.controller.logger.enabled=true
+#控制层（RestController）日志开关
+ext.sleuth.restController.logger.enabled=true
+#泛指层日志开关（默认开启，使用 @ComponentLogger 代替 @Component）
+ext.sleuth.component.logger.enabled=true

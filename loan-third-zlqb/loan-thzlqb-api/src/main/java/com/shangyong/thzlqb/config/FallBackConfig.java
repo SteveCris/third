@@ -1,0 +1,81 @@
+package com.shangyong.thzlqb.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.shangyong.backend.fegin.ApplicationCloudHystrixService;
+import com.shangyong.backend.fegin.BlacklistCloudHystrixService;
+import com.shangyong.backend.fegin.ReportCloudHystrixService;
+import com.shangyong.backend.fegin.UploadCloudHystrixService;
+import com.shangyong.rest.feign.BaseCloudHystrixService;
+import com.shangyong.rest.feign.BaseUserCloudHystrixService;
+import com.shangyong.rest.feign.MqCloudHystrixService;
+import com.shangyong.rest.feign.OrderBankCloudHystrixService;
+import com.shangyong.rest.feign.OrderBorrowCloudHystrixService;
+import com.shangyong.rest.feign.OrderCloudHystrixService;
+import com.shangyong.rest.feign.OrderRepaymentCloudHystrixService;
+import com.shangyong.rest.feign.OrderUserCloudHystrixService;
+
+@Configuration
+public class FallBackConfig {
+
+	@Bean
+	public OrderCloudHystrixService.HystrixClientFallbackFactory orderCloudHystrixServiceFallbackFactory() {
+		return new OrderCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public ReportCloudHystrixService.HystrixClientFallbackFactory reportCloudHystrixServiceFallbackFactory() {
+		return new ReportCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public UploadCloudHystrixService.HystrixClientFallbackFactory uploadCloudHystrixServiceFallbackFactory() {
+		return new UploadCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public ApplicationCloudHystrixService.HystrixClientFallbackFactory applicationCloudHystrixServiceFallbackFactory() {
+		return new ApplicationCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public MqCloudHystrixService.HystrixClientFallbackFactory mqCloudHystrixServiceFallbackFactory() {
+		return new MqCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public OrderBankCloudHystrixService.HystrixClientFallbackFactory orderBankCloudHystrixServiceFallbackFactory() {
+		return new OrderBankCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public BaseUserCloudHystrixService.HystrixClientFallbackFactory baseUserCloudHystrixServiceFallbackFactory() {
+		return new BaseUserCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public BaseCloudHystrixService.HystrixClientFallbackFactory baseCloudHystrixService() {
+		return new BaseCloudHystrixService.HystrixClientFallbackFactory();
+	}
+
+	@Bean
+	public OrderBorrowCloudHystrixService.HystrixClientFallbackFactory orderBorrowCloudHystrixService() {
+		return new OrderBorrowCloudHystrixService.HystrixClientFallbackFactory();
+	}
+	
+	@Bean
+	public OrderRepaymentCloudHystrixService.HystrixClientFallbackFactory orderRepaymentCloudHystrixService() {
+		return new OrderRepaymentCloudHystrixService.HystrixClientFallbackFactory();
+	}
+	
+	@Bean
+	public BlacklistCloudHystrixService.HystrixClientFallbackFactory blacklistCloudHystrixService() {
+		return new BlacklistCloudHystrixService.HystrixClientFallbackFactory();
+	}
+	
+	@Bean
+	public OrderUserCloudHystrixService.HystrixClientFallbackFactory orderUserCloudHystrixService(){
+		return new  OrderUserCloudHystrixService.HystrixClientFallbackFactory();
+	}
+}

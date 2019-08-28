@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorMonthInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorMonthInfo">
+    <id column="operator_month_info_id" jdbcType="VARCHAR" property="operatorMonthInfoId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="month_count" jdbcType="INTEGER" property="monthCount" />
+    <result column="miss_month_count" jdbcType="INTEGER" property="missMonthCount" />
+    <result column="no_call_month" jdbcType="INTEGER" property="noCallMonth" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_month_info_id, operator_data_id, user_info_id, phone_no, month_count, miss_month_count, 
+    no_call_month, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_month_info
+    where operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_month_info
+    where operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorMonthInfo">
+    insert into jdq_operator_month_info (operator_month_info_id, operator_data_id, 
+      user_info_id, phone_no, month_count, 
+      miss_month_count, no_call_month, user_id
+      )
+    values (#{operatorMonthInfoId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, 
+      #{userInfoId,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, #{monthCount,jdbcType=INTEGER}, 
+      #{missMonthCount,jdbcType=INTEGER}, #{noCallMonth,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorMonthInfo">
+    insert into jdq_operator_month_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorMonthInfoId != null">
+        operator_month_info_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="phoneNo != null">
+        phone_no,
+      </if>
+      <if test="monthCount != null">
+        month_count,
+      </if>
+      <if test="missMonthCount != null">
+        miss_month_count,
+      </if>
+      <if test="noCallMonth != null">
+        no_call_month,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorMonthInfoId != null">
+        #{operatorMonthInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="monthCount != null">
+        #{monthCount,jdbcType=INTEGER},
+      </if>
+      <if test="missMonthCount != null">
+        #{missMonthCount,jdbcType=INTEGER},
+      </if>
+      <if test="noCallMonth != null">
+        #{noCallMonth,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorMonthInfo">
+    update jdq_operator_month_info
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="monthCount != null">
+        month_count = #{monthCount,jdbcType=INTEGER},
+      </if>
+      <if test="missMonthCount != null">
+        miss_month_count = #{missMonthCount,jdbcType=INTEGER},
+      </if>
+      <if test="noCallMonth != null">
+        no_call_month = #{noCallMonth,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorMonthInfo">
+    update jdq_operator_month_info
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      month_count = #{monthCount,jdbcType=INTEGER},
+      miss_month_count = #{missMonthCount,jdbcType=INTEGER},
+      no_call_month = #{noCallMonth,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

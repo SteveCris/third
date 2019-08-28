@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thzlqb.dao.ZlqbOrderLinkMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thzlqb.entity.ZlqbOrderLink">
+    <id column="link_id" jdbcType="VARCHAR" property="linkId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="old_status" jdbcType="INTEGER" property="oldStatus" />
+    <result column="new_status" jdbcType="INTEGER" property="newStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    link_id, order_no, old_status, new_status, create_time, remark, ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zlqb_order_link
+    where link_id = #{linkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zlqb_order_link
+    where link_id = #{linkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thzlqb.entity.ZlqbOrderLink">
+    insert into zlqb_order_link (link_id, order_no, old_status, 
+      new_status, create_time, remark, 
+      ext1, ext2)
+    values (#{linkId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{oldStatus,jdbcType=INTEGER}, 
+      #{newStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thzlqb.entity.ZlqbOrderLink">
+    insert into zlqb_order_link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="linkId != null">
+        link_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="oldStatus != null">
+        old_status,
+      </if>
+      <if test="newStatus != null">
+        new_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="linkId != null">
+        #{linkId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldStatus != null">
+        #{oldStatus,jdbcType=INTEGER},
+      </if>
+      <if test="newStatus != null">
+        #{newStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thzlqb.entity.ZlqbOrderLink">
+    update zlqb_order_link
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldStatus != null">
+        old_status = #{oldStatus,jdbcType=INTEGER},
+      </if>
+      <if test="newStatus != null">
+        new_status = #{newStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where link_id = #{linkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thzlqb.entity.ZlqbOrderLink">
+    update zlqb_order_link
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      old_status = #{oldStatus,jdbcType=INTEGER},
+      new_status = #{newStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where link_id = #{linkId,jdbcType=VARCHAR}
+  </update>
+  
+  <!--  -->
+  <select id="getOrderLinkBo" resultType="com.shangyong.thzlqb.bo.OrderLinkBo">
+    select 
+    create_time createTime,
+    ext1,ext2
+    from zlqb_order_link
+    where order_no = #{orderNo,jdbcType=VARCHAR} and 
+    new_status = #{newStatus,jdbcType=INTEGER} and
+    old_status = #{oldStatus,jdbcType=INTEGER}
+  </select>
+</mapper>

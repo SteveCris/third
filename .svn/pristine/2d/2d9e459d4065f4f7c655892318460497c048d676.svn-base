@@ -1,0 +1,25 @@
+package com.shangyong.thzlqb;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.shangyong.loan.ext.util.JacksonUtil;
+import com.shangyong.thzlqb.zlqb.utils.AesUtil;
+
+public class TestSign {
+
+	public static void main(String[] args) {
+		String appId = "F6J422G6FD51A9C";
+		String aeskey = "7fv5WOT6HstUZUfX";
+		// 业务请求参数处理
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", "张三");
+		map.put("idCard", "429006198809252423");
+		map.put("phone", "18571861408");
+		// request 业务参数加密
+		String request = AesUtil.encrypt(JacksonUtil.build().parseToJsonString(map), aeskey);
+		System.out.println(request);
+		String response = AesUtil.decrypt(request, aeskey);
+		System.out.println(response);
+	}
+}

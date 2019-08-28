@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.UserContactMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.UserContact">
+    <id column="user_contact_id" jdbcType="VARCHAR" property="userContactId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="relation" jdbcType="VARCHAR" property="relation" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="name_spare" jdbcType="VARCHAR" property="nameSpare" />
+    <result column="mobile_spare" jdbcType="VARCHAR" property="mobileSpare" />
+    <result column="relation_spare" jdbcType="VARCHAR" property="relationSpare" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_contact_id, user_info_id, jdq_order_id, relation, name, mobile, name_spare, 
+    mobile_spare, relation_spare, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_user_contact
+    where user_contact_id = #{userContactId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_user_contact
+    where user_contact_id = #{userContactId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.UserContact">
+    insert into jdq_user_contact (user_contact_id, user_info_id, jdq_order_id, 
+      relation, name, mobile, 
+      name_spare, mobile_spare, relation_spare, 
+      create_time, modify_time)
+    values (#{userContactId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR}, 
+      #{relation,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{nameSpare,jdbcType=VARCHAR}, #{mobileSpare,jdbcType=VARCHAR}, #{relationSpare,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.UserContact">
+    insert into jdq_user_contact
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userContactId != null">
+        user_contact_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="relation != null">
+        relation,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="nameSpare != null">
+        name_spare,
+      </if>
+      <if test="mobileSpare != null">
+        mobile_spare,
+      </if>
+      <if test="relationSpare != null">
+        relation_spare,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userContactId != null">
+        #{userContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSpare != null">
+        #{nameSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSpare != null">
+        #{mobileSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSpare != null">
+        #{relationSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.UserContact">
+    update jdq_user_contact
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSpare != null">
+        name_spare = #{nameSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSpare != null">
+        mobile_spare = #{mobileSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSpare != null">
+        relation_spare = #{relationSpare,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_contact_id = #{userContactId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.UserContact">
+    update jdq_user_contact
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name_spare = #{nameSpare,jdbcType=VARCHAR},
+      mobile_spare = #{mobileSpare,jdbcType=VARCHAR},
+      relation_spare = #{relationSpare,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where user_contact_id = #{userContactId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUserInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_contact
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+</mapper>

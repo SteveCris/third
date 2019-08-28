@@ -1,0 +1,48 @@
+#雪花 数据中心
+snowFlake.datacenterId=@snowFlake.datacenterId@
+#雪花算法 机器号码
+snowFlake.machineId=@snowFlake.machineId@
+
+#oss
+#oss内网节点信息
+oss.endpoint=@oss.endpoint@
+#oss外网节点信息
+oss.endpointOut=@oss.endpointOut@
+#oss keyId
+oss.accessId=@oss.accessId@
+#oss key
+oss.accessKey=@oss.accessKey@
+#oss bucketName
+oss.bucketName=@oss.bucketName@
+#当前环境
+oss.active=@oss.active@
+#请求协议 http or https
+oss.request.protocol=@oss.request.protocol@
+
+
+#融易推参数配置
+ryt.common.appName=@ryt.common.appName@
+ryt.common.appid=@ryt.common.appid@
+ryt.common.to.appid=@ryt.common.to.appid@
+ryt.common.to.appName=@ryt.common.to.appName@
+
+ryt.common.audit.appVersion=@ryt.common.audit.appVersion@
+ryt.common.audit.callbackUrl=@ryt.common.audit.callbackUrl@
+ryt.common.audit.appMarket=@ryt.common.audit.appMarket@
+ryt.common.audit.channel=@ryt.common.audit.channel@
+ryt.common.audit.mobileWebsite=@ryt.common.audit.mobileWebsite@
+
+ryt.common.order.bind.url=@ryt.common.order.bind.url@
+ryt.common.order.sUrl=@ryt.common.order.sUrl@
+ryt.common.order.fUrl=@ryt.common.order.fUrl@
+
+ryt.common.protocol.name=@ryt.common.protocol.name@
+ryt.common.protocol.link=@ryt.common.protocol.link@
+
+#融易推第三方相关配置
+ryt.aes.key=@ryt.aes.key@
+ryt.aes.iv=@ryt.aes.iv@
+ryt.sign.key=@ryt.sign.key@
+ryt.partner=@ryt.partner@
+ryt.callback.url=@ryt.callback.url@
+

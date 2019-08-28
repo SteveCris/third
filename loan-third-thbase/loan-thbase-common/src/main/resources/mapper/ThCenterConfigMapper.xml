@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thbase.dao.ThCenterConfigMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thbase.entity.ThCenterConfig">
+    <id column="center_config_id" jdbcType="VARCHAR" property="centerConfigId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="appsecret" jdbcType="VARCHAR" property="appsecret" />
+    <result column="base_url" jdbcType="VARCHAR" property="baseUrl" />
+    <result column="environment" jdbcType="VARCHAR" property="environment" />
+    <result column="token_key" jdbcType="VARCHAR" property="tokenKey" />
+    <result column="sub_token_key" jdbcType="VARCHAR" property="subTokenKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    center_config_id, appid, appsecret, base_url, environment, token_key, sub_token_key
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_center_config
+    where center_config_id = #{centerConfigId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from th_center_config
+    where center_config_id = #{centerConfigId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thbase.entity.ThCenterConfig">
+    insert into th_center_config (center_config_id, appid, appsecret, 
+      base_url, environment, token_key, 
+      sub_token_key)
+    values (#{centerConfigId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, 
+      #{baseUrl,jdbcType=VARCHAR}, #{environment,jdbcType=VARCHAR}, #{tokenKey,jdbcType=VARCHAR}, 
+      #{subTokenKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thbase.entity.ThCenterConfig">
+    insert into th_center_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="centerConfigId != null">
+        center_config_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="appsecret != null">
+        appsecret,
+      </if>
+      <if test="baseUrl != null">
+        base_url,
+      </if>
+      <if test="environment != null">
+        environment,
+      </if>
+      <if test="tokenKey != null">
+        token_key,
+      </if>
+      <if test="subTokenKey != null">
+        sub_token_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="centerConfigId != null">
+        #{centerConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="baseUrl != null">
+        #{baseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="environment != null">
+        #{environment,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenKey != null">
+        #{tokenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="subTokenKey != null">
+        #{subTokenKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thbase.entity.ThCenterConfig">
+    update th_center_config
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null">
+        appsecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="baseUrl != null">
+        base_url = #{baseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="environment != null">
+        environment = #{environment,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenKey != null">
+        token_key = #{tokenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="subTokenKey != null">
+        sub_token_key = #{subTokenKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where center_config_id = #{centerConfigId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thbase.entity.ThCenterConfig">
+    update th_center_config
+    set appid = #{appid,jdbcType=VARCHAR},
+      appsecret = #{appsecret,jdbcType=VARCHAR},
+      base_url = #{baseUrl,jdbcType=VARCHAR},
+      environment = #{environment,jdbcType=VARCHAR},
+      token_key = #{tokenKey,jdbcType=VARCHAR},
+      sub_token_key = #{subTokenKey,jdbcType=VARCHAR}
+    where center_config_id = #{centerConfigId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <select id="getCenterConfigVo" resultType="com.shangyong.thcore.vo.CenterConfigVo">
+    select 
+    appid, appsecret, base_url baseUrl, environment, token_key tokenKey, sub_token_key subTokenKey
+    from th_center_config
+    where appid = #{appid,jdbcType=VARCHAR} limit 1
+  </select>
+  
+</mapper>

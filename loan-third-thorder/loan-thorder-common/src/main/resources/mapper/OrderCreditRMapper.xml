@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderCreditRMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderCreditR">
+    <id column="credit_id" jdbcType="VARCHAR" property="creditId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="if_success" jdbcType="BIT" property="ifSuccess" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    credit_id, order_id, appid, if_success, code, reason, create_time, remark, ext, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_credit_r
+    where credit_id = #{creditId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_credit_r
+    where credit_id = #{creditId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderCreditR">
+    insert into order_credit_r (credit_id, order_id, appid, 
+      if_success, code, reason, 
+      create_time, remark, ext, 
+      ext2)
+    values (#{creditId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{ifSuccess,jdbcType=BIT}, #{code,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderCreditR">
+    insert into order_credit_r
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="creditId != null">
+        credit_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="ifSuccess != null">
+        if_success,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="creditId != null">
+        #{creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSuccess != null">
+        #{ifSuccess,jdbcType=BIT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderCreditR">
+    update order_credit_r
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSuccess != null">
+        if_success = #{ifSuccess,jdbcType=BIT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where credit_id = #{creditId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderCreditR">
+    update order_credit_r
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      if_success = #{ifSuccess,jdbcType=BIT},
+      code = #{code,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where credit_id = #{creditId,jdbcType=VARCHAR}
+  </update>
+</mapper>

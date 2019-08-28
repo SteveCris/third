@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorNetsMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorNets">
+    <id column="operator_nets_id" jdbcType="VARCHAR" property="operatorNetsId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="total_size" jdbcType="INTEGER" property="totalSize" />
+    <result column="bill_month" jdbcType="VARCHAR" property="billMonth" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_nets_id, operator_data_id, user_info_id, total_size, bill_month
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_nets
+    where operator_nets_id = #{operatorNetsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_nets
+    where operator_nets_id = #{operatorNetsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorNets">
+    insert into jdq_operator_nets (operator_nets_id, operator_data_id, user_info_id, 
+      total_size, bill_month)
+    values (#{operatorNetsId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, 
+      #{totalSize,jdbcType=INTEGER}, #{billMonth,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorNets">
+    insert into jdq_operator_nets
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorNetsId != null">
+        operator_nets_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="totalSize != null">
+        total_size,
+      </if>
+      <if test="billMonth != null">
+        bill_month,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorNetsId != null">
+        #{operatorNetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSize != null">
+        #{totalSize,jdbcType=INTEGER},
+      </if>
+      <if test="billMonth != null">
+        #{billMonth,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorNets">
+    update jdq_operator_nets
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSize != null">
+        total_size = #{totalSize,jdbcType=INTEGER},
+      </if>
+      <if test="billMonth != null">
+        bill_month = #{billMonth,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_nets_id = #{operatorNetsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorNets">
+    update jdq_operator_nets
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      total_size = #{totalSize,jdbcType=INTEGER},
+      bill_month = #{billMonth,jdbcType=VARCHAR}
+    where operator_nets_id = #{operatorNetsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

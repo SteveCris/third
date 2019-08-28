@@ -1,0 +1,14 @@
+server.port=9001
+server.context-path=/thorder
+
+#跨域配置参数
+ext.web.cors.mapping=/**
+ext.web.cors.origins=*
+ext.web.cors.headers=Content-Type,XAccessToken,XVersion,XClientIp
+ext.web.cors.methods=GET,POST,PUT,DELETE,OPTIONS
+ext.web.cors.credentials=false
+ext.web.cors.maxAge=7200
+
+#springmvc 返回json 遇到特殊类型需不需要特殊序列化处理
+ext.web.bigDecimalJsonSerializer=true
+ext.web.dateJsonSerializer=true

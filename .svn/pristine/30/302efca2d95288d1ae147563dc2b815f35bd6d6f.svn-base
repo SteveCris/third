@@ -1,0 +1,69 @@
+package com.shangyong.thcore.event.dto;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class EventActualLoan implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3273908269288136298L;
+
+	private String creditUseUuid;
+	
+	private BigDecimal loanAmount;
+	
+	private String financeOrderId;
+	
+	private String applyId;
+
+	public String getCreditUseUuid() {
+		return creditUseUuid;
+	}
+
+	public void setCreditUseUuid(String creditUseUuid) {
+		this.creditUseUuid = creditUseUuid;
+	}
+
+	public BigDecimal getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(BigDecimal loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+	public String getFinanceOrderId() {
+		return financeOrderId;
+	}
+
+	public void setFinanceOrderId(String financeOrderId) {
+		this.financeOrderId = financeOrderId;
+	}
+
+	public String getApplyId() {
+		return applyId;
+	}
+
+	public void setApplyId(String applyId) {
+		this.applyId = applyId;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EventActualLoan [creditUseUuid=");
+		builder.append(creditUseUuid);
+		builder.append(", loanAmount=");
+		builder.append(loanAmount);
+		builder.append(", financeOrderId=");
+		builder.append(financeOrderId);
+		builder.append(", applyId=");
+		builder.append(applyId);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+}

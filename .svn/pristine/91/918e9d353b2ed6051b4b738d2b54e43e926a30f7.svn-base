@@ -1,0 +1,119 @@
+package com.shangyong.thcore.event.dto;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class EventRepayment implements Serializable {
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3364851202816830534L;
+
+	private String creditUseUuid;
+
+	private BigDecimal loanAmount;
+
+	private String financeOrderId;
+
+	private String applyId;
+
+	private boolean ifOverdue;
+
+	private BigDecimal preRepaymentAmount;
+
+	private BigDecimal repaymentAmount;
+
+	private BigDecimal totalRepaymentAmount;
+
+	public String getCreditUseUuid() {
+		return creditUseUuid;
+	}
+
+	public void setCreditUseUuid(String creditUseUuid) {
+		this.creditUseUuid = creditUseUuid;
+	}
+
+	public BigDecimal getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(BigDecimal loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+	public String getFinanceOrderId() {
+		return financeOrderId;
+	}
+
+	public void setFinanceOrderId(String financeOrderId) {
+		this.financeOrderId = financeOrderId;
+	}
+
+	public String getApplyId() {
+		return applyId;
+	}
+
+	public void setApplyId(String applyId) {
+		this.applyId = applyId;
+	}
+
+
+	public boolean isIfOverdue() {
+		return ifOverdue;
+	}
+
+	public void setIfOverdue(boolean ifOverdue) {
+		this.ifOverdue = ifOverdue;
+	}
+
+	public BigDecimal getPreRepaymentAmount() {
+		return preRepaymentAmount;
+	}
+
+	public void setPreRepaymentAmount(BigDecimal preRepaymentAmount) {
+		this.preRepaymentAmount = preRepaymentAmount;
+	}
+
+	public BigDecimal getRepaymentAmount() {
+		return repaymentAmount;
+	}
+
+	public void setRepaymentAmount(BigDecimal repaymentAmount) {
+		this.repaymentAmount = repaymentAmount;
+	}
+
+	public BigDecimal getTotalRepaymentAmount() {
+		return totalRepaymentAmount;
+	}
+
+	public void setTotalRepaymentAmount(BigDecimal totalRepaymentAmount) {
+		this.totalRepaymentAmount = totalRepaymentAmount;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EventRepayment [creditUseUuid=");
+		builder.append(creditUseUuid);
+		builder.append(", loanAmount=");
+		builder.append(loanAmount);
+		builder.append(", financeOrderId=");
+		builder.append(financeOrderId);
+		builder.append(", applyId=");
+		builder.append(applyId);
+		builder.append(", ifOverdue=");
+		builder.append(ifOverdue);
+		builder.append(", preRepaymentAmount=");
+		builder.append(preRepaymentAmount);
+		builder.append(", repaymentAmount=");
+		builder.append(repaymentAmount);
+		builder.append(", totalRepaymentAmount=");
+		builder.append(totalRepaymentAmount);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
+}

@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6bb6d366-8e3e-4ccf-b719-b2d9846991ac" name="Default Changelist" comment="提交--">
+      <change afterPath="$PROJECT_DIR$/loan-third-core/loan-thcore-common/loan-thcore-common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-core/loan-thcore-util/loan-thcore-util.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-interact/loan-interact-api/loan-interact-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-interact/loan-third-interact.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-jdq/loan-third-jdq.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-api/loan-thjdq-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-mq/loan-thjdq-mq.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-mq/loan-thryt-mq.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-thbase/loan-thbase-common/loan-thbase-common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-thbase/loan-thbase-mq/loan-thbase-mq.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-thbase/loan-third-thbase.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-third-zlqb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/loan-thzlqb-mq.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loan-third.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/src/main/java/com/shangyong/thryt/controller/RytController.java" beforeDir="false" afterPath="$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/src/main/java/com/shangyong/thryt/controller/RytController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/ApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/ApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/Tdstds.java" beforeDir="false" afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/Tdstds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/classes/" />
+    <ignored path="$PROJECT_DIR$/loan-third-core/loan-thcore-util/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-mq/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-core/loan-thcore-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-jdq/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-interact/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-interact/loan-interact-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-ryt/loan-thryt-mq/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thbase/loan-thbase-mq/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thbase/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thbase/loan-thbase-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-zlqb/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-jdq/loan-thjdq-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thorder/loan-thorder-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-core/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thorder/loan-thorder-mq/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-core/loan-rest-common-thbase/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thorder/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thbase/loan-thbase-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-ryt/loan-thryt-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-interact/loan-interact-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-thorder/loan-thorder-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-core/loan-rest-common-thorder/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-ryt/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-etp/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-mep/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-mep/loan-thmep-common/target/" />
+    <ignored path="$PROJECT_DIR$/loan-third-mep/loan-thmep-mq/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/impl/ZlqbUserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="55" selection-start-line="54" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/CoreAuditService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbIsOnTuEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbIsLoanEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbRejectReasonEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-thzlqb-common/0.0.1-SNAPSHOT/loan-thzlqb-common-0.0.1-SNAPSHOT.jar!/com/shangyong/thzlqb/service/impl/ZlqbOrderServiceImpl.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1494">
+              <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/部署文档记录.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/java/com/shangyong/loan/thmep/Application.java" />
+        <option value="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/java/com/shangyong/thmep/Application.java" />
+        <option value="$PROJECT_DIR$/loan-third-mep/pom.xml" />
+        <option value="$PROJECT_DIR$/loan-third-mep/loan-thmep-common/pom.xml" />
+        <option value="$PROJECT_DIR$/loan-third-mep/loan-thmep-mq/pom.xml" />
+        <option value="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/pom.xml" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/service/impl/CoreConsumerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/src/main/java/com/shangyong/thryt/controller/RytController.java" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/Tdstds.java" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushServiceImpl.java" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/ApplicationTest.java" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/impl/ZlqbUserServiceImpl.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="enabledProfiles">
+      <list>
+        <option value="test" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="loan-third" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="loan-third-zlqb" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="loan-third-zlqb" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="plugin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loan-third" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-third-zlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="loan-thzlqb-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="thzlqb" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loan-third" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/resources" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\svn\loan-third\loan-third-mep\loan-thmep-api\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="ApplicationTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loan-thzlqb-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.shangyong.thzlqb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.shangyong.thzlqb" />
+      <option name="MAIN_CLASS_NAME" value="com.shangyong.thzlqb.ApplicationTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="remote" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="47.101.191.54" />
+      <option name="PORT" value="16078" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-interact-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.interact.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thzlqb-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thzlqb.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (3)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thryt-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thryt.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (4)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thorder-mq" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thorder.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (5)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thbase-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thbase.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (7)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thmep-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thmep.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="loan-thjdq-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shangyong.thjdq.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ApplicationTest.test" />
+      <item itemvalue="Remote.remote" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="Spring Boot.Application (1)" />
+      <item itemvalue="Spring Boot.Application (2)" />
+      <item itemvalue="Spring Boot.Application (3)" />
+      <item itemvalue="Spring Boot.Application (4)" />
+      <item itemvalue="Spring Boot.Application (5)" />
+      <item itemvalue="Spring Boot.Application (7)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ApplicationTest.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\SpringLi\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third" />
+          <option name="myCopyRoot" value="E:\svn\loan-third" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-core" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-core" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-core\loan-rest-common-thbase" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-core\loan-rest-common-thbase" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-core\loan-rest-common-thorder" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-core\loan-rest-common-thorder" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-core\loan-thcore-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-core\loan-thcore-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-core\loan-thcore-util" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-core\loan-thcore-util" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-interact" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-interact" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-interact\loan-interact-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-interact\loan-interact-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-interact\loan-interact-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-interact\loan-interact-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-jdq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-jdq" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-mq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-jdq\loan-thjdq-mq" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-ryt" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-ryt" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-mq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-ryt\loan-thryt-mq" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thbase" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thbase" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-mq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thbase\loan-thbase-mq" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thorder" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thorder" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-mq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-thorder\loan-thorder-mq" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-zlqb" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-zlqb" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-api" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-common" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-mq" />
+          <option name="myCopyRoot" value="E:\svn\loan-third\loan-third-zlqb\loan-thzlqb-mq" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\svn\loan-third" />
+          <option name="myCopyRoot" value="E:\svn\loan-third" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6bb6d366-8e3e-4ccf-b719-b2d9846991ac" name="Default Changelist" comment="" />
+      <created>1565772683643</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565772683643</updated>
+      <workItem from="1565772687620" duration="5235000" />
+      <workItem from="1566703060537" duration="3013000" />
+      <workItem from="1566782456305" duration="1679000" />
+      <workItem from="1566786424763" duration="922000" />
+      <workItem from="1566792069089" duration="1844000" />
+      <workItem from="1566796206423" duration="2031000" />
+      <workItem from="1566808680312" duration="25000" />
+      <workItem from="1566808802660" duration="161000" />
+    </task>
+    <task id="LOCAL-00001" summary="提交">
+      <created>1565777351128</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1565777351128</updated>
+    </task>
+    <task id="LOCAL-00002" summary="提交">
+      <created>1565777846156</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1565777846156</updated>
+    </task>
+    <task id="LOCAL-00003" summary="提交--">
+      <created>1566791872023</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566791872023</updated>
+    </task>
+    <task id="LOCAL-00004" summary="提交--">
+      <created>1566793702963</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1566793702963</updated>
+    </task>
+    <task id="LOCAL-00005" summary="提交--黑名单修改">
+      <created>1566808139301</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1566808139301</updated>
+    </task>
+    <task id="LOCAL-00006" summary="提交--">
+      <created>1566808855427</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566808855427</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="ApplicationTest_test - 2019.08.25 at 12h 22m 04s.xml">
+      <configuration name="ApplicationTest.test" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="14910000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34405145" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.381798" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.105438404" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="SonarLint" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="15" visible="true" weight="0.47058824" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.16720258" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="提交" />
+    <MESSAGE value="提交--黑名单修改" />
+    <MESSAGE value="提交--" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交--" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/mvnw.cmd" />
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/loan-thmep-api.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/HELP.md" />
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/main/java/com/shangyong/thzlqb/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/resources/banner.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="124" selection-start-line="21" selection-start-column="124" selection-end-line="21" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="21" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1984">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="21" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-mq/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1580">
+          <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/test/java/com/shangyong/thmep/LoanThmepApiApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/ThCoreListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/service/CoreConsumerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2034">
+          <caret line="120" column="36" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/service/impl/CoreConsumerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2880">
+          <caret line="206" column="22" selection-start-line="206" selection-start-column="22" selection-end-line="206" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/service/impl/SelfConsumerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8964">
+          <caret line="562" column="16" selection-start-line="562" selection-start-column="16" selection-end-line="562" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-thzlqb-common/0.0.1-SNAPSHOT/loan-thzlqb-common-0.0.1-SNAPSHOT.jar!/com/shangyong/thzlqb/entity/ZlqbUserInfo.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq/src/main/java/com/shangyong/thzlqb/listener/service/SelfConsumerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api/src/main/java/com/shangyong/thmep/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/src/main/java/com/shangyong/thryt/controller/CallBackController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-api/src/main/java/com/shangyong/thryt/controller/RytController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/main/java/com/shangyong/thzlqb/controller/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/TestSign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/PushTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-222">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/ApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/Tdstds.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/TestCheckUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/main/java/com/shangyong/thzlqb/controller/CallBackController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/main/java/com/shangyong/thzlqb/controller/ZlqbController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="50" column="75" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-thzlqb-common/0.0.1-SNAPSHOT/loan-thzlqb-common-0.0.1-SNAPSHOT.jar!/com/shangyong/thzlqb/service/impl/ZlqbUserServiceImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/ZlqbUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/CoreAuditService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbIsOnTuEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbIsLoanEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/enums/ZlqbRejectReasonEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-thzlqb-common/0.0.1-SNAPSHOT/loan-thzlqb-common-0.0.1-SNAPSHOT.jar!/com/shangyong/thzlqb/service/impl/ZlqbOrderServiceImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1494">
+          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/部署文档记录.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common/src/main/java/com/shangyong/thzlqb/service/impl/ZlqbUserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="55" selection-start-line="54" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushTwoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api/src/test/java/com/shangyong/thzlqb/service/PushServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

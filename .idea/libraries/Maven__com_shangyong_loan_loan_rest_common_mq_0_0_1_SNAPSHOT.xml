@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.shangyong.loan:loan-rest-common-mq:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-rest-common-mq/0.0.1-SNAPSHOT/loan-rest-common-mq-0.0.1-20190814.022154-9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-rest-common-mq/0.0.1-SNAPSHOT/loan-rest-common-mq-0.0.1-20190814.022154-9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-rest-common-mq/0.0.1-SNAPSHOT/loan-rest-common-mq-0.0.1-20190814.022154-9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+package com.shangyong.thzlqb.contants;
+
+public class UuidPrefix {
+
+	private UuidPrefix() {
+		
+	}
+	
+	public static final String MESSAGE="MSG";
+}
+
+

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thzlqb.dao.ZlqbUserDeviceMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thzlqb.entity.ZlqbUserDevice">
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="devicetype" jdbcType="VARCHAR" property="devicetype" />
+    <result column="mac" jdbcType="VARCHAR" property="mac" />
+    <result column="idfa" jdbcType="VARCHAR" property="idfa" />
+    <result column="imei" jdbcType="VARCHAR" property="imei" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="isroot" jdbcType="VARCHAR" property="isroot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, ip, devicetype, mac, idfa, imei, longitude, latitude, isroot
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zlqb_user_device
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zlqb_user_device
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thzlqb.entity.ZlqbUserDevice">
+    insert into zlqb_user_device (order_no, ip,
+      devicetype, mac, idfa, 
+      imei, longitude, latitude, 
+      isroot)
+    values (#{orderNo,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR},
+      #{devicetype,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}, #{idfa,jdbcType=VARCHAR}, 
+      #{imei,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{isroot,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thzlqb.entity.ZlqbUserDevice">
+    insert into zlqb_user_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="devicetype != null">
+        devicetype,
+      </if>
+      <if test="mac != null">
+        mac,
+      </if>
+      <if test="idfa != null">
+        idfa,
+      </if>
+      <if test="imei != null">
+        imei,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="isroot != null">
+        isroot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null">
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="idfa != null">
+        #{idfa,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isroot != null">
+        #{isroot,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thzlqb.entity.ZlqbUserDevice">
+    update zlqb_user_device
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        devicetype = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null">
+        mac = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="idfa != null">
+        idfa = #{idfa,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isroot != null">
+        isroot = #{isroot,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thzlqb.entity.ZlqbUserDevice">
+    update zlqb_user_device
+    set ip = #{ip,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=VARCHAR},
+      mac = #{mac,jdbcType=VARCHAR},
+      idfa = #{idfa,jdbcType=VARCHAR},
+      imei = #{imei,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      isroot = #{isroot,jdbcType=VARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

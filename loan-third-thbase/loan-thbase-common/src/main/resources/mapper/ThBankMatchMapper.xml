@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thbase.dao.ThBankMatchMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thbase.entity.ThBankMatch">
+    <id column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="card_no_prefix" jdbcType="VARCHAR" property="cardNoPrefix" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    match_id, appid, bank_code, bank_name, card_no_prefix
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_bank_match
+    where match_id = #{matchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from th_bank_match
+    where match_id = #{matchId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thbase.entity.ThBankMatch">
+    insert into th_bank_match (match_id, appid, bank_code, 
+      bank_name, card_no_prefix)
+    values (#{matchId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{cardNoPrefix,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thbase.entity.ThBankMatch">
+    insert into th_bank_match
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        match_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="cardNoPrefix != null">
+        card_no_prefix,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        #{matchId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNoPrefix != null">
+        #{cardNoPrefix,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thbase.entity.ThBankMatch">
+    update th_bank_match
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNoPrefix != null">
+        card_no_prefix = #{cardNoPrefix,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where match_id = #{matchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thbase.entity.ThBankMatch">
+    update th_bank_match
+    set appid = #{appid,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      card_no_prefix = #{cardNoPrefix,jdbcType=VARCHAR}
+    where match_id = #{matchId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <select id="getBankMatchVo" resultType="com.shangyong.thcore.vo.BankMatchVo">
+    select 
+    bank_code bankCode,
+    bank_name bankName,
+    card_no_prefix cardNoPrefix
+    from th_bank_match
+    where 
+    <if test="appid != null">
+      appid = #{appid,jdbcType=VARCHAR} and
+    </if>
+    card_no_prefix = #{cardNoPrefix,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

@@ -1,0 +1,10 @@
+1、前端（左锋）
+2、后端
+
+1)先执行 初始化语句.sql  新增助力钱包.sql
+2)启动 
+
+loan-thorder-api.jar（旧包）
+loan-thorder-mq.jar（旧包）
+
+loan-thzlqb-api.jar（新包）

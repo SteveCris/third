@@ -1,0 +1,93 @@
+package com.shangyong.thorder.listener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.AmqpRejectAndDontRequeueException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.rabbitmq.client.Channel;
+import com.shangyong.loan.autoconfigure.RabbitMQProcess;
+import com.shangyong.thcore.bussiness.event.BorrowEvent;
+import com.shangyong.thcore.bussiness.event.SafeEvent;
+import com.shangyong.thcore.event.dto.EventHeader;
+import com.shangyong.thorder.service.OrderBuessinessEventService;
+
+/**
+ * 订单监听模块
+ * 
+ * @author caijunjun
+ * @date 2019年3月13日
+ */
+@Component
+public class ThorderBuessinessListener {
+
+	@Autowired
+	private RabbitMQProcess rabbitMQProcess;
+
+	private static final String ERROR_MESSAGE = "遇到不可预测错误，直接进入死信队列";
+
+	private Logger logger = LoggerFactory.getLogger(ThorderBuessinessListener.class);
+
+	@Autowired
+	private OrderBuessinessEventService orderBuessinessEventService;
+
+	@RabbitListener(queues = { "queue.bussiness.borrow.process" })
+	public void processBorrowEvent(BorrowEvent borrowEvent, Message message, Channel channel) {
+		logger.info("收到借款事件，开始处理：{}", borrowEvent);
+		try {
+			rabbitMQProcess.execute(retryTime -> {
+				EventHeader eventHeader = borrowEvent.getEventHeader();
+				return orderBuessinessEventService.processBorrowEvent(eventHeader, borrowEvent.getEventBorrow());
+			}, message, channel, false);
+		} catch (Exception e) {
+			throw new AmqpRejectAndDontRequeueException(ERROR_MESSAGE, e);
+		}
+	}
+	
+	
+	@RabbitListener(queues = { "queue.bussiness.preSafe.process" })
+	public void processPreSafeEvent(SafeEvent safeEvent, Message message, Channel channel) {
+		logger.info("收到前置保全事件，开始处理：{}", safeEvent);
+		try {
+			rabbitMQProcess.execute(retryTime -> {
+				EventHeader eventHeader = safeEvent.getEventHeader();
+				return orderBuessinessEventService.processPreSafeEvent(eventHeader, safeEvent);
+			}, message, channel, false);
+		} catch (Exception e) {
+			throw new AmqpRejectAndDontRequeueException(ERROR_MESSAGE, e);
+		}
+	}
+	
+	
+	@RabbitListener(queues = { "queue.bussiness.safe.process" })
+	public void processSafeEvent(SafeEvent safeEvent, Message message, Channel channel) {
+		logger.info("收到后置保全事件，开始处理：{}", safeEvent);
+		try {
+			rabbitMQProcess.execute(retryTime -> {
+				EventHeader eventHeader = safeEvent.getEventHeader();
+				return orderBuessinessEventService.processSafeEvent(eventHeader, safeEvent);
+			}, message, channel, false);
+		} catch (Exception e) {
+			throw new AmqpRejectAndDontRequeueException(ERROR_MESSAGE, e);
+		}
+	}
+
+	
+	@RabbitListener(queues = { "queue.bussiness.compositeSafe.process" })
+	public void processCompositeSafeEvent(SafeEvent safeEvent, Message message, Channel channel) {
+		logger.info("收到复合保全事件，开始处理：{}", safeEvent);
+		try {
+			rabbitMQProcess.execute(retryTime -> {
+				EventHeader eventHeader = safeEvent.getEventHeader();
+				return orderBuessinessEventService.processCompositeSafeEvent(eventHeader, safeEvent);
+			}, message, channel, false);
+		} catch (Exception e) {
+			throw new AmqpRejectAndDontRequeueException(ERROR_MESSAGE, e);
+		}
+	}
+	 
+	
+}

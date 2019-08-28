@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.shangyong.loan</groupId>
+		<artifactId>loan-third-ryt</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>loan-thryt-api</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>com.shangyong.loan</groupId>
+			<artifactId>loan-thryt-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.shangyong.loan</groupId>
+			<artifactId>loan-thryt-mq</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.46</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.shangyong.loan</groupId>
+			<artifactId>loan-ext-spring-boot-starter-web</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>config-env*.properties</exclude>
+				</excludes>
+			</resource>
+			<!-- 设置对auto-config.properties，jdbc.properties进行过虑，即这些文件中的${key}会被替换掉为真正的值 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>config-env*.properties</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+				<!-- 打包的时候，如果需要加入依赖jar，并且不直接继承spring的parent，需要加 -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-env-dev.properties</filter>
+				</filters>
+			</build>
+
+		</profile>
+		<profile>
+			<id>test</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-env-test.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>product</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-env-product.properties</filter>
+				</filters>
+			</build>
+		</profile>
+	</profiles>
+</project>

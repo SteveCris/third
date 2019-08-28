@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thryt.dao.RytOrderMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thryt.entity.RytOrder">
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="if_finish" jdbcType="BIT" property="ifFinish" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="loan_amount" jdbcType="INTEGER" property="loanAmount" />
+    <result column="term_unit" jdbcType="INTEGER" property="termUnit" />
+    <result column="loan_term" jdbcType="INTEGER" property="loanTerm" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, order_id, status, if_finish, remark, loan_amount, term_unit, loan_term, 
+    create_time, modify_time, ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ryt_order
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ryt_order
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thryt.entity.RytOrder">
+    insert into ryt_order (order_no, order_id, status, 
+      if_finish, remark, loan_amount, 
+      term_unit, loan_term, create_time, 
+      modify_time, ext1, ext2
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{ifFinish,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{loanAmount,jdbcType=INTEGER}, 
+      #{termUnit,jdbcType=INTEGER}, #{loanTerm,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thryt.entity.RytOrder">
+    insert into ryt_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="ifFinish != null">
+        if_finish,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="termUnit != null">
+        term_unit,
+      </if>
+      <if test="loanTerm != null">
+        loan_term,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ifFinish != null">
+        #{ifFinish,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=INTEGER},
+      </if>
+      <if test="termUnit != null">
+        #{termUnit,jdbcType=INTEGER},
+      </if>
+      <if test="loanTerm != null">
+        #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thryt.entity.RytOrder">
+    update ryt_order
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ifFinish != null">
+        if_finish = #{ifFinish,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        loan_amount = #{loanAmount,jdbcType=INTEGER},
+      </if>
+      <if test="termUnit != null">
+        term_unit = #{termUnit,jdbcType=INTEGER},
+      </if>
+      <if test="loanTerm != null">
+        loan_term = #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thryt.entity.RytOrder">
+    update ryt_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      if_finish = #{ifFinish,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      loan_amount = #{loanAmount,jdbcType=INTEGER},
+      term_unit = #{termUnit,jdbcType=INTEGER},
+      loan_term = #{loanTerm,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <select id="count" resultType="int">
+    select 
+    count(*)
+    from ryt_order
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <update id="updateOrderStatus">
+		UPDATE ryt_order
+		SET status =
+		#{newStatus,jdbcType=INTEGER},
+		
+		<if test="remark != null">
+			remark=#{remark,jdbcType=VARCHAR},
+		</if>
+		
+		if_finish=#{ifFinish,jdbcType=BIT},
+		modify_time = NOW()
+		WHERE
+		order_no =
+		#{orderNo,jdbcType=VARCHAR}
+		AND
+		status =#{oldStatus,jdbcType=INTEGER}
+	</update>
+	
+	 <select id="getRytOrderBo" resultType="com.shangyong.thryt.bo.RytOrderBo">
+	   select 
+	    order_id orderId, 
+	    status, 
+	    if_finish ifFinish, 
+	    remark, 
+	    loan_amount loanAmount, 
+	    term_unit termUnit, 
+	    loan_term loanTerm, 
+	    ext1, 
+	    ext2
+	   from ryt_order
+	   where order_no = #{orderNo,jdbcType=VARCHAR}
+	 </select>
+	 
+	  <select id="getRytOrderSimpleBoByOrderId" resultType="com.shangyong.thryt.bo.RytOrderSimpleBo">
+	   select 
+	   order_no orderNo,
+	   status
+	   from ryt_order
+	   where order_id = #{orderId,jdbcType=VARCHAR}
+	 </select>
+	 
+	
+  
+  
+</mapper>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thbase.dao.ThBankConfigMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thbase.entity.ThBankConfig">
+    <id column="bank_id" jdbcType="VARCHAR" property="bankId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="bg_color" jdbcType="VARCHAR" property="bgColor" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="bg_logo_url" jdbcType="VARCHAR" property="bgLogoUrl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="if_enable" jdbcType="BIT" property="ifEnable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="single_limit" jdbcType="DECIMAL" property="singleLimit" />
+    <result column="daily_limit" jdbcType="DECIMAL" property="dailyLimit" />
+    <result column="monthly_limit" jdbcType="DECIMAL" property="monthlyLimit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bank_id, appid, card_type, bank_name, bank_code, bg_color, logo_url, bg_logo_url, 
+    remark, if_enable, create_time, single_limit, daily_limit, monthly_limit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_bank_config
+    where bank_id = #{bankId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from th_bank_config
+    where bank_id = #{bankId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thbase.entity.ThBankConfig">
+    insert into th_bank_config (bank_id, appid, card_type, 
+      bank_name, bank_code, bg_color, 
+      logo_url, bg_logo_url, remark, 
+      if_enable, create_time, single_limit, 
+      daily_limit, monthly_limit)
+    values (#{bankId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{cardType,jdbcType=INTEGER}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, #{bgColor,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{bgLogoUrl,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{ifEnable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{singleLimit,jdbcType=DECIMAL}, 
+      #{dailyLimit,jdbcType=DECIMAL}, #{monthlyLimit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thbase.entity.ThBankConfig">
+    insert into th_bank_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="bgColor != null">
+        bg_color,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="bgLogoUrl != null">
+        bg_logo_url,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="ifEnable != null">
+        if_enable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="singleLimit != null">
+        single_limit,
+      </if>
+      <if test="dailyLimit != null">
+        daily_limit,
+      </if>
+      <if test="monthlyLimit != null">
+        monthly_limit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bankId != null">
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bgColor != null">
+        #{bgColor,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bgLogoUrl != null">
+        #{bgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEnable != null">
+        #{ifEnable,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singleLimit != null">
+        #{singleLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="dailyLimit != null">
+        #{dailyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyLimit != null">
+        #{monthlyLimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thbase.entity.ThBankConfig">
+    update th_bank_config
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bgColor != null">
+        bg_color = #{bgColor,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bgLogoUrl != null">
+        bg_logo_url = #{bgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEnable != null">
+        if_enable = #{ifEnable,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singleLimit != null">
+        single_limit = #{singleLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="dailyLimit != null">
+        daily_limit = #{dailyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyLimit != null">
+        monthly_limit = #{monthlyLimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where bank_id = #{bankId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thbase.entity.ThBankConfig">
+    update th_bank_config
+    set appid = #{appid,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bg_color = #{bgColor,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      bg_logo_url = #{bgLogoUrl,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      if_enable = #{ifEnable,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      single_limit = #{singleLimit,jdbcType=DECIMAL},
+      daily_limit = #{dailyLimit,jdbcType=DECIMAL},
+      monthly_limit = #{monthlyLimit,jdbcType=DECIMAL}
+    where bank_id = #{bankId,jdbcType=VARCHAR}
+  </update>
+<!--  -->
+  
+  <select id="listThBankConfigVo" resultType="com.shangyong.thcore.vo.BankConfigVo">
+    select 
+     bank_id bankId, card_type cardType, bank_name bankName,
+     bank_code bankCode, bg_color bgColor, logo_url logoUrl, bg_logo_url bgLogoUrl, remark, 
+    if_enable ifEnable, create_time createTime, single_limit singleLimit, daily_limit dailyLimit, monthly_limit monthlyLimit
+    from th_bank_config
+    where appid = #{appid,jdbcType=VARCHAR} and card_type = #{cardType,jdbcType=INTEGER} and if_enable=1
+  </select>
+   <select id="countBank" resultType="int">
+    select count(*) count
+    from th_bank_config
+    where appid = #{appid,jdbcType=VARCHAR} 
+    and bank_code = #{bankCode,jdbcType=VARCHAR} 
+    and if_enable=1
+  </select>
+  
+  </mapper>

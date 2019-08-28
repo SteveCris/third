@@ -1,0 +1,48 @@
+package com.shangyong.thorder.service;
+
+import com.shangyong.thcore.dto.BankVerifyCodeDto;
+import com.shangyong.thcore.dto.OrderBankDto;
+import com.shangyong.thcore.vo.BankVerifyCodeVo;
+import com.shangyong.thcore.vo.OrderBankVo;
+
+public interface OrderBankService {
+
+	/**
+	 * 获取订单 绑定银行卡
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	OrderBankVo getOrderBankVo(String appid, String orderId);
+
+	/**
+	 * 判断订单是否绑定银行卡
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	boolean checkOrderBankBind(String appid, String orderId);
+
+	/**
+	 * 获取银行验证码对象
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @param bankVerifyCodeDto
+	 * @return
+	 */
+	BankVerifyCodeVo getBankVerifyVo(String appid, String orderId, BankVerifyCodeDto bankVerifyCodeDto);
+
+	/**
+	 * 绑定银行卡
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @param orderBankDto
+	 * @return
+	 */
+	boolean bindBankCard(String appid, String orderId, OrderBankDto orderBankDto);
+
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thzlqb.dao.ZlqbCheckRMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thzlqb.entity.ZlqbCheckR">
+    <id column="check_id" jdbcType="VARCHAR" property="checkId" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="can_loan" jdbcType="INTEGER" property="canLoan" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="reject_reason" jdbcType="INTEGER" property="rejectReason" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    check_id, id_card, can_loan, stock, reject_reason, create_time, ext1, ext2,remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zlqb_check_r
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zlqb_check_r
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thzlqb.entity.ZlqbCheckR">
+    insert into zlqb_check_r (check_id, id_card, can_loan, 
+      stock, reject_reason, create_time, 
+      ext1, ext2,remark)
+    values (#{checkId,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{canLoan,jdbcType=INTEGER}, 
+      #{stock,jdbcType=INTEGER}, #{rejectReason,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}), #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thzlqb.entity.ZlqbCheckR">
+    insert into zlqb_check_r
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        check_id,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="canLoan != null">
+        can_loan,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="rejectReason != null">
+        reject_reason,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="canLoan != null">
+        #{canLoan,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="rejectReason != null">
+        #{rejectReason,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thzlqb.entity.ZlqbCheckR">
+    update zlqb_check_r
+    <set>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="canLoan != null">
+        can_loan = #{canLoan,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="rejectReason != null">
+        reject_reason = #{rejectReason,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thzlqb.entity.ZlqbCheckR">
+    update zlqb_check_r
+    set id_card = #{idCard,jdbcType=VARCHAR},
+      can_loan = #{canLoan,jdbcType=INTEGER},
+      stock = #{stock,jdbcType=INTEGER},
+      reject_reason = #{rejectReason,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </update>
+</mapper>

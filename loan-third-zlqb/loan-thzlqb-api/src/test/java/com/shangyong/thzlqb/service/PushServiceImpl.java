@@ -1,0 +1,106 @@
+package com.shangyong.thzlqb.service;
+
+import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.loan.autoconfigure.SleuthLoggerExclude;
+import com.shangyong.loan.ext.util.JsonNodeUtil;
+import com.shangyong.thzlqb.self.enums.EducationEnum;
+import com.shangyong.thzlqb.self.enums.WorkTypeEnum;
+import com.shangyong.thzlqb.self.enums.WorkingAgeEnum;
+
+@Service
+public class PushServiceImpl implements PushService {
+
+
+	@Autowired
+	private PushClient pushClient;
+
+	@SleuthLoggerExclude(excludeInput = true, excludeOut = false)
+	@Override
+	public boolean pushOne(String orderNo, ObjectNode node) {
+
+		ObjectNode pushNode = JsonNodeUtil.data();
+		pushNode.put("isReloan", false);
+		initBaseInfo(pushNode, node);
+		initOrderInfo(pushNode, node, orderNo);
+		initVerifyMap(pushNode, node);
+		return pushClient.pushData(pushNode, "http://risk.qingdaoboyuan.cn/data/recBaseInfo");
+//		return true;
+	}
+
+	private void initBaseInfo(ObjectNode pushNode, ObjectNode node) {
+		// 用户基本信息
+/*		ObjectNode basicInfo = (ObjectNode) node.get("basicInfo");
+
+		// 设备信息
+		ObjectNode deviceInfo = (ObjectNode) node.get("deviceInfo");
+
+		// 公司信息
+		ObjectNode companyInfo = node.has("companyInfo") ? (ObjectNode) node.get("companyInfo") : null;
+
+		String workType = WorkTypeEnum
+				.valueOfByCode(basicInfo.has("profession") ? basicInfo.get("profession").asText() : "0").getToCode();
+		pushNode.set("baseInfo", JsonNodeUtil.data()//
+				// 教育水平
+				.put("educationLevel",
+						EducationEnum.valueOfByCode(basicInfo.has("degree") ? basicInfo.get("degree").asText() : "0")
+								.getToCode())//
+				// 职业
+				.put("workType", workType)
+
+				// 工薪族工作年限
+				.put("workYears", "3".equals(workType) ? WorkingAgeEnum
+						.valueOfByCode(basicInfo.has("jobAge") ? basicInfo.get("jobAge").asText() : "0").getToCode()
+						: null)//
+				// 经营流 (对公流 )/万元
+				// .put("operatingIncome",null)//
+				.put("monthlyIncome", //
+						("3".equals(workType) && companyInfo != null)//
+								? (companyInfo.has("income") //
+										? new BigDecimal(companyInfo.get("income").asText().replace("null", ""))//
+												.divide(new BigDecimal("100"))//
+										: null)//
+								: null)//
+				// 经营年限
+				// .put("operatingYears",null)//
+				.put("idCardNo", basicInfo.get("idCard").asText())//
+				.put("userName", basicInfo.get("name").asText())//
+				.put("phone", basicInfo.get("phone").asText())//
+				.putPOJO("location",
+						(deviceInfo.has("longitude")&&deviceInfo.has("latitude"))?
+						JsonNodeUtil.data().put("longitude", deviceInfo.get("longitude").asText()).put("latitude",
+								deviceInfo.get("latitude").asText()):null)//
+				.put("ip", deviceInfo.has("ip") ? deviceInfo.get("ip").asText() : null)//*/
+	//	);
+
+	}
+
+	private void initOrderInfo(ObjectNode pushNode, ObjectNode node, String orderNo) {
+		// 用户基本信息
+		ObjectNode basicInfo = (ObjectNode) node.get("basicInfo");
+
+		pushNode.set("orderInfo", JsonNodeUtil.data()//
+				.put("orderNo", orderNo)//
+				.put("name", basicInfo.get("name").asText())//
+				.put("uid", "ZLQB" + basicInfo.get("idCard").asText())//
+				.put("phoneNo", basicInfo.get("phone").asText())//
+				.put("orderCreateTime", System.currentTimeMillis())//
+
+		);
+	}
+
+	private JsonNode initVerifyMap(ObjectNode pushNode, ObjectNode node) {
+		// 运营商数据
+		ObjectNode operator = (ObjectNode) node.get("operator");
+
+		return pushNode.set("verifyMap", JsonNodeUtil.data()//
+				.putPOJO("carrier", operator.get("basicInfo"))//
+				.putPOJO("carrierReport", operator.get("report"))//
+		);
+	}
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.UserAddressBookMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.UserAddressBook">
+    <id column="address_book_id" jdbcType="VARCHAR" property="addressBookId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    address_book_id, user_info_id, jdq_order_id, name, mobile, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_user_address_book
+    where address_book_id = #{addressBookId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_user_address_book
+    where address_book_id = #{addressBookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.UserAddressBook">
+    insert into jdq_user_address_book (address_book_id, user_info_id, jdq_order_id, 
+      name, mobile, create_time, 
+      modify_time)
+    values (#{addressBookId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.UserAddressBook">
+    insert into jdq_user_address_book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressBookId != null">
+        address_book_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressBookId != null">
+        #{addressBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.UserAddressBook">
+    update jdq_user_address_book
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where address_book_id = #{addressBookId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.UserAddressBook">
+    update jdq_user_address_book
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where address_book_id = #{addressBookId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUserInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_address_book
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+</mapper>

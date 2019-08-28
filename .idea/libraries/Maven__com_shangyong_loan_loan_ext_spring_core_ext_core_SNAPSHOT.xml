@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.shangyong.loan:loan-ext-spring-core:ext.core-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-core/ext.core-SNAPSHOT/loan-ext-spring-core-ext.core-20190819.031213-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-core/ext.core-SNAPSHOT/loan-ext-spring-core-ext.core-20190819.031213-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-core/ext.core-SNAPSHOT/loan-ext-spring-core-ext.core-20190819.031213-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

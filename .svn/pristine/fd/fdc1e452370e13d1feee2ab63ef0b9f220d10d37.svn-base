@@ -1,0 +1,68 @@
+package com.shangyong.thzlqb.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shangyong.common.entity.RestResult;
+import com.shangyong.loan.ext.util.ResultUtil;
+import com.shangyong.rest.feign.OrderCloudHystrixService;
+import com.shangyong.thcore.dto.OrderLoanDto;
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thzlqb.bo.OrderSimpleBo;
+import com.shangyong.thzlqb.dao.ZlqbOrderMapper;
+import com.shangyong.thzlqb.entity.ZlqbOrder;
+import com.shangyong.thzlqb.service.CoreOrderService;
+import com.shangyong.thzlqb.zlqb.utils.ZlqbUtil;
+
+@Service
+public class CoreOrderServiceImpl implements CoreOrderService {
+
+	@Autowired
+	private ZlqbOrderMapper zlqbOrderMapper;
+
+	@Autowired
+	private OrderCloudHystrixService orderCloudHystrixService;
+
+	@Override
+	public boolean checkStatus(String orderNo, int expectStatus) {
+		OrderSimpleBo orderSimpleBo = getOrderSimpleBo(orderNo);
+		return orderSimpleBo.getStatus() == expectStatus;
+	}
+
+	@Override
+	public boolean updateOrderStatus(String orderNo, int newStatus, int oldStatus, boolean ifFinish, String remark) {
+		return zlqbOrderMapper.updateOrderStatus(orderNo, newStatus, oldStatus, ifFinish, remark) > 0;
+	}
+
+	@Override
+	public boolean isExist(String orderNo) {
+		return zlqbOrderMapper.count(orderNo) > 0;
+	}
+
+	@Override
+	public boolean create(ZlqbOrder zlqbOrder) {
+		return zlqbOrderMapper.insert(zlqbOrder) > 0;
+	}
+
+	@Override
+	public OrderSimpleBo getOrderSimpleBo(String orderNo) {
+		return zlqbOrderMapper.getOrderSimpleBoByOrderNo(orderNo);
+	}
+
+	// **************************远程交互**************************
+
+	@Override
+	public OrderLoanVo getRemoteOrder(String orderNo) {
+		RestResult<OrderLoanVo> result = orderCloudHystrixService.orderSearch(ZlqbUtil.getAppid(), orderNo);
+		return ResultUtil.checkAndGet(result);
+	}
+
+	@Override
+	public OrderLoanVo createRemoteOrder(String orderNo) {
+		OrderLoanDto orderLoanDto = new OrderLoanDto();
+		orderLoanDto.setOtherOrderId(orderNo);
+		RestResult<OrderLoanVo> result = orderCloudHystrixService.orderCreate(ZlqbUtil.getAppid(), orderLoanDto);
+		return ResultUtil.checkAndGet(result);
+	}
+
+}

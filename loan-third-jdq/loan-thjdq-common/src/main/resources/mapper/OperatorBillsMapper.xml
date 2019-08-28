@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorBillsMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorBills">
+    <id column="operator_bills_id" jdbcType="VARCHAR" property="operatorBillsId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="bill_month" jdbcType="VARCHAR" property="billMonth" />
+    <result column="bill_start_date" jdbcType="VARCHAR" property="billStartDate" />
+    <result column="bill_end_date" jdbcType="VARCHAR" property="billEndDate" />
+    <result column="base_fee" jdbcType="INTEGER" property="baseFee" />
+    <result column="extra_service_fee" jdbcType="INTEGER" property="extraServiceFee" />
+    <result column="voice_fee" jdbcType="INTEGER" property="voiceFee" />
+    <result column="sms_fee" jdbcType="INTEGER" property="smsFee" />
+    <result column="web_fee" jdbcType="INTEGER" property="webFee" />
+    <result column="extra_fee" jdbcType="INTEGER" property="extraFee" />
+    <result column="total_fee" jdbcType="INTEGER" property="totalFee" />
+    <result column="discount" jdbcType="INTEGER" property="discount" />
+    <result column="extra_discount" jdbcType="INTEGER" property="extraDiscount" />
+    <result column="actual_fee" jdbcType="INTEGER" property="actualFee" />
+    <result column="paid_fee" jdbcType="INTEGER" property="paidFee" />
+    <result column="unpaid_fee" jdbcType="INTEGER" property="unpaidFee" />
+    <result column="point" jdbcType="INTEGER" property="point" />
+    <result column="last_point" jdbcType="INTEGER" property="lastPoint" />
+    <result column="related_mobiles" jdbcType="VARCHAR" property="relatedMobiles" />
+    <result column="notes" jdbcType="VARCHAR" property="notes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_bills_id, operator_data_id, user_info_id, bill_month, bill_start_date, bill_end_date, 
+    base_fee, extra_service_fee, voice_fee, sms_fee, web_fee, extra_fee, total_fee, discount, 
+    extra_discount, actual_fee, paid_fee, unpaid_fee, point, last_point, related_mobiles, 
+    notes,create_time,modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_bills
+    where operator_bills_id = #{operatorBillsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_bills
+    where operator_bills_id = #{operatorBillsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorBills">
+    insert into jdq_operator_bills (operator_bills_id, operator_data_id, 
+      user_info_id, bill_month, bill_start_date, 
+      bill_end_date, base_fee, extra_service_fee, 
+      voice_fee, sms_fee, web_fee, 
+      extra_fee, total_fee, discount, 
+      extra_discount, actual_fee, paid_fee, 
+      unpaid_fee, point, last_point, 
+      related_mobiles, notes)
+    values (#{operatorBillsId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, 
+      #{userInfoId,jdbcType=VARCHAR}, #{billMonth,jdbcType=VARCHAR}, #{billStartDate,jdbcType=VARCHAR}, 
+      #{billEndDate,jdbcType=VARCHAR}, #{baseFee,jdbcType=INTEGER}, #{extraServiceFee,jdbcType=INTEGER}, 
+      #{voiceFee,jdbcType=INTEGER}, #{smsFee,jdbcType=INTEGER}, #{webFee,jdbcType=INTEGER}, 
+      #{extraFee,jdbcType=INTEGER}, #{totalFee,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, 
+      #{extraDiscount,jdbcType=INTEGER}, #{actualFee,jdbcType=INTEGER}, #{paidFee,jdbcType=INTEGER}, 
+      #{unpaidFee,jdbcType=INTEGER}, #{point,jdbcType=INTEGER}, #{lastPoint,jdbcType=INTEGER}, 
+      #{relatedMobiles,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorBills">
+    insert into jdq_operator_bills
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorBillsId != null">
+        operator_bills_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="billMonth != null">
+        bill_month,
+      </if>
+      <if test="billStartDate != null">
+        bill_start_date,
+      </if>
+      <if test="billEndDate != null">
+        bill_end_date,
+      </if>
+      <if test="baseFee != null">
+        base_fee,
+      </if>
+      <if test="extraServiceFee != null">
+        extra_service_fee,
+      </if>
+      <if test="voiceFee != null">
+        voice_fee,
+      </if>
+      <if test="smsFee != null">
+        sms_fee,
+      </if>
+      <if test="webFee != null">
+        web_fee,
+      </if>
+      <if test="extraFee != null">
+        extra_fee,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="extraDiscount != null">
+        extra_discount,
+      </if>
+      <if test="actualFee != null">
+        actual_fee,
+      </if>
+      <if test="paidFee != null">
+        paid_fee,
+      </if>
+      <if test="unpaidFee != null">
+        unpaid_fee,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="lastPoint != null">
+        last_point,
+      </if>
+      <if test="relatedMobiles != null">
+        related_mobiles,
+      </if>
+      <if test="notes != null">
+        notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorBillsId != null">
+        #{operatorBillsId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="billMonth != null">
+        #{billMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="billStartDate != null">
+        #{billStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDate != null">
+        #{billEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFee != null">
+        #{baseFee,jdbcType=INTEGER},
+      </if>
+      <if test="extraServiceFee != null">
+        #{extraServiceFee,jdbcType=INTEGER},
+      </if>
+      <if test="voiceFee != null">
+        #{voiceFee,jdbcType=INTEGER},
+      </if>
+      <if test="smsFee != null">
+        #{smsFee,jdbcType=INTEGER},
+      </if>
+      <if test="webFee != null">
+        #{webFee,jdbcType=INTEGER},
+      </if>
+      <if test="extraFee != null">
+        #{extraFee,jdbcType=INTEGER},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="extraDiscount != null">
+        #{extraDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="actualFee != null">
+        #{actualFee,jdbcType=INTEGER},
+      </if>
+      <if test="paidFee != null">
+        #{paidFee,jdbcType=INTEGER},
+      </if>
+      <if test="unpaidFee != null">
+        #{unpaidFee,jdbcType=INTEGER},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="lastPoint != null">
+        #{lastPoint,jdbcType=INTEGER},
+      </if>
+      <if test="relatedMobiles != null">
+        #{relatedMobiles,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null">
+        #{notes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorBills">
+    update jdq_operator_bills
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="billMonth != null">
+        bill_month = #{billMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="billStartDate != null">
+        bill_start_date = #{billStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDate != null">
+        bill_end_date = #{billEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFee != null">
+        base_fee = #{baseFee,jdbcType=INTEGER},
+      </if>
+      <if test="extraServiceFee != null">
+        extra_service_fee = #{extraServiceFee,jdbcType=INTEGER},
+      </if>
+      <if test="voiceFee != null">
+        voice_fee = #{voiceFee,jdbcType=INTEGER},
+      </if>
+      <if test="smsFee != null">
+        sms_fee = #{smsFee,jdbcType=INTEGER},
+      </if>
+      <if test="webFee != null">
+        web_fee = #{webFee,jdbcType=INTEGER},
+      </if>
+      <if test="extraFee != null">
+        extra_fee = #{extraFee,jdbcType=INTEGER},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="extraDiscount != null">
+        extra_discount = #{extraDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="actualFee != null">
+        actual_fee = #{actualFee,jdbcType=INTEGER},
+      </if>
+      <if test="paidFee != null">
+        paid_fee = #{paidFee,jdbcType=INTEGER},
+      </if>
+      <if test="unpaidFee != null">
+        unpaid_fee = #{unpaidFee,jdbcType=INTEGER},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="lastPoint != null">
+        last_point = #{lastPoint,jdbcType=INTEGER},
+      </if>
+      <if test="relatedMobiles != null">
+        related_mobiles = #{relatedMobiles,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null">
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_bills_id = #{operatorBillsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorBills">
+    update jdq_operator_bills
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      bill_month = #{billMonth,jdbcType=VARCHAR},
+      bill_start_date = #{billStartDate,jdbcType=VARCHAR},
+      bill_end_date = #{billEndDate,jdbcType=VARCHAR},
+      base_fee = #{baseFee,jdbcType=INTEGER},
+      extra_service_fee = #{extraServiceFee,jdbcType=INTEGER},
+      voice_fee = #{voiceFee,jdbcType=INTEGER},
+      sms_fee = #{smsFee,jdbcType=INTEGER},
+      web_fee = #{webFee,jdbcType=INTEGER},
+      extra_fee = #{extraFee,jdbcType=INTEGER},
+      total_fee = #{totalFee,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=INTEGER},
+      extra_discount = #{extraDiscount,jdbcType=INTEGER},
+      actual_fee = #{actualFee,jdbcType=INTEGER},
+      paid_fee = #{paidFee,jdbcType=INTEGER},
+      unpaid_fee = #{unpaidFee,jdbcType=INTEGER},
+      point = #{point,jdbcType=INTEGER},
+      last_point = #{lastPoint,jdbcType=INTEGER},
+      related_mobiles = #{relatedMobiles,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR}
+    where operator_bills_id = #{operatorBillsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

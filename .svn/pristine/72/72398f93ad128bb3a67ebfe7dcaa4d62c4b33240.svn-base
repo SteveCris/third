@@ -1,0 +1,15 @@
+package com.shangyong.thzlqb;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
+public class Tdstds {
+
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String s="https%3A%2F%2Fdownload.zhuliqianbao.com%2Fwww%2Fapi_sign_callback.html";
+		String url=URLDecoder.decode(s, "utf-8");
+		System.out.println(url);
+		System.out.println(URLDecoder.decode(url, "utf-8"));
+	}
+}

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderPreCreditMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderPreCredit">
+    <id column="pre_credit_id" jdbcType="VARCHAR" property="preCreditId" />
+    <result column="credit_uuid" jdbcType="VARCHAR" property="creditUuid" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="credit_amount" jdbcType="DECIMAL" property="creditAmount" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="if_valid" jdbcType="BIT" property="ifValid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pre_credit_id, credit_uuid, product_code, contract_code, credit_amount, ext, ext2, 
+    appid, order_id, if_valid, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_pre_credit
+    where pre_credit_id = #{preCreditId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_pre_credit
+    where pre_credit_id = #{preCreditId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderPreCredit">
+    insert into order_pre_credit (pre_credit_id, credit_uuid, product_code, 
+      contract_code, credit_amount, ext, 
+      ext2, appid, order_id, 
+      if_valid, remark, create_time
+      )
+    values (#{preCreditId,jdbcType=VARCHAR}, #{creditUuid,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{contractCode,jdbcType=VARCHAR}, #{creditAmount,jdbcType=DECIMAL}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{ifValid,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderPreCredit">
+    insert into order_pre_credit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="preCreditId != null">
+        pre_credit_id,
+      </if>
+      <if test="creditUuid != null">
+        credit_uuid,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="creditAmount != null">
+        credit_amount,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="ifValid != null">
+        if_valid,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="preCreditId != null">
+        #{preCreditId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditUuid != null">
+        #{creditUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null">
+        #{creditAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderPreCredit">
+    update order_pre_credit
+    <set>
+      <if test="creditUuid != null">
+        credit_uuid = #{creditUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null">
+        credit_amount = #{creditAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        if_valid = #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pre_credit_id = #{preCreditId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderPreCredit">
+    update order_pre_credit
+    set credit_uuid = #{creditUuid,jdbcType=VARCHAR},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      contract_code = #{contractCode,jdbcType=VARCHAR},
+      credit_amount = #{creditAmount,jdbcType=DECIMAL},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      if_valid = #{ifValid,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where pre_credit_id = #{preCreditId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  
+   <select id="getOrderPreCreditVo" resultType="com.shangyong.thcore.vo.OrderPreCreditVo">
+    select 
+    credit_uuid creditUuid, product_code productCode, contract_code contractCode, credit_amount creditAmount,create_time createTime
+    from order_pre_credit
+    where appid = #{appid,jdbcType=VARCHAR} and  order_id = #{orderId,jdbcType=VARCHAR}
+    and if_valid=1
+    ORDER BY
+	create_time DESC limit 1
+  </select>
+  
+  <select id="getOrderPreCreditBo" resultType="com.shangyong.thcore.bo.OrderPreCreditBo">
+    select 
+    credit_uuid creditUuid,
+    create_time createTime,
+    product_code productCode
+    from order_pre_credit
+    where appid = #{appid,jdbcType=VARCHAR} and  order_id = #{orderId,jdbcType=VARCHAR}
+    and if_valid=1
+  </select>
+  
+  
+  
+  
+  <update id="invalidPreCredit">
+    UPDATE order_pre_credit 
+SET if_valid = 0,
+remark = #{remark,jdbcType=VARCHAR}
+
+WHERE
+	appid = #{appid,jdbcType=VARCHAR} and  order_id = #{orderId,jdbcType=VARCHAR} AND if_valid = 1
+  </update>
+  
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thbase.dao.ThProductConfigMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thbase.entity.ThProductConfig">
+    <id column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="day_rate" jdbcType="DECIMAL" property="dayRate" />
+    <result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
+    <result column="periods" jdbcType="INTEGER" property="periods" />
+    <result column="cycle" jdbcType="INTEGER" property="cycle" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="application_name" jdbcType="VARCHAR" property="applicationName" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_id, appid, code, create_time, remark, name, price, day_rate, pre_price, periods, 
+    cycle, app_name, application_name, ext, ext2, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_product_config
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from th_product_config
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thbase.entity.ThProductConfig">
+    insert into th_product_config (product_id, appid, code, 
+      create_time, remark, name, 
+      price, day_rate, pre_price, 
+      periods, cycle, app_name, 
+      application_name, ext, ext2, 
+      type)
+    values (#{productId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{dayRate,jdbcType=DECIMAL}, #{prePrice,jdbcType=DECIMAL}, 
+      #{periods,jdbcType=INTEGER}, #{cycle,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, 
+      #{applicationName,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thbase.entity.ThProductConfig">
+    insert into th_product_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="dayRate != null">
+        day_rate,
+      </if>
+      <if test="prePrice != null">
+        pre_price,
+      </if>
+      <if test="periods != null">
+        periods,
+      </if>
+      <if test="cycle != null">
+        cycle,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="applicationName != null">
+        application_name,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="dayRate != null">
+        #{dayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="prePrice != null">
+        #{prePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null">
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        #{cycle,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationName != null">
+        #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thbase.entity.ThProductConfig">
+    update th_product_config
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="dayRate != null">
+        day_rate = #{dayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="prePrice != null">
+        pre_price = #{prePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null">
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        cycle = #{cycle,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationName != null">
+        application_name = #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thbase.entity.ThProductConfig">
+    update th_product_config
+    set appid = #{appid,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      day_rate = #{dayRate,jdbcType=DECIMAL},
+      pre_price = #{prePrice,jdbcType=DECIMAL},
+      periods = #{periods,jdbcType=INTEGER},
+      cycle = #{cycle,jdbcType=INTEGER},
+      app_name = #{appName,jdbcType=VARCHAR},
+      application_name = #{applicationName,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+<!--  -->
+   <select id="getProductConfigVo" resultType="com.shangyong.thcore.vo.ProductConfigVo">
+    select 
+    appid, code, remark, name, price, cycle, day_rate dayRate, pre_price prePrice,periods,
+    app_name appName,application_name applicationName,type,ext,ext2
+    from th_product_config
+    where appid = #{appid,jdbcType=VARCHAR} limit 1
+  </select></mapper>

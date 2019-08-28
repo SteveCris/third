@@ -1,0 +1,82 @@
+package com.shangyong.thzlqb.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.loan.ext.util.JsonNodeUtil;
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thzlqb.client.ZlqbClient;
+import com.shangyong.thzlqb.service.CoreOrderService;
+import com.shangyong.thzlqb.service.ZlqbOrderStatusService;
+import com.shangyong.thzlqb.utils.OrderUtil;
+
+@Service
+public class ZlqbOrderStatusServiceImpl implements ZlqbOrderStatusService {
+
+	@Autowired
+	private ZlqbClient zlqbClient;
+
+	@Autowired
+	private CoreOrderService coreOrderService;
+
+	@Override
+	public JsonNode pullOrder(ObjectNode request) {
+		return pullOrderByOrderNo(request.get("orderNo").asText());
+	}
+
+	@Override
+	public boolean pushOrder(String orderNo) {
+		return zlqbClient.pushObjectData(pullOrderByOrderNo(orderNo));
+	}
+
+	private ObjectNode pullOrderByOrderNo(String orderNo) {
+		ObjectNode objectNode = JsonNodeUtil.data().put("orderNo", orderNo);
+
+		OrderLoanVo orderLoanVo = coreOrderService.getRemoteOrder(orderNo);
+
+		// 助力钱包状态
+		objectNode.put("status", OrderUtil.getZlqbOrderStatus(orderLoanVo, true));
+
+		// 必填项
+		objectNode.put("loan_period", 1);
+		objectNode.put("loan_terms", 1);
+
+		// 已经审核成功
+		if (OrderUtil.isAuditSuccess(orderLoanVo)) {
+			// TODO 查询审核数据表
+			objectNode.put("approve_amount", "");
+			objectNode.put("approve_date", "");
+			objectNode.put("total_principal", "");
+			objectNode.put("approve_amount", "");
+
+		}
+
+		// 已经绑卡成功
+		if (OrderUtil.isBindSuccess(orderLoanVo)) {
+
+			objectNode.put("bankCardInfo", "");
+			objectNode.put("bankCardList", "");
+
+		}
+		// 没有绑卡绑卡成功
+		else {
+			// 返回绑卡链接
+			objectNode.put("bindCardUrl", "");
+		}
+
+		// 已经放款成功
+		if (OrderUtil.isLoanSuccess(orderLoanVo)) {
+			objectNode.put("total_repay_money", "");
+			objectNode.put("total_already_paid", "");
+			objectNode.put("total_overdue_fee", "");
+			objectNode.put("loan_time", "");
+
+			objectNode.put("repayPlans", "");
+
+		}
+
+		return objectNode;
+	}
+}

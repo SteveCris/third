@@ -1,0 +1,127 @@
+package com.shangyong.thorder.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shangyong.thcore.dto.OrderRepaymentH5Dto;
+import com.shangyong.thcore.vo.OrderRepaymentH5Vo;
+import com.shangyong.thcore.vo.OrderRepaymentPlanVo;
+import com.shangyong.thcore.vo.OrderRepaymentVo;
+import com.shangyong.thcore.vo.RepaymentShowVo;
+import com.shangyong.thorder.contants.CoreContants;
+import com.shangyong.thorder.enums.CoreResult;
+import com.shangyong.thorder.enums.CoreResultEnum;
+import com.shangyong.thorder.service.OrderRepaymentService;
+import com.shangyong.thorder.service.OrderService;
+import com.shangyong.thorder.utils.AssertUtils;
+import com.shangyong.thorder.utils.UrlUtil;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "cjj-蔡俊俊-订单还款相关接口")
+@RestController
+@RequestMapping("/orderRepayment" + CoreContants.PATH_APPID)
+public class OrderRepaymentController {
+
+	@Autowired
+	private OrderRepaymentService orderRepaymentService;
+
+	@Autowired
+	private OrderService orderService;
+
+	@ApiOperation(value = "查询总订单还款计划")
+	@ResponseBody
+	@RequestMapping(value = "/plan/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<OrderRepaymentPlanVo> orderRepaymentPlanSearch(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+
+		return CoreResultEnum.SUCCESS.with(orderRepaymentService.getOrderRepaymentPlanVo(appid, orderId));
+	}
+
+	@ApiOperation(value = "查询总订单还款计划（还款成功）")
+	@ResponseBody
+	@RequestMapping(value = "/planSuccess/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<OrderRepaymentPlanVo> orderRepaymentPlanSuccessSearch(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+		return CoreResultEnum.SUCCESS.with(orderRepaymentService.getActualOrderRepaymentPlanVo(appid, orderId));
+	}
+
+	@ApiOperation(value = "获取还款H5链接相关信息")
+	@ResponseBody
+	@RequestMapping(value = "/repaymentH5Search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<OrderRepaymentH5Vo> repaymentH5Search(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId, @RequestBody OrderRepaymentH5Dto orderRepaymentH5Dto) {
+
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+
+		String repaymentUrl = UrlUtil.getRepaymentUrl(appid, orderId, orderRepaymentH5Dto);
+		OrderRepaymentH5Vo orderRepaymentH5Vo = new OrderRepaymentH5Vo();
+		orderRepaymentH5Vo.setH5Url(repaymentUrl);
+		return CoreResultEnum.SUCCESS.with(orderRepaymentH5Vo);
+	}
+
+	@ApiOperation(value = "获取还款总填充对象")
+	@ResponseBody
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<OrderRepaymentVo> orderRepaymentSearch(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+
+		return CoreResultEnum.SUCCESS.with(orderRepaymentService.getOrderRepaymentVo(appid, orderId));
+	}
+
+	@ApiOperation(value = "一键还款")
+	@ResponseBody
+	@RequestMapping(value = "/oneKey/repayment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<Void> oneKeyRepayment(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+		orderService.checkStatus(appid, orderId, 110);
+
+		if (orderRepaymentService.oneKeyRepayment(appid, orderId)) {
+			return CoreResultEnum.SUCCESS.<Void>with().withMessage("操作成功!");
+		} else {
+			return CoreResultEnum.FAILURE.<Void>with().withMessage("还款失败!");
+		}
+	}
+
+	@ApiOperation(value = "快捷支付还款")
+	@ResponseBody
+	@RequestMapping(value = "/quick/repayment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<RepaymentShowVo> quickRepayment(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+		orderService.checkStatus(appid, orderId, 110);
+
+		return CoreResultEnum.SUCCESS.with(orderRepaymentService.quickRepayment(appid, orderId));
+	}
+
+	@ApiOperation(value = "微信还款")
+	@ResponseBody
+	@RequestMapping(value = "/wechat/repayment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public CoreResult<RepaymentShowVo> weChatRepayment(@PathVariable("appid") String appid,
+			@RequestParam("orderId") String orderId) {
+		AssertUtils.notNullOrBlank(appid, "appid 不能为空");
+		AssertUtils.notNullOrBlank(orderId, "orderId 不能为空");
+		orderService.checkStatus(appid, orderId, 110);
+
+		return CoreResultEnum.SUCCESS.with(orderRepaymentService.weChatRepayment(appid, orderId));
+	}
+
+}

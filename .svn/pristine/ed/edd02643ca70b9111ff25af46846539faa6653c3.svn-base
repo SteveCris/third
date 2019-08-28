@@ -1,0 +1,70 @@
+package com.shangyong.thzlqb.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
+import com.shangyong.common.entity.RestResult;
+import com.shangyong.loan.ext.exception.CalfException;
+import com.shangyong.loan.ext.util.JsonNodeUtil;
+import com.shangyong.loan.ext.util.ResultUtil;
+import com.shangyong.rest.feign.OrderBorrowCloudHystrixService;
+import com.shangyong.thcore.dto.OrderBorrowH5Dto;
+import com.shangyong.thcore.vo.OrderBorrowH5Vo;
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thzlqb.service.CoreOrderService;
+import com.shangyong.thzlqb.service.ZlqbContractService;
+import com.shangyong.thzlqb.utils.OrderUtil;
+import com.shangyong.thzlqb.zlqb.utils.ZlqbUtil;
+
+@Service
+public class ZlqbContractServiceImpl implements ZlqbContractService {
+
+	@Autowired
+	private OrderBorrowCloudHystrixService orderBorrowCloudHystrixService;
+
+	@Autowired
+	private CoreOrderService coreOrderService;
+
+	@Override
+	public JsonNode getSignInfo(ObjectNode request) {
+		return JsonNodeUtil.data().put("orderNo", request.get("orderNo").asText()).set("signInfors",
+				JsonNodeUtil.arrayData());
+	}
+
+	@Override
+	public boolean signContract(ObjectNode request) {
+		return true;
+	}
+
+	@Override
+	public JsonNode getCreditH5(ObjectNode request) {
+		String orderNo = request.get("orderNo").asText();
+		OrderLoanVo orderLoanVo = coreOrderService.getRemoteOrder(orderNo);
+		
+		OrderBorrowH5Dto orderBorrowH5Dto = new OrderBorrowH5Dto();
+		orderBorrowH5Dto.setAppName(ZlqbUtil.getAppName());
+		orderBorrowH5Dto.setSuccessReturnUrl(request.get("returnUrl").asText());
+		orderBorrowH5Dto.setFailReturnUrl(request.get("returnUrl").asText());
+
+		
+		String url;
+		if (OrderUtil.isWaitPreCredit(orderLoanVo)) {
+			RestResult<OrderBorrowH5Vo> result = orderBorrowCloudHystrixService.sureorderH5Search(ZlqbUtil.getAppid(),
+					orderLoanVo.getOrderId(), orderBorrowH5Dto);
+			OrderBorrowH5Vo orderBorrowH5Vo= ResultUtil.checkAndGet(result);
+			url = orderBorrowH5Vo.getH5Url();
+		} else if (OrderUtil.isWaitCredit(orderLoanVo)) {
+			RestResult<OrderBorrowH5Vo> result = orderBorrowCloudHystrixService.withdrawH5Search(ZlqbUtil.getAppid(),
+					orderLoanVo.getOrderId(), orderBorrowH5Dto);
+			OrderBorrowH5Vo orderBorrowH5Vo= ResultUtil.checkAndGet(result);
+			url = orderBorrowH5Vo.getH5Url();
+		} else {
+			throw new CalfException("状态码不对");
+		}
+		return new TextNode(url);
+	}
+
+}

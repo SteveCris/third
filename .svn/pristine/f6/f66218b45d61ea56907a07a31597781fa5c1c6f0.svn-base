@@ -1,0 +1,41 @@
+#雪花 数据中心
+snowFlake.datacenterId=@snowFlake.datacenterId@
+#雪花算法 机器号码
+snowFlake.machineId=@snowFlake.machineId@
+
+#oss
+#oss内网节点信息
+oss.endpoint=@oss.endpoint@
+#oss外网节点信息
+oss.endpointOut=@oss.endpointOut@
+#oss keyId
+oss.accessId=@oss.accessId@
+#oss key
+oss.accessKey=@oss.accessKey@
+#oss bucketName
+oss.bucketName=@oss.bucketName@
+#当前环境
+oss.active=@oss.active@
+#请求协议 http or https
+oss.request.protocol=@oss.request.protocol@
+
+#校验令牌
+config.check.token=@config.check.token@
+
+#助力钱包 内部参数配置
+zlqb.common.appid=@zlqb.common.appid@
+zlqb.common.appName=@zlqb.common.appName@
+zlqb.common.channel=@zlqb.common.channel@
+zlqb.common.check.token=@zlqb.common.check.token@
+
+zlqb.common.audit.callbackUrl=@zlqb.common.audit.callbackUrl@
+zlqb.common.audit.appVersion=@zlqb.common.audit.appVersion@
+zlqb.common.audit.mobileWebsite=@zlqb.common.audit.mobileWebsite@
+zlqb.common.order.bind.success.url=@zlqb.common.order.bind.success.url@
+
+
+#助力钱包 对接平台相关配置
+zlqb.third.appid=@zlqb.third.appid@
+zlqb.third.aesKey=@zlqb.third.aesKey@
+zlqb.third.callbackUrl=@zlqb.third.callbackUrl@
+zlqb.third.cancelBankUrl=@zlqb.third.cancelBankUrl@

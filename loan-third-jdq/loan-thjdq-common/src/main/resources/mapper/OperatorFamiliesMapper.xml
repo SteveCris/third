@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorFamiliesMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorFamilies">
+    <id column="operator_families_id" jdbcType="VARCHAR" property="operatorFamiliesId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="family_num" jdbcType="VARCHAR" property="familyNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_families_id, operator_data_id, user_info_id, family_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_families
+    where operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_families
+    where operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorFamilies">
+    insert into jdq_operator_families (operator_families_id, operator_data_id, 
+      user_info_id, family_num)
+    values (#{operatorFamiliesId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, 
+      #{userInfoId,jdbcType=VARCHAR}, #{familyNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorFamilies">
+    insert into jdq_operator_families
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorFamiliesId != null">
+        operator_families_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="familyNum != null">
+        family_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorFamiliesId != null">
+        #{operatorFamiliesId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNum != null">
+        #{familyNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorFamilies">
+    update jdq_operator_families
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNum != null">
+        family_num = #{familyNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorFamilies">
+    update jdq_operator_families
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      family_num = #{familyNum,jdbcType=VARCHAR}
+    where operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

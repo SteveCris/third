@@ -1,0 +1,20 @@
+package com.shangyong.thzlqb.dao;
+
+import com.shangyong.thzlqb.entity.ZlqbUserInfo;
+import org.apache.ibatis.annotations.Param;
+
+public interface ZlqbUserInfoMapper {
+    int deleteByPrimaryKey(String orderNo);
+
+    int insert(ZlqbUserInfo record);
+
+    int insertSelective(ZlqbUserInfo record);
+
+    ZlqbUserInfo selectByPrimaryKey(String orderNo);
+
+    int updateByPrimaryKeySelective(ZlqbUserInfo record);
+
+    int updateByPrimaryKey(ZlqbUserInfo record);
+
+    ZlqbUserInfo getUserInfoByOrderNo(@Param("orderNo") String orderNo);
+}

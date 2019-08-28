@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorFamiliesItemsMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorFamiliesItems">
+    <id column="operator_families_items_id" jdbcType="VARCHAR" property="operatorFamiliesItemsId" />
+    <result column="operator_families_id" jdbcType="VARCHAR" property="operatorFamiliesId" />
+    <result column="long_number" jdbcType="VARCHAR" property="longNumber" />
+    <result column="short_number" jdbcType="VARCHAR" property="shortNumber" />
+    <result column="member_type" jdbcType="VARCHAR" property="memberType" />
+    <result column="join_date" jdbcType="VARCHAR" property="joinDate" />
+    <result column="expire_date" jdbcType="VARCHAR" property="expireDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_families_items_id, operator_families_id, long_number, short_number, member_type, 
+    join_date, expire_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_families_items
+    where operator_families_items_id = #{operatorFamiliesItemsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_families_items
+    where operator_families_items_id = #{operatorFamiliesItemsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorFamiliesItems">
+    insert into jdq_operator_families_items (operator_families_items_id, operator_families_id, 
+      long_number, short_number, member_type, 
+      join_date, expire_date)
+    values (#{operatorFamiliesItemsId,jdbcType=VARCHAR}, #{operatorFamiliesId,jdbcType=VARCHAR}, 
+      #{longNumber,jdbcType=VARCHAR}, #{shortNumber,jdbcType=VARCHAR}, #{memberType,jdbcType=VARCHAR}, 
+      #{joinDate,jdbcType=VARCHAR}, #{expireDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorFamiliesItems">
+    insert into jdq_operator_families_items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorFamiliesItemsId != null">
+        operator_families_items_id,
+      </if>
+      <if test="operatorFamiliesId != null">
+        operator_families_id,
+      </if>
+      <if test="longNumber != null">
+        long_number,
+      </if>
+      <if test="shortNumber != null">
+        short_number,
+      </if>
+      <if test="memberType != null">
+        member_type,
+      </if>
+      <if test="joinDate != null">
+        join_date,
+      </if>
+      <if test="expireDate != null">
+        expire_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorFamiliesItemsId != null">
+        #{operatorFamiliesItemsId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorFamiliesId != null">
+        #{operatorFamiliesId,jdbcType=VARCHAR},
+      </if>
+      <if test="longNumber != null">
+        #{longNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shortNumber != null">
+        #{shortNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null">
+        #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDate != null">
+        #{joinDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorFamiliesItems">
+    update jdq_operator_families_items
+    <set>
+      <if test="operatorFamiliesId != null">
+        operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR},
+      </if>
+      <if test="longNumber != null">
+        long_number = #{longNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shortNumber != null">
+        short_number = #{shortNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null">
+        member_type = #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDate != null">
+        join_date = #{joinDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        expire_date = #{expireDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_families_items_id = #{operatorFamiliesItemsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorFamiliesItems">
+    update jdq_operator_families_items
+    set operator_families_id = #{operatorFamiliesId,jdbcType=VARCHAR},
+      long_number = #{longNumber,jdbcType=VARCHAR},
+      short_number = #{shortNumber,jdbcType=VARCHAR},
+      member_type = #{memberType,jdbcType=VARCHAR},
+      join_date = #{joinDate,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR}
+    where operator_families_items_id = #{operatorFamiliesItemsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

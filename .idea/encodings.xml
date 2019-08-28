@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-core/loan-rest-common-thbase" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-core/loan-rest-common-thorder" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-core/loan-thcore-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-core/loan-thcore-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-etp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-interact" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-interact/loan-interact-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-interact/loan-interact-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-jdq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-jdq/loan-thjdq-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-mep" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-mep/loan-thmep-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-ryt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-ryt/loan-thryt-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thbase" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thbase/loan-thbase-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thorder" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-thorder/loan-thorder-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-zlqb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loan-third-zlqb/loan-thzlqb-mq" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.DeviceInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.DeviceInfo">
+    <id column="device_info_id" jdbcType="VARCHAR" property="deviceInfoId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="device_model" jdbcType="VARCHAR" property="deviceModel" />
+    <result column="device_os" jdbcType="VARCHAR" property="deviceOs" />
+    <result column="openudid" jdbcType="VARCHAR" property="openudid" />
+    <result column="jailbreak_flag" jdbcType="VARCHAR" property="jailbreakFlag" />
+    <result column="root_flag" jdbcType="VARCHAR" property="rootFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    device_info_id, user_info_id, jdq_order_id, device_id, ip, device_type, device_model, 
+    device_os, openudid, jailbreak_flag, root_flag, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_device_info
+    where device_info_id = #{deviceInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_device_info
+    where device_info_id = #{deviceInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.DeviceInfo">
+    insert into jdq_device_info (device_info_id, user_info_id, jdq_order_id, 
+      device_id, ip, device_type, 
+      device_model, device_os, openudid, 
+      jailbreak_flag, root_flag, create_time, 
+      modify_time)
+    values (#{deviceInfoId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR}, 
+      #{deviceId,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+      #{deviceModel,jdbcType=VARCHAR}, #{deviceOs,jdbcType=VARCHAR}, #{openudid,jdbcType=VARCHAR}, 
+      #{jailbreakFlag,jdbcType=VARCHAR}, #{rootFlag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.DeviceInfo">
+    insert into jdq_device_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceInfoId != null">
+        device_info_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="deviceModel != null">
+        device_model,
+      </if>
+      <if test="deviceOs != null">
+        device_os,
+      </if>
+      <if test="openudid != null">
+        openudid,
+      </if>
+      <if test="jailbreakFlag != null">
+        jailbreak_flag,
+      </if>
+      <if test="rootFlag != null">
+        root_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceInfoId != null">
+        #{deviceInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceOs != null">
+        #{deviceOs,jdbcType=VARCHAR},
+      </if>
+      <if test="openudid != null">
+        #{openudid,jdbcType=VARCHAR},
+      </if>
+      <if test="jailbreakFlag != null">
+        #{jailbreakFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="rootFlag != null">
+        #{rootFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.DeviceInfo">
+    update jdq_device_info
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        device_model = #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceOs != null">
+        device_os = #{deviceOs,jdbcType=VARCHAR},
+      </if>
+      <if test="openudid != null">
+        openudid = #{openudid,jdbcType=VARCHAR},
+      </if>
+      <if test="jailbreakFlag != null">
+        jailbreak_flag = #{jailbreakFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="rootFlag != null">
+        root_flag = #{rootFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where device_info_id = #{deviceInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.DeviceInfo">
+    update jdq_device_info
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_model = #{deviceModel,jdbcType=VARCHAR},
+      device_os = #{deviceOs,jdbcType=VARCHAR},
+      openudid = #{openudid,jdbcType=VARCHAR},
+      jailbreak_flag = #{jailbreakFlag,jdbcType=VARCHAR},
+      root_flag = #{rootFlag,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where device_info_id = #{deviceInfoId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUserInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_device_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+</mapper>

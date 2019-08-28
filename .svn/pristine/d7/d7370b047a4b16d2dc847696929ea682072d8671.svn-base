@@ -1,0 +1,88 @@
+package com.shangyong.thzlqb.listener.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.thzlqb.bo.OrderSimpleBo;
+import com.shangyong.thzlqb.contants.CoreContants;
+import com.shangyong.thzlqb.event.PushEvent;
+import com.shangyong.thzlqb.listener.service.SelfConsumerService;
+import com.shangyong.thzlqb.send.Sender;
+import com.shangyong.thzlqb.service.CoreOrderService;
+import com.shangyong.thzlqb.service.MongodbService;
+
+@Service
+public class SelfConsumerServiceImpl implements SelfConsumerService {
+
+	@Autowired
+	private CoreOrderService  coreOrderService;
+	
+	@Autowired
+	private MongodbService mongodbService;
+	
+	@Autowired
+	private Sender sender;
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public boolean processPushTime(PushEvent rytPushEvent) {
+		String orderNo = rytPushEvent.getOrderNo();
+		if (!coreOrderService.updateOrderStatus(orderNo, 10, 0, false, null)) {
+			return coreOrderService.checkStatus(orderNo, 10);
+		}
+
+		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+			@Override
+			public void afterCommit() {
+				sender.sendMq("/third", "ex.push.zlqb.fall", "push.rKey", rytPushEvent, true);
+			}
+		});
+		
+		ObjectNode objectNode = mongodbService.getData(CoreContants.PUSH_COLLECTION, orderNo);
+		//TODO
+		
+		return false;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public boolean processPushFall(PushEvent pushEvent) {
+		String orderNo = pushEvent.getOrderNo();
+		if (!coreOrderService.updateOrderStatus(orderNo, 20, 10, false, null)) {
+			return coreOrderService.checkStatus(orderNo, 20);
+		}
+		TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+			@Override
+			public void afterCommit() {
+				sender.sendMq("/third", "ex.push.zlqb.audit", "push.rKey", pushEvent, true);
+			}
+		});
+		// 获取mongo信息
+		ObjectNode objectNode = mongodbService.getData(CoreContants.PUSH_COLLECTION, orderNo);
+		//TODO
+		return false;
+	}
+
+	@Override
+	public boolean processPushAudit(PushEvent pushEvent) {
+		String orderNo = pushEvent.getOrderNo();
+		if (!coreOrderService.updateOrderStatus(orderNo, 30, 20, false, null)) {
+			return coreOrderService.checkStatus(orderNo, 30);
+		}
+		// 获取mongo信息
+		ObjectNode objectNode = mongodbService.getData(CoreContants.PUSH_COLLECTION, orderNo);
+		
+		// 获取订单信息
+		OrderSimpleBo orderSimpleBo = coreOrderService.getOrderSimpleBo(orderNo);
+		
+		//TODO
+		
+		return false;
+	}
+
+
+}

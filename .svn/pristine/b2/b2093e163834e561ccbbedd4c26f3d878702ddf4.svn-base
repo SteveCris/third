@@ -1,0 +1,127 @@
+package com.shangyong.rest.feign;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.shangyong.common.entity.RestResult;
+import com.shangyong.rest.feign.BaseCloudHystrixService.HystrixClientFallbackFactory;
+import com.shangyong.thcore.vo.BankConfigVo;
+import com.shangyong.thcore.vo.CenterConfigVo;
+import com.shangyong.thcore.vo.ParamConfigVo;
+import com.shangyong.thcore.vo.ProductConfigVo;
+
+import feign.hystrix.FallbackFactory;
+
+/**
+ * 基础配置服务模块
+ * 
+ * @author caijunjun
+ * @date 2019年3月15日
+ */
+@FeignClient(name = "api-thbase", path = "/thbase/baseConfig", fallbackFactory = HystrixClientFallbackFactory.class)
+public interface BaseCloudHystrixService {
+
+	/**
+	 * 查询银行列表
+	 * 
+	 * @param appid
+	 * @param cardType
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/bank/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	RestResult<List<BankConfigVo>> listBank(@PathVariable("appid") String appid,
+			@RequestParam("cardType") int cardType);
+
+	/**
+	 * 校验银行卡信息是否支持
+	 * 
+	 * @param appid
+	 * @param bankCode
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/bank/check", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	RestResult<Void> checkBank(@PathVariable("appid") String appid, @RequestParam("bankCode") String bankCode);
+
+	/**
+	 * 查询信贷中心配置信息
+	 * 
+	 * @param appid
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/center/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	RestResult<CenterConfigVo> getCenterConfigVo(@PathVariable("appid") String appid);
+
+	/**
+	 * 查询产品信息
+	 * 
+	 * @param appid
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/product/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	RestResult<ProductConfigVo> getProductConfigVo(@PathVariable("appid") String appid);
+
+	/**
+	 * 查询参数配置信息
+	 *
+	 * @param appid
+	 * @param keys
+	 * @return
+	 */
+	@RequestMapping(value = "/{appid}/param/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	RestResult<Map<String, ParamConfigVo>> listParam(@PathVariable("appid") String appid,
+			@RequestParam("keys") String keys);
+
+	public static class HystrixClientFallbackFactory implements FallbackFactory<BaseCloudHystrixService> {
+
+		private Logger logger = LoggerFactory.getLogger(HystrixClientFallbackFactory.class);
+
+		@Override
+		public BaseCloudHystrixService create(Throwable cause) {
+			return new BaseCloudHystrixService() {
+
+				@Override
+				public RestResult<List<BankConfigVo>> listBank(String appid, int cardType) {
+					logger.error("error cause baseCloudHystrixService listBank appid:{};cardType:{}", appid, cardType,
+							cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<CenterConfigVo> getCenterConfigVo(String appid) {
+					logger.error("error cause baseCloudHystrixService getCenterConfigVo appid:{}", appid, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<ProductConfigVo> getProductConfigVo(String appid) {
+					logger.error("error cause baseCloudHystrixService getProductConfigVo appid:{}", appid, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<Map<String, ParamConfigVo>> listParam(String appid, String keys) {
+					logger.error("error cause baseCloudHystrixService listParam appid:{} keys:{}", appid, keys, cause);
+					return null;
+				}
+
+				@Override
+				public RestResult<Void> checkBank(String appid, String bankCode) {
+					logger.error("error cause baseCloudHystrixService checkBank appid:{} bankCode:{}", appid, bankCode,
+							cause);
+					return null;
+				}
+
+			};
+		}
+
+	}
+}

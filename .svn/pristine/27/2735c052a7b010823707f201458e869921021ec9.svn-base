@@ -1,0 +1,145 @@
+package com.shangyong.thorder.service.impl;
+
+import java.text.MessageFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shangyong.loan.autoconfigure.redis.BatchRedisTemplate;
+import com.shangyong.thcore.bo.OrderBorrowBo;
+import com.shangyong.thcore.bo.OrderLoanBo;
+import com.shangyong.thcore.dto.OrderLoanDto;
+import com.shangyong.thcore.event.CancelEvent;
+import com.shangyong.thcore.event.dto.EventHeader;
+import com.shangyong.thcore.vo.OrderLoanVo;
+import com.shangyong.thcore.vo.StatusErrorVo;
+import com.shangyong.thorder.contants.RedisPrefix;
+import com.shangyong.thorder.contants.UuidPrefix;
+import com.shangyong.thorder.dao.OrderBorrowApplyMapper;
+import com.shangyong.thorder.dao.OrderLoanMapper;
+import com.shangyong.thorder.entity.OrderLoan;
+import com.shangyong.thorder.enums.CoreResultEnum;
+import com.shangyong.thorder.exception.CalfException;
+import com.shangyong.thorder.sender.mq.Sender;
+import com.shangyong.thorder.service.OrderService;
+import com.shangyong.thorder.utils.CheckUtil;
+import com.shangyong.thorder.utils.EventUtil;
+import com.shangyong.thorder.utils.H5Util;
+import com.shangyong.thorder.utils.IdUtil;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+	private Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
+
+	@Autowired
+	private OrderLoanMapper orderLoanMapper;
+
+	@Autowired
+	private OrderBorrowApplyMapper orderBorrowApplyMapper;
+
+	@Autowired
+	private BatchRedisTemplate batchRedisTemplate;
+
+	@Autowired
+	private Sender sender;
+
+	@Override
+	public OrderLoanVo createOrder(String appid, OrderLoanDto orderLoanDto) {
+		OrderLoan orderLoan = new OrderLoan();
+		orderLoan.setAppid(appid);
+		orderLoan.setCreateTime(new Date());
+		orderLoan.setIfFinish(false);
+		orderLoan.setOrderId(IdUtil.getNumberUuid(UuidPrefix.ORDER));
+		orderLoan.setOtherOrderId(orderLoanDto.getOtherOrderId());
+		orderLoan.setRepaymentStatus(0);
+		orderLoan.setStatus(0);
+
+		boolean isSuccess = orderLoanMapper.createOrIgnore(orderLoan) > 0;
+		OrderLoanVo orderLoanVo;
+		if (isSuccess) {
+			orderLoanVo = new OrderLoanVo();
+			BeanUtils.copyProperties(orderLoan, orderLoanVo);
+		} else {
+			// 恢复操作
+			orderLoanVo = orderLoanMapper.getOrderLoanVoByOtherOrderId(appid, orderLoanDto.getOtherOrderId());
+		}
+		return orderLoanVo;
+	}
+
+	@Override
+	public boolean cancelOrder(String appid, String orderId) {
+		OrderLoanBo orderLoanBo = orderLoanMapper.getOrderLoanBo(appid, orderId);
+		if (orderLoanBo.isIfFinish()) {
+			throw new CalfException(CoreResultEnum.CANCEL_ERROR);
+		}
+
+		int repaymentStatus = orderLoanBo.getRepaymentStatus();
+		if (repaymentStatus != 0) {
+			throw new CalfException(CoreResultEnum.REPAYMENT_ERROR);
+		}
+
+		CancelEvent overdueEvent = new CancelEvent();
+		EventHeader eh = EventUtil.buildEventHeader(EventUtil.getMessageId(), orderLoanBo.getAppid(),
+				orderLoanBo.getOrderId(), "", true, "手动执行");
+		overdueEvent.setEventHeader(eh);
+		sender.sendMq("/third", "ex.event.cancel", MessageFormat.format("cancel.{0}.rKey", appid), overdueEvent, true);
+		return true;
+	}
+
+	@Override
+	public OrderLoanVo getOrderLoanVo(String appid, String otherOrderId) {
+		OrderLoanVo orderLoanVo = orderLoanMapper.getOrderLoanVoByOtherOrderId(appid, otherOrderId);
+		// 如果是待还款情况下
+		if (orderLoanVo.getStatus() == 110 && orderLoanVo.getRepaymentStatus() == 10) {
+			String orderId = orderLoanVo.getOrderId();
+			// 观察有没有逾期的单子
+			OrderBorrowBo orderBorrowBo = orderBorrowApplyMapper.getOrderBorrowBoByAO(appid, orderId);
+			if (CheckUtil.checkIsOverdue(orderBorrowBo.getRepaymentPlanTime())) {
+				// 逾期了
+				orderLoanVo.setRepaymentStatus(30);
+				orderLoanMapper.overdue(appid, orderId);
+				logger.info("appid:{},orderId:{}，逾期处理", appid, orderId);
+			}
+		}
+		return orderLoanMapper.getOrderLoanVoByOtherOrderId(appid, otherOrderId);
+	}
+
+	@Override
+	public boolean toWaitAudit(String appid, String orderId) {
+		boolean isSuccess = orderLoanMapper.updateOrderStatus(appid, orderId, 10, 0, false, null, null) > 0;
+		if (isSuccess) {
+			return true;
+		} else {
+			// 恢复操作
+			OrderLoanBo orderLoanBo = orderLoanMapper.getOrderLoanBo(appid, orderId);
+			return 10 == orderLoanBo.getStatus();
+		}
+	}
+
+	@Override
+	public boolean checkOnWayOrder(String appid, String identityNo) {
+		return orderLoanMapper.countOnWayOrder(appid, identityNo) > 0;
+	}
+
+	@Override
+	public void checkStatus(String appid, String orderId, int expectStatuses) {
+		if (batchRedisTemplate.isRepeatClick(RedisPrefix.LOCK_REPEAT + expectStatuses + ":" + orderId, 3)) {
+			throw new CalfException(CoreResultEnum.CLICK_REPEAT);
+		}
+
+		OrderLoanBo orderLoanBo = orderLoanMapper.getOrderLoanBo(appid, orderId);
+		if (orderLoanBo == null) {
+			throw new CalfException(CoreResultEnum.NO_ORDER);
+		}
+		StatusErrorVo statusErrorVo = H5Util.statusErrorProcess(expectStatuses, orderLoanBo.getStatus());
+		if (statusErrorVo != null) {
+			throw new CalfException(CoreResultEnum.STATUS_ERROR).withBody(statusErrorVo);
+		}
+	}
+
+}

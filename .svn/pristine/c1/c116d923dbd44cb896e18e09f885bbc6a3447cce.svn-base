@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderCreditRuleMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderCreditRule">
+    <id column="rule_id" jdbcType="VARCHAR" property="ruleId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="credit_line" jdbcType="DECIMAL" property="creditLine" />
+    <result column="rule" jdbcType="VARCHAR" property="rule" />
+    <result column="scene_rule" jdbcType="VARCHAR" property="sceneRule" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rule_id, order_id, appid, credit_line, rule, scene_rule, create_time, ext, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_credit_rule
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_credit_rule
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderCreditRule">
+    insert into order_credit_rule (rule_id, order_id, appid, 
+      credit_line, rule, scene_rule, 
+      create_time, ext, ext2
+      )
+    values (#{ruleId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{creditLine,jdbcType=DECIMAL}, #{rule,jdbcType=VARCHAR}, #{sceneRule,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderCreditRule">
+    insert into order_credit_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="creditLine != null">
+        credit_line,
+      </if>
+      <if test="rule != null">
+        rule,
+      </if>
+      <if test="sceneRule != null">
+        scene_rule,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLine != null">
+        #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="rule != null">
+        #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneRule != null">
+        #{sceneRule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderCreditRule">
+    update order_credit_rule
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLine != null">
+        credit_line = #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="rule != null">
+        rule = #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneRule != null">
+        scene_rule = #{sceneRule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderCreditRule">
+    update order_credit_rule
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      credit_line = #{creditLine,jdbcType=DECIMAL},
+      rule = #{rule,jdbcType=VARCHAR},
+      scene_rule = #{sceneRule,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where rule_id = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <insert id="insertOrIgnore" parameterType="com.shangyong.thorder.entity.OrderCreditRule">
+    insert ignore into order_credit_rule (rule_id, order_id, appid, 
+      credit_line, rule, scene_rule, 
+      create_time, ext, ext2
+      )
+    values (#{ruleId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{creditLine,jdbcType=DECIMAL}, #{rule,jdbcType=VARCHAR}, #{sceneRule,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <select id="getOrderRuleVo" resultType="com.shangyong.thcore.vo.OrderRuleVo">
+    select rule,scene_rule sceneRule,order_id orderId,ext ssType
+    from order_credit_rule
+    where
+    appid=#{appid,jdbcType=VARCHAR} and  
+     order_id = #{orderId,jdbcType=VARCHAR} and credit_line=#{creditLine,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="getOrderRuleBo" resultType="com.shangyong.thcore.bo.OrderRuleBo">
+    select rule,scene_rule sceneRule,order_id orderId
+    from order_credit_rule
+    where
+    appid=#{appid,jdbcType=VARCHAR} and  
+     order_id = #{orderId,jdbcType=VARCHAR} and credit_line=#{creditLine,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="removeCreditRule">
+    delete from order_credit_rule
+    where appid=#{appid,jdbcType=VARCHAR} and  
+     order_id = #{orderId,jdbcType=VARCHAR} 
+  </delete>
+</mapper>

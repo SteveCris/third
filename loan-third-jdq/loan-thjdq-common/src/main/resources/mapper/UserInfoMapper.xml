@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.UserInfo">
+    <id column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="local_order_id" jdbcType="VARCHAR" property="localOrderId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="app_serial_number" jdbcType="VARCHAR" property="appSerialNumber" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="phone_id_number_md5" jdbcType="VARCHAR" property="phoneIdNumberMd5" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="birth" jdbcType="VARCHAR" property="birth" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="id_positive" jdbcType="VARCHAR" property="idPositive" />
+    <result column="id_negative" jdbcType="VARCHAR" property="idNegative" />
+    <result column="face" jdbcType="VARCHAR" property="face" />
+    <result column="hand_id_photo" jdbcType="VARCHAR" property="handIdPhoto" />
+    <result column="marry" jdbcType="VARCHAR" property="marry" />
+    <result column="educate" jdbcType="VARCHAR" property="educate" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="living_address" jdbcType="VARCHAR" property="livingAddress" />
+    <result column="id_card_address" jdbcType="VARCHAR" property="idCardAddress" />
+    <result column="push_phase_state" jdbcType="INTEGER" property="pushPhaseState" />
+    <result column="push_risk_state" jdbcType="INTEGER" property="pushRiskState" />
+    <result column="push_operator_state" jdbcType="INTEGER" property="pushOperatorState" />
+    <result column="face_result" jdbcType="VARCHAR" property="faceResult" />
+    <result column="face_result_active" jdbcType="VARCHAR" property="faceResultActive" />
+    <result column="last_reject_date" jdbcType="TIMESTAMP" property="lastRejectDate" />
+    <result column="id_signing_authority" jdbcType="VARCHAR" property="idSigningAuthority" />
+    <result column="id_start_date" jdbcType="VARCHAR" property="idStartDate" />
+    <result column="id_expiry_date" jdbcType="VARCHAR" property="idExpiryDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_info_id, jdq_order_id, local_order_id,customer_id,app_serial_number, mobile, name, id_number,phone_id_number_md5, role,
+    birth, age, nation, id_positive, id_negative, face, hand_id_photo, marry, educate, 
+    email, living_address, id_card_address, push_phase_state, push_risk_state, push_operator_state,face_result,face_result_active,
+    last_reject_date, id_signing_authority, id_start_date, id_expiry_date, create_time, 
+    modify_time,app_name,ext1,ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_user_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.UserInfo">
+    insert into jdq_user_info (user_info_id, jdq_order_id,
+      local_order_id,customer_id,app_serial_number, mobile, name,
+      id_number,phone_id_number_md5, role, birth,
+      age, nation, id_positive, 
+      id_negative, face, hand_id_photo, 
+      marry, educate, email, 
+      living_address, id_card_address, push_phase_state, 
+      push_risk_state, push_operator_state,face_result,face_result_active, last_reject_date,
+      id_signing_authority, id_start_date, id_expiry_date, 
+      create_time, modify_time,app_name,ext1,ext2)
+    values (#{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR},
+      #{localOrderId,jdbcType=VARCHAR},#{customerId,jdbcType=VARCHAR},#{appSerialNumber,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{idNumber,jdbcType=VARCHAR},#{phoneIdNumberMd5,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR},
+      #{age,jdbcType=INTEGER}, #{nation,jdbcType=VARCHAR}, #{idPositive,jdbcType=VARCHAR}, 
+      #{idNegative,jdbcType=VARCHAR}, #{face,jdbcType=VARCHAR}, #{handIdPhoto,jdbcType=VARCHAR}, 
+      #{marry,jdbcType=VARCHAR}, #{educate,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{livingAddress,jdbcType=VARCHAR}, #{idCardAddress,jdbcType=VARCHAR}, #{pushPhaseState,jdbcType=INTEGER}, 
+      #{pushRiskState,jdbcType=INTEGER}, #{pushOperatorState,jdbcType=INTEGER},#{faceResult,jdbcType=VARCHAR},#{faceResultActive,jdbcType=VARCHAR}, #{lastRejectDate,jdbcType=TIMESTAMP},
+      #{idSigningAuthority,jdbcType=VARCHAR}, #{idStartDate,jdbcType=VARCHAR}, #{idExpiryDate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{appName,jdbcType=VARCHAR},#{ext1,jdbcType=VARCHAR},#{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.UserInfo">
+    insert into jdq_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="localOrderId != null">
+        local_order_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="appSerialNumber != null">
+        app_serial_number,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="phoneIdNumberMd5 != null">
+        phone_id_number_md5,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="idPositive != null">
+        id_positive,
+      </if>
+      <if test="idNegative != null">
+        id_negative,
+      </if>
+      <if test="face != null">
+        face,
+      </if>
+      <if test="handIdPhoto != null">
+        hand_id_photo,
+      </if>
+      <if test="marry != null">
+        marry,
+      </if>
+      <if test="educate != null">
+        educate,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="livingAddress != null">
+        living_address,
+      </if>
+      <if test="idCardAddress != null">
+        id_card_address,
+      </if>
+      <if test="pushPhaseState != null">
+        push_phase_state,
+      </if>
+      <if test="pushRiskState != null">
+        push_risk_state,
+      </if>
+      <if test="pushOperatorState != null">
+        push_operator_state,
+      </if>
+      <if test="faceResult != null">
+        face_result,
+      </if>
+      <if test="faceResultActive != null">
+        face_result_active,
+      </if>
+      <if test="lastRejectDate != null">
+        last_reject_date,
+      </if>
+      <if test="idSigningAuthority != null">
+        id_signing_authority,
+      </if>
+      <if test="idStartDate != null">
+        id_start_date,
+      </if>
+      <if test="idExpiryDate != null">
+        id_expiry_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="localOrderId != null">
+        #{localOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerialNumber != null">
+        #{appSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneIdNumberMd5 != null">
+        #{phoneIdNumberMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="idPositive != null">
+        #{idPositive,jdbcType=VARCHAR},
+      </if>
+      <if test="idNegative != null">
+        #{idNegative,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="handIdPhoto != null">
+        #{handIdPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null">
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="educate != null">
+        #{educate,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="livingAddress != null">
+        #{livingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null">
+        #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pushPhaseState != null">
+        #{pushPhaseState,jdbcType=INTEGER},
+      </if>
+      <if test="pushRiskState != null">
+        #{pushRiskState,jdbcType=INTEGER},
+      </if>
+      <if test="pushOperatorState != null">
+        #{pushOperatorState,jdbcType=INTEGER},
+      </if>
+      <if test="faceResult != null">
+        #{faceResult,jdbcType=VARCHAR},
+      </if>
+      <if test="faceResultActive != null">
+        #{faceResultActive,jdbcType=VARCHAR},
+      </if>
+      <if test="lastRejectDate != null">
+        #{lastRejectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idSigningAuthority != null">
+        #{idSigningAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="idStartDate != null">
+        #{idStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idExpiryDate != null">
+        #{idExpiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.UserInfo">
+    update jdq_user_info
+    <set>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="localOrderId != null">
+        local_order_id = #{localOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerialNumber != null">
+        app_serial_number = #{appSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneIdNumberMd5 != null">
+        phone_id_number_md5 = #{phoneIdNumberMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="idPositive != null">
+        id_positive = #{idPositive,jdbcType=VARCHAR},
+      </if>
+      <if test="idNegative != null">
+        id_negative = #{idNegative,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="handIdPhoto != null">
+        hand_id_photo = #{handIdPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null">
+        marry = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="educate != null">
+        educate = #{educate,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="livingAddress != null">
+        living_address = #{livingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null">
+        id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pushPhaseState != null">
+        push_phase_state = #{pushPhaseState,jdbcType=INTEGER},
+      </if>
+      <if test="pushRiskState != null">
+        push_risk_state = #{pushRiskState,jdbcType=INTEGER},
+      </if>
+      <if test="pushOperatorState != null">
+        push_operator_state = #{pushOperatorState,jdbcType=INTEGER},
+      </if>
+      <if test="faceResult != null">
+        face_result = #{faceResult,jdbcType=VARCHAR},
+      </if>
+      <if test="faceResultActive != null">
+        face_result_active = #{faceResultActive,jdbcType=VARCHAR},
+      </if>
+      <if test="lastRejectDate != null">
+        last_reject_date = #{lastRejectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idSigningAuthority != null">
+        id_signing_authority = #{idSigningAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="idStartDate != null">
+        id_start_date = #{idStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="idExpiryDate != null">
+        id_expiry_date = #{idExpiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      
+    </set>
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.UserInfo">
+    update jdq_user_info
+    set jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      local_order_id = #{localOrderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      app_serial_number = #{appSerialNumber,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      phone_id_number_md5 = #{phoneIdNumberMd5,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      nation = #{nation,jdbcType=VARCHAR},
+      id_positive = #{idPositive,jdbcType=VARCHAR},
+      id_negative = #{idNegative,jdbcType=VARCHAR},
+      face = #{face,jdbcType=VARCHAR},
+      hand_id_photo = #{handIdPhoto,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      educate = #{educate,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      living_address = #{livingAddress,jdbcType=VARCHAR},
+      id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      push_phase_state = #{pushPhaseState,jdbcType=INTEGER},
+      push_risk_state = #{pushRiskState,jdbcType=INTEGER},
+      push_operator_state = #{pushOperatorState,jdbcType=INTEGER},
+      face_result = #{faceResult,jdbcType=INTEGER},
+      face_result_active = #{faceResultActive,jdbcType=VARCHAR},
+      last_reject_date = #{lastRejectDate,jdbcType=VARCHAR},
+      id_signing_authority = #{idSigningAuthority,jdbcType=VARCHAR},
+      id_start_date = #{idStartDate,jdbcType=VARCHAR},
+      id_expiry_date = #{idExpiryDate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      
+      app_name = #{appName,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByIdNumberAndMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+    and mobile = #{mobile,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByJdqOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUnRiskUserInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where push_phase_state = 5
+    and push_risk_state = 0
+    and push_operator_state = 0
+    order by create_time asc
+  </select>
+
+  <select id="selectNotCallBackRiskUserInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where push_phase_state = 5
+    and push_risk_state = 1
+    and push_operator_state = 1
+    and modify_time &lt;= DATE_SUB(now(),INTERVAL 30 MINUTE)
+  </select>
+
+  <select id="selectLockByUserInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+    for update
+  </select>
+
+  <select id="selectLockByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+    order by create_time desc limit 1
+    for update
+  </select>
+
+  <select id="selectLockByAppSerialNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where app_serial_number = #{appSerialNumber,jdbcType=VARCHAR}
+    for update
+  </select>
+
+  <select id="selectByPhoneIdNumberMd5" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where phone_id_number_md5 = #{phoneIdNumberMd5,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByLocalOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_info
+    where local_order_id = #{localOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUnionPhoneIdNumberMd5ByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+      phone_id_number_md5
+    from jdq_user_info
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+    group by id_number, phone_id_number_md5;
+  </select>
+
+  <update id="updateOtherInfoByJdqOrderId" parameterType="com.shangyong.thjdq.entity.UserInfo">
+    update jdq_user_info
+    set id_positive = #{userInfo.idPositive,jdbcType=VARCHAR},
+    id_negative = #{userInfo.idNegative,jdbcType=VARCHAR},
+    face = #{userInfo.face,jdbcType=VARCHAR},
+    hand_id_photo = #{userInfo.handIdPhoto,jdbcType=VARCHAR}
+    where jdq_order_id = #{userInfo.jdqOrderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

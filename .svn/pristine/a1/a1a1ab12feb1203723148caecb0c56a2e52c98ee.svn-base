@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="init.properties" />
+
+
+	<!-- 指定数据连接驱动jar地址 -->
+	<!-- <classPathEntry location="${dataJarPath}" /> -->
+
+	<!-- 一个数据库一个context -->
+	<!-- 因为没有table标签，所以报错，这个错误可以忽略的 -->
+	<context id="loan" targetRuntime="MyBatis3">
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="com.mybatis.plugin.GenPlugin" /><!-- 反向生成通用中文插件 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" /><!-- 
+			序列化插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" /><!-- 
+			对象toString插件 -->
+
+		<!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" 
+			/> --><!-- 对象EqualsHashCodePlugin插件 -->
+
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释带时间戳 -->
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="${jdbc_driverClassName}"
+			connectionURL="${jdbc_url}" userId="${jdbc_username}"
+			password="${jdbc_password}" />
+
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成实体类地址 -->
+		<!-- <javaModelGenerator targetPackage="${model_path}" targetProject="${project_java_path}"> 
+			是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] 
+			<property name="enableSubPackages" value="false" /> 是否针对string类型的字段在set的时候进行trim调用 
+			<property name="trimStrings" value="true" /> </javaModelGenerator> -->
+
+		<!-- 生成实体类地址(生成到其它项目中) -->
+		<javaModelGenerator targetPackage="${model_path}"
+			targetProject="${depend_project_java_path}">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.ssm.model， true:com.ssm.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="${mapper_path}"
+			targetProject="${project_resources_path}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="${dao_path}"
+			targetProject="${project_java_path}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 生成过后请放入这里注释掉，防止重复生成 ，命名最好参照user_info，复制一份即可 -->
+		<!-- 
+
+		<table schema="user" tableName="jdq_user"
+			   domainObjectName="User" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="user_contact" tableName="jdq_user_contact"
+			   domainObjectName="UserContact" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="user_loan_info" tableName="jdq_user_loan_info"
+			   domainObjectName="UserLoanInfo" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="user_info" tableName="jdq_user_info"
+			   domainObjectName="UserInfo" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="user_address_book" tableName="jdq_user_address_book"
+			   domainObjectName="UserAddressBook" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="user_company_info" tableName="jdq_user_company_info"
+			   domainObjectName="UserCompanyInfo" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_smses_items" tableName="jdq_operator_smses_items"
+			   domainObjectName="OperatorSmsesItems" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_smses" tableName="jdq_operator_smses"
+			   domainObjectName="OperatorSmses" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_families" tableName="jdq_operator_families"
+			   domainObjectName="OperatorFamilies" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_families_items" tableName="jdq_operator_families_items"
+			   domainObjectName="OperatorFamiliesItems" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+
+		<table schema="operator_recharges" tableName="jdq_operator_recharges"
+			   domainObjectName="OperatorRecharges" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_packages" tableName="jdq_operator_packages"
+			   domainObjectName="OperatorPackages" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+
+		<table schema="operator_packages_items" tableName="jdq_operator_packages_items"
+			   domainObjectName="OperatorPackagesItems" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_data" tableName="jdq_operator_data"
+			   domainObjectName="OperatorData" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_nets" tableName="jdq_operator_nets"
+			   domainObjectName="OperatorNets" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+
+		<table schema="operator_nets_items" tableName="jdq_operator_nets_items"
+			   domainObjectName="OperatorNetsItems" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table schema="operator_calls" tableName="jdq_operator_calls"
+			   domainObjectName="OperatorCalls" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_calls_items" tableName="jdq_operator_calls_items"
+			   domainObjectName="OperatorCallsItems" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_month_info" tableName="jdq_operator_month_info"
+			   domainObjectName="Operator_month_info" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_month_list" tableName="jdq_operator_month_list"
+			   domainObjectName="OperatorMonthList" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="operator_bills" tableName="jdq_operator_bills"
+			   domainObjectName="OperatorBills" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table schema="device_info" tableName="jdq_device_info"
+			   domainObjectName="DeviceInfo" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 -->
+
+
+		
+		
+		
+		<!-- 首要排除字段-->
+		<!--
+		
+			<ignoreColumn column="remark"/>
+			<ignoreColumn column="create_man"/>
+			<ignoreColumn column="modify_time"/>
+			<ignoreColumn column="modify_man"/>
+			<ignoreColumn column="ext1"/>
+			<ignoreColumn column="ext2"/>
+		 -->
+		<!-- mvn mybatis-generator:generate -->
+		<!-- useActualColumnNames false使用下划线转驼峰命名，true不变 -->
+
+	</context>
+</generatorConfiguration>

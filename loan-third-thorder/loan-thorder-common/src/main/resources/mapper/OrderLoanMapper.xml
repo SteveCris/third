@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderLoanMapper">
+	<resultMap id="BaseResultMap"
+		type="com.shangyong.thorder.entity.OrderLoan">
+		<id column="order_id" jdbcType="VARCHAR" property="orderId" />
+		<result column="other_order_id" jdbcType="VARCHAR"
+			property="otherOrderId" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="repayment_status" jdbcType="INTEGER"
+			property="repaymentStatus" />
+		<result column="if_finish" jdbcType="BIT" property="ifFinish" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="modify_time" jdbcType="TIMESTAMP"
+			property="modifyTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="ext" jdbcType="VARCHAR" property="ext" />
+		<result column="ext2" jdbcType="VARCHAR" property="ext2" />
+		<result column="appid" jdbcType="VARCHAR" property="appid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		order_id, other_order_id, status, repayment_status,
+		if_finish, create_time,
+		modify_time,
+		remark, ext, ext2, appid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from order_loan
+		where order_id = #{orderId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		order_loan
+		where order_id = #{orderId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.shangyong.thorder.entity.OrderLoan">
+		insert into order_loan (order_id, other_order_id,
+		status,
+		repayment_status, if_finish, create_time,
+		modify_time, remark,
+		ext,
+		ext2, appid)
+		values (#{orderId,jdbcType=VARCHAR},
+		#{otherOrderId,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{repaymentStatus,jdbcType=INTEGER}, #{ifFinish,jdbcType=BIT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR},
+		#{ext,jdbcType=VARCHAR},
+		#{ext2,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.shangyong.thorder.entity.OrderLoan">
+		insert into order_loan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="otherOrderId != null">
+				other_order_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="repaymentStatus != null">
+				repayment_status,
+			</if>
+			<if test="ifFinish != null">
+				if_finish,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifyTime != null">
+				modify_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="ext != null">
+				ext,
+			</if>
+			<if test="ext2 != null">
+				ext2,
+			</if>
+			<if test="appid != null">
+				appid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="otherOrderId != null">
+				#{otherOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentStatus != null">
+				#{repaymentStatus,jdbcType=INTEGER},
+			</if>
+			<if test="ifFinish != null">
+				#{ifFinish,jdbcType=BIT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="ext != null">
+				#{ext,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				#{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="appid != null">
+				#{appid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.shangyong.thorder.entity.OrderLoan">
+		update order_loan
+		<set>
+			<if test="otherOrderId != null">
+				other_order_id = #{otherOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentStatus != null">
+				repayment_status = #{repaymentStatus,jdbcType=INTEGER},
+			</if>
+			<if test="ifFinish != null">
+				if_finish = #{ifFinish,jdbcType=BIT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="ext != null">
+				ext = #{ext,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				ext2 = #{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="appid != null">
+				appid = #{appid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where order_id = #{orderId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.shangyong.thorder.entity.OrderLoan">
+		update order_loan
+		set other_order_id =
+		#{otherOrderId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		repayment_status = #{repaymentStatus,jdbcType=INTEGER},
+		if_finish =
+		#{ifFinish,jdbcType=BIT},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		modify_time =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR},
+		ext = #{ext,jdbcType=VARCHAR},
+		ext2 = #{ext2,jdbcType=VARCHAR},
+		appid =
+		#{appid,jdbcType=VARCHAR}
+		where order_id = #{orderId,jdbcType=VARCHAR}
+	</update>
+	<!-- -->
+
+	<insert id="createOrIgnore"
+		parameterType="com.shangyong.thorder.entity.OrderLoan">
+
+		insert ignore into order_loan (order_id, other_order_id,
+		status,
+		repayment_status, if_finish, create_time,
+		modify_time, remark,
+		ext,
+		ext2, appid)
+		values (#{orderId,jdbcType=VARCHAR},
+		#{otherOrderId,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{repaymentStatus,jdbcType=INTEGER}, #{ifFinish,jdbcType=BIT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR},
+		#{ext,jdbcType=VARCHAR},
+		#{ext2,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR})
+
+	</insert>
+
+
+	<update id="updateOrderStatus">
+		UPDATE order_loan
+		SET status =
+		#{newStatus,jdbcType=INTEGER},
+		<if test="repaymentStatus != null">
+			repayment_status=#{repaymentStatus,jdbcType=INTEGER},
+		</if>
+		
+		<if test="remark != null">
+			remark=#{remark,jdbcType=VARCHAR},
+		</if>
+		
+		if_finish=#{ifFinish,jdbcType=BIT},
+		modify_time = NOW()
+		WHERE
+		order_id =
+		#{orderId,jdbcType=VARCHAR}
+		AND appid
+		= #{appid,jdbcType=VARCHAR}
+		AND
+		status =#{oldStatus,jdbcType=INTEGER}
+	</update>
+
+	<select id="getOrderLoanVoByOtherOrderId"
+		resultType="com.shangyong.thcore.vo.OrderLoanVo">
+		select
+		order_id orderId,
+		other_order_id otherOrderId,
+		status,
+		if_finish ifFinish,
+		repayment_status repaymentStatus
+		from
+		order_loan
+		where other_order_id = #{otherOrderId,jdbcType=VARCHAR}
+		and
+		appid=#{appid,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getOrderLoanVoByOrderId"
+		resultType="com.shangyong.thcore.vo.OrderLoanVo">
+		select
+		order_id orderId,
+		other_order_id otherOrderId,
+		status,
+		if_finish ifFinish,
+		repayment_status repaymentStatus
+		from
+		order_loan
+		where order_id = #{orderId,jdbcType=VARCHAR}
+		and
+		appid=#{appid,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getOrderLoanBo"
+		resultType="com.shangyong.thcore.bo.OrderLoanBo">
+		select
+		appid,
+		order_id orderId,
+		other_order_id otherOrderId,
+		status,
+		if_finish ifFinish,
+		repayment_status repaymentStatus
+		from
+		order_loan
+		where order_id = #{orderId,jdbcType=VARCHAR}
+		and
+		appid=#{appid,jdbcType=VARCHAR}
+	</select>
+	
+	
+	
+	
+	<select id="countOnWayOrder"
+		resultType="int">
+		SELECT
+			count(*) count 
+		FROM
+			order_loan AS A
+			LEFT JOIN order_user AS B ON A.order_id = B.order_id 
+		WHERE
+			A.appid=#{appid,jdbcType=VARCHAR}
+			AND A.if_finish = 0 
+			AND B.identity_no = #{identityNo,jdbcType=VARCHAR}
+			AND B.if_valid = 1
+	</select>
+	
+	<update id="overdue">
+		UPDATE order_loan
+		SET 
+		repayment_status=30,
+		modify_time = NOW()
+		WHERE
+		order_id =
+		#{orderId,jdbcType=VARCHAR}
+		AND appid
+		= #{appid,jdbcType=VARCHAR}
+		AND
+		repayment_status =10
+	</update>
+	
+	
+	
+</mapper>

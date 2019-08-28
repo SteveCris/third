@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="loan-thbase-api" />
+        <module name="loan-thryt-mq" />
+        <module name="loan-thzlqb-common" />
+        <module name="loan-rest-common-thbase" />
+        <module name="loan-thcore-common" />
+        <module name="loan-thzlqb-mq" />
+        <module name="loan-thorder-api" />
+        <module name="loan-thbase-mq" />
+        <module name="loan-thjdq-mq" />
+        <module name="loan-thcore-util" />
+        <module name="loan-thorder-mq" />
+        <module name="loan-thmep-common" />
+        <module name="loan-thryt-common" />
+        <module name="loan-thjdq-api" />
+        <module name="loan-thjdq-common" />
+        <module name="loan-thzlqb-api" />
+        <module name="loan-thbase-common" />
+        <module name="loan-thorder-common" />
+        <module name="loan-rest-common-thorder" />
+        <module name="loan-thmep-mq" />
+        <module name="loan-thmep-api" />
+        <module name="loan-interact-common" />
+        <module name="loan-interact-api" />
+        <module name="loan-thetp-api" />
+        <module name="loan-thryt-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="loan-interact-api" target="1.8" />
+      <module name="loan-interact-common" target="1.8" />
+      <module name="loan-rest-common-thbase" target="1.8" />
+      <module name="loan-rest-common-thorder" target="1.8" />
+      <module name="loan-thbase-api" target="1.8" />
+      <module name="loan-thbase-common" target="1.8" />
+      <module name="loan-thbase-mq" target="1.8" />
+      <module name="loan-thcore-common" target="1.8" />
+      <module name="loan-thcore-util" target="1.8" />
+      <module name="loan-thetp-api" target="1.8" />
+      <module name="loan-third" target="1.8" />
+      <module name="loan-third-core" target="1.8" />
+      <module name="loan-third-etp" target="1.8" />
+      <module name="loan-third-interact" target="1.8" />
+      <module name="loan-third-jdq" target="1.8" />
+      <module name="loan-third-mep" target="1.8" />
+      <module name="loan-third-ryt" target="1.8" />
+      <module name="loan-third-thbase" target="1.8" />
+      <module name="loan-third-thorder" target="1.8" />
+      <module name="loan-third-zlqb" target="1.8" />
+      <module name="loan-thjdq-api" target="1.8" />
+      <module name="loan-thjdq-common" target="1.8" />
+      <module name="loan-thjdq-mq" target="1.8" />
+      <module name="loan-thmep-api" target="1.8" />
+      <module name="loan-thmep-common" target="1.8" />
+      <module name="loan-thmep-mq" target="1.8" />
+      <module name="loan-thorder-api" target="1.8" />
+      <module name="loan-thorder-common" target="1.8" />
+      <module name="loan-thorder-mq" target="1.8" />
+      <module name="loan-thryt-api" target="1.8" />
+      <module name="loan-thryt-common" target="1.8" />
+      <module name="loan-thryt-mq" target="1.8" />
+      <module name="loan-thzlqb-api" target="1.8" />
+      <module name="loan-thzlqb-common" target="1.8" />
+      <module name="loan-thzlqb-mq" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="loan-thetp-api" options="-parameters" />
+      <module name="loan-thmep-api" options="" />
+    </option>
+  </component>
+</project>

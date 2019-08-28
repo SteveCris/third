@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thbase.dao.ThUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thbase.entity.ThUserInfo">
+    <id column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="other_order_id" jdbcType="VARCHAR" property="otherOrderId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_info_id, identity_no, user_name, mobile, address, order_id, other_order_id, 
+    app_name, appid, create_time, ext, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from th_user_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from th_user_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thbase.entity.ThUserInfo">
+    insert into th_user_info (user_info_id, identity_no, user_name, 
+      mobile, address, order_id, 
+      other_order_id, app_name, appid, 
+      create_time, ext, ext2
+      )
+    values (#{userInfoId,jdbcType=VARCHAR}, #{identityNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{otherOrderId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thbase.entity.ThUserInfo">
+    insert into th_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="identityNo != null">
+        identity_no,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="otherOrderId != null">
+        other_order_id,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null">
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="otherOrderId != null">
+        #{otherOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thbase.entity.ThUserInfo">
+    update th_user_info
+    <set>
+      <if test="identityNo != null">
+        identity_no = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="otherOrderId != null">
+        other_order_id = #{otherOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thbase.entity.ThUserInfo">
+    update th_user_info
+    set identity_no = #{identityNo,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      other_order_id = #{otherOrderId,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  
+  <insert id="insertOrIgnore" parameterType="com.shangyong.thbase.entity.ThUserInfo">
+    insert ignore into th_user_info (user_info_id, identity_no, user_name, 
+      mobile, address, order_id, 
+      other_order_id, app_name, appid, 
+      create_time, ext, ext2
+      )
+    values (#{userInfoId,jdbcType=VARCHAR}, #{identityNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{otherOrderId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+   
+  <select id="listBaseUserInfoVo" resultType="com.shangyong.thcore.vo.BaseUserInfoVo">
+  
+  SELECT
+	identity_no identityNo,
+	user_name userName,
+	mobile,
+	order_id orderId,
+	other_order_id otherOrderId,
+	app_name appName,
+	appid 
+FROM
+	th_user_info 
+WHERE
+	identity_no LIKE #{identityNoPrefix,jdbcType=VARCHAR}
+	AND mobile LIKE #{mobilePrefix,jdbcType=VARCHAR}
+  
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,18 @@
+优先级
+1、h5页面上线（左锋）
+
+2、后台上线
+loan-thjdq-api.jar（郑斌斌）
+loan-thbase-api.jar（蔡俊俊）
+loan-thorder-api.jar（蔡俊俊）
+
+1)执行 新增权益卡功能.sql（蔡俊俊）
+
+2)停服务（确认下有没有放量）（蔡俊俊）
+
+3)启动服务（loan-thjdq-api.jar最后启动即可）
+
+4)发版结束后 观察数据 是否需要执行 设置默认值
+
+-- 设置扩展字段默认值为1保险大类
+UPDATE order_credit_rule SET ext='1' WHERE ext IS NULL;

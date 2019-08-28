@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.shangyong.loan:loan-ext-spring-boot-starter-redis-cache:1.5.16-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-boot-starter-redis-cache/1.5.16-SNAPSHOT/loan-ext-spring-boot-starter-redis-cache-1.5.16-20190819.034532-28.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-boot-starter-redis-cache/1.5.16-SNAPSHOT/loan-ext-spring-boot-starter-redis-cache-1.5.16-20190819.034532-28-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-ext-spring-boot-starter-redis-cache/1.5.16-SNAPSHOT/loan-ext-spring-boot-starter-redis-cache-1.5.16-20190819.034532-28-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

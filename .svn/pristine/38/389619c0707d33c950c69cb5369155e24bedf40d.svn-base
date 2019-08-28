@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorMonthListMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorMonthList">
+    <id column="operator_month_list_id" jdbcType="VARCHAR" property="operatorMonthListId" />
+    <result column="operator_month_info_id" jdbcType="VARCHAR" property="operatorMonthInfoId" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_month_list_id, operator_month_info_id, month, count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_month_list
+    where operator_month_list_id = #{operatorMonthListId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_month_list
+    where operator_month_list_id = #{operatorMonthListId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorMonthList">
+    insert into jdq_operator_month_list (operator_month_list_id, operator_month_info_id, 
+      month, count)
+    values (#{operatorMonthListId,jdbcType=VARCHAR}, #{operatorMonthInfoId,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorMonthList">
+    insert into jdq_operator_month_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorMonthListId != null">
+        operator_month_list_id,
+      </if>
+      <if test="operatorMonthInfoId != null">
+        operator_month_info_id,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorMonthListId != null">
+        #{operatorMonthListId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorMonthInfoId != null">
+        #{operatorMonthInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorMonthList">
+    update jdq_operator_month_list
+    <set>
+      <if test="operatorMonthInfoId != null">
+        operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where operator_month_list_id = #{operatorMonthListId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorMonthList">
+    update jdq_operator_month_list
+    set operator_month_info_id = #{operatorMonthInfoId,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
+    where operator_month_list_id = #{operatorMonthListId,jdbcType=VARCHAR}
+  </update>
+</mapper>

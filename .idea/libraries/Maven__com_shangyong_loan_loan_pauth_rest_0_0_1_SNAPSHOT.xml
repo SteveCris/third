@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.shangyong.loan:loan-pauth-rest:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-pauth-rest/0.0.1-SNAPSHOT/loan-pauth-rest-0.0.1-20190725.082108-36.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-pauth-rest/0.0.1-SNAPSHOT/loan-pauth-rest-0.0.1-20190725.082108-36-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/shangyong/loan/loan-pauth-rest/0.0.1-SNAPSHOT/loan-pauth-rest-0.0.1-20190725.082108-36-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

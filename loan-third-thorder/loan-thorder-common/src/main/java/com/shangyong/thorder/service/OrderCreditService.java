@@ -1,0 +1,108 @@
+package com.shangyong.thorder.service;
+
+import java.math.BigDecimal;
+
+import com.shangyong.thcore.dto.OrderPreCreditDto;
+import com.shangyong.thcore.vo.OrderRuleVo;
+import com.shangyong.thorder.vo.OrderBussinessPreCreditVo;
+import com.shangyong.thorder.vo.OrderSceneCommonVo;
+import com.shangyong.thorder.vo.OrderSceneVo;
+
+/**
+ * 订单借款服务
+ * 
+ * @author caijunjun
+ * @date 2019年3月22日
+ */
+public interface OrderCreditService {
+
+	/**
+	 * 获取订单授信规则
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @param creditLine
+	 * @return
+	 */
+	OrderRuleVo getOrderRuleVo(String appid, String orderId, BigDecimal creditLine);
+
+	/**
+	 * 获取订单授信规则 如果已经完成授信
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	OrderRuleVo getOrderRuleVoHasCredit(String appid, String orderId);
+
+	/**
+	 * 前置授信
+	 * 
+	 * @param appid
+	 * @param creditLine
+	 * @param orderId
+	 * @param orderPreCreditDto
+	 * @return
+	 */
+	boolean preCredit(String appid, BigDecimal creditLine, String orderId, OrderPreCreditDto orderPreCreditDto);
+
+	/**
+	 * 后置授信
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @param orderBorrowPreDto
+	 * @return
+	 */
+	boolean credit(String appid, String orderId);
+
+	/**
+	 * 获得前置授信信息
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	OrderBussinessPreCreditVo getOrderBussinessPreCreditVo(String appid, String orderId);
+
+	/**
+	 * 获得场景对象加详情（保险）
+	 * 
+	 * @param appid
+	 * @param sceneId
+	 * @param creditLine
+	 * @return
+	 */
+	OrderSceneVo getOrderSceneVo(String appid, int sceneId, BigDecimal creditLine);
+
+	/**
+	 * 获得通用场景对象加详情
+	 * 
+	 * @param appid
+	 * @param sceneId
+	 * @param creditLine
+	 * @return
+	 */
+	OrderSceneCommonVo getOrderSceneCommonVo(String appid, int sceneId, BigDecimal creditLine);
+
+	/**
+	 * 复合授信
+	 * 
+	 * @param appid
+	 * @param creditLine
+	 * @param orderId
+	 * @param orderPreCreditDto
+	 * @return
+	 */
+	boolean compositeCredit(String appid, BigDecimal creditLine, String orderId, OrderPreCreditDto orderPreCreditDto);
+
+	/**
+	 * 获得复合授信信息
+	 * 
+	 * @param appid
+	 * @param orderId
+	 * @return
+	 */
+	OrderBussinessPreCreditVo getOrderBussinessCompositeCreditVo(String appid, String orderId);
+
+}

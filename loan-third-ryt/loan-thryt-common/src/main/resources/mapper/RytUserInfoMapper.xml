@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thryt.dao.RytUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thryt.entity.RytUserInfo">
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="id_card_address" jdbcType="VARCHAR" property="idCardAddress" />
+    <result column="race" jdbcType="VARCHAR" property="race" />
+    <result column="issued_by" jdbcType="VARCHAR" property="issuedBy" />
+    <result column="valid_date" jdbcType="VARCHAR" property="validDate" />
+    <result column="user_mobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="money_usage" jdbcType="INTEGER" property="moneyUsage" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="id_card_pic" jdbcType="VARCHAR" property="idCardPic" />
+    <result column="id_card_pic_the" jdbcType="VARCHAR" property="idCardPicThe" />
+    <result column="id_card_pic_hand" jdbcType="VARCHAR" property="idCardPicHand" />
+    <result column="face_pic" jdbcType="VARCHAR" property="facePic" />
+    <result column="face_pic_other" jdbcType="VARCHAR" property="facePicOther" />
+    <result column="os_version" jdbcType="VARCHAR" property="osVersion" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, user_id, user_name, gender, id_card, id_card_address, race, issued_by, 
+    valid_date, user_mobile, province, city, district, address, money_usage, create_time, 
+    id_card_pic, id_card_pic_the, id_card_pic_hand, face_pic, face_pic_other, os_version, 
+    ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ryt_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ryt_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thryt.entity.RytUserInfo">
+    insert into ryt_user_info (order_no, user_id, user_name, 
+      gender, id_card, id_card_address, 
+      race, issued_by, valid_date, 
+      user_mobile, province, city, 
+      district, address, money_usage, 
+      create_time, id_card_pic, id_card_pic_the, 
+      id_card_pic_hand, face_pic, face_pic_other, 
+      os_version, ext1, ext2
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{idCardAddress,jdbcType=VARCHAR}, 
+      #{race,jdbcType=VARCHAR}, #{issuedBy,jdbcType=VARCHAR}, #{validDate,jdbcType=VARCHAR}, 
+      #{userMobile,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{moneyUsage,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{idCardPic,jdbcType=VARCHAR}, #{idCardPicThe,jdbcType=VARCHAR}, 
+      #{idCardPicHand,jdbcType=VARCHAR}, #{facePic,jdbcType=VARCHAR}, #{facePicOther,jdbcType=VARCHAR}, 
+      #{osVersion,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thryt.entity.RytUserInfo">
+    insert into ryt_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="idCardAddress != null">
+        id_card_address,
+      </if>
+      <if test="race != null">
+        race,
+      </if>
+      <if test="issuedBy != null">
+        issued_by,
+      </if>
+      <if test="validDate != null">
+        valid_date,
+      </if>
+      <if test="userMobile != null">
+        user_mobile,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="moneyUsage != null">
+        money_usage,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="idCardPic != null">
+        id_card_pic,
+      </if>
+      <if test="idCardPicThe != null">
+        id_card_pic_the,
+      </if>
+      <if test="idCardPicHand != null">
+        id_card_pic_hand,
+      </if>
+      <if test="facePic != null">
+        face_pic,
+      </if>
+      <if test="facePicOther != null">
+        face_pic_other,
+      </if>
+      <if test="osVersion != null">
+        os_version,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null">
+        #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="race != null">
+        #{race,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null">
+        #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyUsage != null">
+        #{moneyUsage,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idCardPic != null">
+        #{idCardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPicThe != null">
+        #{idCardPicThe,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPicHand != null">
+        #{idCardPicHand,jdbcType=VARCHAR},
+      </if>
+      <if test="facePic != null">
+        #{facePic,jdbcType=VARCHAR},
+      </if>
+      <if test="facePicOther != null">
+        #{facePicOther,jdbcType=VARCHAR},
+      </if>
+      <if test="osVersion != null">
+        #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thryt.entity.RytUserInfo">
+    update ryt_user_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardAddress != null">
+        id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="race != null">
+        race = #{race,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null">
+        issued_by = #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        valid_date = #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyUsage != null">
+        money_usage = #{moneyUsage,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idCardPic != null">
+        id_card_pic = #{idCardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPicThe != null">
+        id_card_pic_the = #{idCardPicThe,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPicHand != null">
+        id_card_pic_hand = #{idCardPicHand,jdbcType=VARCHAR},
+      </if>
+      <if test="facePic != null">
+        face_pic = #{facePic,jdbcType=VARCHAR},
+      </if>
+      <if test="facePicOther != null">
+        face_pic_other = #{facePicOther,jdbcType=VARCHAR},
+      </if>
+      <if test="osVersion != null">
+        os_version = #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thryt.entity.RytUserInfo">
+    update ryt_user_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      id_card_address = #{idCardAddress,jdbcType=VARCHAR},
+      race = #{race,jdbcType=VARCHAR},
+      issued_by = #{issuedBy,jdbcType=VARCHAR},
+      valid_date = #{validDate,jdbcType=VARCHAR},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      money_usage = #{moneyUsage,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      id_card_pic = #{idCardPic,jdbcType=VARCHAR},
+      id_card_pic_the = #{idCardPicThe,jdbcType=VARCHAR},
+      id_card_pic_hand = #{idCardPicHand,jdbcType=VARCHAR},
+      face_pic = #{facePic,jdbcType=VARCHAR},
+      face_pic_other = #{facePicOther,jdbcType=VARCHAR},
+      os_version = #{osVersion,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+   <select id="getUserInfoBo" resultType="com.shangyong.thryt.bo.RytUserInfoBo">
+    select 
+    user_id userId, 
+    user_name userName,  
+    id_card idCard, 
+    id_card_address idCardAddress, 
+    race, 
+    issued_by issuedBy, 
+    valid_date validDate, 
+    user_mobile userMobile, 
+    address, 
+    id_card_pic idCardPic, 
+    id_card_pic_the idCardPicThe, 
+    id_card_pic_hand idCardPicHand, 
+    face_pic facePic, 
+    face_pic_other facePicOther, 
+    os_version osVersion
+    from ryt_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <select id="getRytAuditUserInfoBo" resultType="com.shangyong.thryt.bo.RytAuditUserInfoBo">
+    select 
+    user_id userId, 
+    user_name userName,  
+    id_card idCard, 
+    user_mobile userMobile, 
+    address
+    from ryt_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+</mapper>

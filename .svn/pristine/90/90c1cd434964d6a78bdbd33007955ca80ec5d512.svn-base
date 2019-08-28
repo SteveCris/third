@@ -1,0 +1,58 @@
+package com.shangyong.thzlqb.zlqb.utils;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.loan.ext.exception.CalfException;
+import com.shangyong.loan.ext.util.JacksonUtil;
+import com.shangyong.loan.ext.util.JsonNodeUtil;
+import com.shangyong.loan.ext.util.PropertiesUtil;
+
+public class ZlqbUtil {
+
+	private ZlqbUtil() {
+
+	}
+
+	public static ObjectNode checkAndGetRequest(ObjectNode node) {
+		String appid = node.get("appId").asText();
+		if (!appid.equals(getThirdAppid())) {
+			throw new CalfException("appid:" + appid + " 校验异常");
+		}
+
+		return JacksonUtil.build().parseFrom(AesUtil.decrypt(node.get("request").asText(), getThirdAesKey()),
+				ObjectNode.class);
+
+	}
+
+	public static ObjectNode buildRequest(Object request) {
+		return JsonNodeUtil.data()//
+				.put("appid", getThirdAppid())//
+				.put("request", AesUtil.encrypt(JacksonUtil.build().parseToJsonString(request), getThirdAesKey()));//
+	}
+
+	// ***************************私有方法**************************
+
+	public static String getAppid() {
+		return PropertiesUtil.get("zlqb.common.appid");
+	}
+
+	public static String getAppName() {
+		return PropertiesUtil.get("zlqb.common.appName");
+	}
+
+	public static String getThirdAesKey() {
+		return PropertiesUtil.get("zlqb.third.aesKey");
+	}
+
+	public static String getThirdAppid() {
+		return PropertiesUtil.get("zlqb.third.appid");
+	}
+
+	public static String getCallbackUrl() {
+		return PropertiesUtil.get("zlqb.third.callbackUrl");
+	}
+
+	public static boolean checkToken(String token) {
+		return PropertiesUtil.get("zlqb.common.check.token").equals(token);
+	}
+
+}

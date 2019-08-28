@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorDataMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorData">
+    <id column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="carrier" jdbcType="VARCHAR" property="carrier" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="open_time" jdbcType="VARCHAR" property="openTime" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="package_name" jdbcType="VARCHAR" property="packageName" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="reliability" jdbcType="INTEGER" property="reliability" />
+    <result column="available_balance" jdbcType="INTEGER" property="availableBalance" />
+    <result column="last_modify_time" jdbcType="VARCHAR" property="lastModifyTime" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="message_desc" jdbcType="VARCHAR" property="messageDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_data_id, user_info_id, jdq_order_id, mobile, name, idcard, carrier, province, 
+    city, open_time, level, package_name, state, reliability, available_balance, last_modify_time, 
+    code, message_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_data
+    where operator_data_id = #{operatorDataId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_data
+    where operator_data_id = #{operatorDataId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorData">
+    insert into jdq_operator_data (operator_data_id, user_info_id, jdq_order_id, 
+      mobile, name, idcard, 
+      carrier, province, city, 
+      open_time, level, package_name, 
+      state, reliability, available_balance, 
+      last_modify_time, code, message_desc
+      )
+    values (#{operatorDataId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{carrier,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{openTime,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{packageName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{reliability,jdbcType=INTEGER}, #{availableBalance,jdbcType=INTEGER},
+      #{lastModifyTime,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, #{messageDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorData">
+    insert into jdq_operator_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="carrier != null">
+        carrier,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="openTime != null">
+        open_time,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="packageName != null">
+        package_name,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="reliability != null">
+        reliability,
+      </if>
+      <if test="availableBalance != null">
+        available_balance,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="messageDesc != null">
+        message_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null">
+        #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null">
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reliability != null">
+        #{reliability,jdbcType=INTEGER},
+      </if>
+      <if test="availableBalance != null">
+        #{availableBalance,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="messageDesc != null">
+        #{messageDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorData">
+    update jdq_operator_data
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null">
+        carrier = #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        open_time = #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null">
+        package_name = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reliability != null">
+        reliability = #{reliability,jdbcType=INTEGER},
+      </if>
+      <if test="availableBalance != null">
+        available_balance = #{availableBalance,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="messageDesc != null">
+        message_desc = #{messageDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_data_id = #{operatorDataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorData">
+    update jdq_operator_data
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      carrier = #{carrier,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      package_name = #{packageName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      reliability = #{reliability,jdbcType=INTEGER},
+      available_balance = #{availableBalance,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
+      message_desc = #{messageDesc,jdbcType=VARCHAR}
+    where operator_data_id = #{operatorDataId,jdbcType=VARCHAR}
+  </update>
+</mapper>

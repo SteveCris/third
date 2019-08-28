@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.OperatorPackagesMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.OperatorPackages">
+    <id column="operator_packages_id" jdbcType="VARCHAR" property="operatorPackagesId" />
+    <result column="operator_data_id" jdbcType="VARCHAR" property="operatorDataId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="bill_start_date" jdbcType="VARCHAR" property="billStartDate" />
+    <result column="bill_end_date" jdbcType="VARCHAR" property="billEndDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operator_packages_id, operator_data_id, user_info_id, bill_start_date, bill_end_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_operator_packages
+    where operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_operator_packages
+    where operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.OperatorPackages">
+    insert into jdq_operator_packages (operator_packages_id, operator_data_id, 
+      user_info_id, bill_start_date, bill_end_date
+      )
+    values (#{operatorPackagesId,jdbcType=VARCHAR}, #{operatorDataId,jdbcType=VARCHAR}, 
+      #{userInfoId,jdbcType=VARCHAR}, #{billStartDate,jdbcType=VARCHAR}, #{billEndDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.OperatorPackages">
+    insert into jdq_operator_packages
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorPackagesId != null">
+        operator_packages_id,
+      </if>
+      <if test="operatorDataId != null">
+        operator_data_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="billStartDate != null">
+        bill_start_date,
+      </if>
+      <if test="billEndDate != null">
+        bill_end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorPackagesId != null">
+        #{operatorPackagesId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDataId != null">
+        #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="billStartDate != null">
+        #{billStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDate != null">
+        #{billEndDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.OperatorPackages">
+    update jdq_operator_packages
+    <set>
+      <if test="operatorDataId != null">
+        operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="billStartDate != null">
+        bill_start_date = #{billStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDate != null">
+        bill_end_date = #{billEndDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.OperatorPackages">
+    update jdq_operator_packages
+    set operator_data_id = #{operatorDataId,jdbcType=VARCHAR},
+      user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      bill_start_date = #{billStartDate,jdbcType=VARCHAR},
+      bill_end_date = #{billEndDate,jdbcType=VARCHAR}
+    where operator_packages_id = #{operatorPackagesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

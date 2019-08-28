@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thzlqb.dao.ZlqbUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thzlqb.entity.ZlqbUserInfo">
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="permanent_address" jdbcType="VARCHAR" property="permanentAddress" />
+    <result column="loan_terms" jdbcType="VARCHAR" property="loanTerms" />
+    <result column="degree" jdbcType="INTEGER" property="degree" />
+    <result column="profesion" jdbcType="INTEGER" property="profesion" />
+    <result column="nature" jdbcType="VARCHAR" property="nature" />
+    <result column="issued_by" jdbcType="VARCHAR" property="issuedBy" />
+    <result column="valid_date" jdbcType="VARCHAR" property="validDate" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="zm_score" jdbcType="VARCHAR" property="zmScore" />
+    <result column="loan_amount" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="apply_date" jdbcType="VARCHAR" property="applyDate" />
+    <result column="house_address" jdbcType="VARCHAR" property="houseAddress" />
+    <result column="live_city" jdbcType="VARCHAR" property="liveCity" />
+    <result column="debt" jdbcType="INTEGER" property="debt" />
+    <result column="debt_amount" jdbcType="DECIMAL" property="debtAmount" />
+    <result column="pay_back_source_option" jdbcType="INTEGER" property="payBackSourceOption" />
+    <result column="loan_purpose" jdbcType="INTEGER" property="loanPurpose" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="front_file" jdbcType="VARCHAR" property="frontFile" />
+    <result column="back_file" jdbcType="VARCHAR" property="backFile" />
+    <result column="nature_file" jdbcType="VARCHAR" property="natureFile" />
+    <result column="face_pic" jdbcType="VARCHAR" property="facePic" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, user_id, name, age, email, id_card, address, permanent_address, loan_terms, 
+    degree, profesion, nature, issued_by, valid_date, phone, zm_score, loan_amount, apply_date, 
+    house_address, live_city, debt, debt_amount, pay_back_source_option, loan_purpose, 
+    create_time, front_file, back_file, nature_file, face_pic, ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zlqb_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zlqb_user_info
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thzlqb.entity.ZlqbUserInfo">
+    insert into zlqb_user_info (order_no, user_id, name, 
+      age, email, id_card, 
+      address, permanent_address, loan_terms, 
+      degree, profesion, nature, 
+      issued_by, valid_date, phone, 
+      zm_score, loan_amount, apply_date, 
+      house_address, live_city, debt, 
+      debt_amount, pay_back_source_option, loan_purpose, 
+      create_time, front_file, back_file, 
+      nature_file, face_pic, ext1, 
+      ext2)
+    values (#{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{permanentAddress,jdbcType=VARCHAR}, #{loanTerms,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=INTEGER}, #{profesion,jdbcType=INTEGER}, #{nature,jdbcType=VARCHAR}, 
+      #{issuedBy,jdbcType=VARCHAR}, #{validDate,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{zmScore,jdbcType=VARCHAR}, #{loanAmount,jdbcType=DECIMAL}, #{applyDate,jdbcType=VARCHAR}, 
+      #{houseAddress,jdbcType=VARCHAR}, #{liveCity,jdbcType=VARCHAR}, #{debt,jdbcType=INTEGER}, 
+      #{debtAmount,jdbcType=DECIMAL}, #{payBackSourceOption,jdbcType=INTEGER}, #{loanPurpose,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{frontFile,jdbcType=VARCHAR}, #{backFile,jdbcType=VARCHAR}, 
+      #{natureFile,jdbcType=VARCHAR}, #{facePic,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thzlqb.entity.ZlqbUserInfo">
+    insert into zlqb_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="permanentAddress != null">
+        permanent_address,
+      </if>
+      <if test="loanTerms != null">
+        loan_terms,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="profesion != null">
+        profesion,
+      </if>
+      <if test="nature != null">
+        nature,
+      </if>
+      <if test="issuedBy != null">
+        issued_by,
+      </if>
+      <if test="validDate != null">
+        valid_date,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="zmScore != null">
+        zm_score,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="applyDate != null">
+        apply_date,
+      </if>
+      <if test="houseAddress != null">
+        house_address,
+      </if>
+      <if test="liveCity != null">
+        live_city,
+      </if>
+      <if test="debt != null">
+        debt,
+      </if>
+      <if test="debtAmount != null">
+        debt_amount,
+      </if>
+      <if test="payBackSourceOption != null">
+        pay_back_source_option,
+      </if>
+      <if test="loanPurpose != null">
+        loan_purpose,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="frontFile != null">
+        front_file,
+      </if>
+      <if test="backFile != null">
+        back_file,
+      </if>
+      <if test="natureFile != null">
+        nature_file,
+      </if>
+      <if test="facePic != null">
+        face_pic,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="permanentAddress != null">
+        #{permanentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerms != null">
+        #{loanTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="profesion != null">
+        #{profesion,jdbcType=INTEGER},
+      </if>
+      <if test="nature != null">
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null">
+        #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="zmScore != null">
+        #{zmScore,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="debt != null">
+        #{debt,jdbcType=INTEGER},
+      </if>
+      <if test="debtAmount != null">
+        #{debtAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payBackSourceOption != null">
+        #{payBackSourceOption,jdbcType=INTEGER},
+      </if>
+      <if test="loanPurpose != null">
+        #{loanPurpose,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frontFile != null">
+        #{frontFile,jdbcType=VARCHAR},
+      </if>
+      <if test="backFile != null">
+        #{backFile,jdbcType=VARCHAR},
+      </if>
+      <if test="natureFile != null">
+        #{natureFile,jdbcType=VARCHAR},
+      </if>
+      <if test="facePic != null">
+        #{facePic,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thzlqb.entity.ZlqbUserInfo">
+    update zlqb_user_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="permanentAddress != null">
+        permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerms != null">
+        loan_terms = #{loanTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="profesion != null">
+        profesion = #{profesion,jdbcType=INTEGER},
+      </if>
+      <if test="nature != null">
+        nature = #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="issuedBy != null">
+        issued_by = #{issuedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        valid_date = #{validDate,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="zmScore != null">
+        zm_score = #{zmScore,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        apply_date = #{applyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        house_address = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        live_city = #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="debt != null">
+        debt = #{debt,jdbcType=INTEGER},
+      </if>
+      <if test="debtAmount != null">
+        debt_amount = #{debtAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payBackSourceOption != null">
+        pay_back_source_option = #{payBackSourceOption,jdbcType=INTEGER},
+      </if>
+      <if test="loanPurpose != null">
+        loan_purpose = #{loanPurpose,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frontFile != null">
+        front_file = #{frontFile,jdbcType=VARCHAR},
+      </if>
+      <if test="backFile != null">
+        back_file = #{backFile,jdbcType=VARCHAR},
+      </if>
+      <if test="natureFile != null">
+        nature_file = #{natureFile,jdbcType=VARCHAR},
+      </if>
+      <if test="facePic != null">
+        face_pic = #{facePic,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thzlqb.entity.ZlqbUserInfo">
+    update zlqb_user_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+      loan_terms = #{loanTerms,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=INTEGER},
+      profesion = #{profesion,jdbcType=INTEGER},
+      nature = #{nature,jdbcType=VARCHAR},
+      issued_by = #{issuedBy,jdbcType=VARCHAR},
+      valid_date = #{validDate,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      zm_score = #{zmScore,jdbcType=VARCHAR},
+      loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      apply_date = #{applyDate,jdbcType=VARCHAR},
+      house_address = #{houseAddress,jdbcType=VARCHAR},
+      live_city = #{liveCity,jdbcType=VARCHAR},
+      debt = #{debt,jdbcType=INTEGER},
+      debt_amount = #{debtAmount,jdbcType=DECIMAL},
+      pay_back_source_option = #{payBackSourceOption,jdbcType=INTEGER},
+      loan_purpose = #{loanPurpose,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      front_file = #{frontFile,jdbcType=VARCHAR},
+      back_file = #{backFile,jdbcType=VARCHAR},
+      nature_file = #{natureFile,jdbcType=VARCHAR},
+      face_pic = #{facePic,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getUserInfoByOrderNo" parameterType="String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from zlqb_user_info
+     where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

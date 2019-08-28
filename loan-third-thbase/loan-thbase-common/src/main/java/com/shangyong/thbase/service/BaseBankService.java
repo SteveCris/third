@@ -1,0 +1,37 @@
+package com.shangyong.thbase.service;
+
+import java.util.List;
+
+import com.shangyong.thcore.vo.BankConfigVo;
+import com.shangyong.thcore.vo.BankMatchVo;
+
+public interface BaseBankService {
+
+	/**
+	 * 获取银行卡配置信息列表
+	 * 
+	 * @param appid
+	 * @param cardType
+	 * @return
+	 */
+	List<BankConfigVo> listThBankConfigVo(String appid, int cardType);
+
+	/**
+	 * 校验银行信息
+	 * 
+	 * @param appid
+	 * @param cardType 
+	 * @param bankCode
+	 * @return
+	 */
+	boolean checkBank(String appid, int cardType, String bankCode);
+
+	/**
+	 * 获取银行匹配信息
+	 * @param appid
+	 * @param cardNoPrefix
+	 * @return
+	 */
+	BankMatchVo getBankMatchVo(String appid, String cardNoPrefix);
+	
+}

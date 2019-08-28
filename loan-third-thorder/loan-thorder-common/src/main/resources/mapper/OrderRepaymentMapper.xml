@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderRepaymentMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderRepayment">
+    <id column="repayment_id" jdbcType="VARCHAR" property="repaymentId" />
+    <result column="if_overdue" jdbcType="BIT" property="ifOverdue" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pre_repayment_amount" jdbcType="DECIMAL" property="preRepaymentAmount" />
+    <result column="repayment_amount" jdbcType="DECIMAL" property="repaymentAmount" />
+    <result column="total_repayment_amount" jdbcType="DECIMAL" property="totalRepaymentAmount" />
+    <result column="credit_use_uuid" jdbcType="VARCHAR" property="creditUseUuid" />
+    <result column="finance_order_id" jdbcType="VARCHAR" property="financeOrderId" />
+    <result column="apply_id" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    repayment_id, if_overdue, ext, ext2, appid, order_id, remark, create_time, pre_repayment_amount, 
+    repayment_amount, total_repayment_amount, credit_use_uuid, finance_order_id, apply_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_repayment
+    where repayment_id = #{repaymentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_repayment
+    where repayment_id = #{repaymentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderRepayment">
+    insert into order_repayment (repayment_id, if_overdue, ext, 
+      ext2, appid, order_id, 
+      remark, create_time, pre_repayment_amount, 
+      repayment_amount, total_repayment_amount, 
+      credit_use_uuid, finance_order_id, apply_id
+      )
+    values (#{repaymentId,jdbcType=VARCHAR}, #{ifOverdue,jdbcType=BIT}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{preRepaymentAmount,jdbcType=DECIMAL}, 
+      #{repaymentAmount,jdbcType=DECIMAL}, #{totalRepaymentAmount,jdbcType=DECIMAL}, 
+      #{creditUseUuid,jdbcType=VARCHAR}, #{financeOrderId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderRepayment">
+    insert into order_repayment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="repaymentId != null">
+        repayment_id,
+      </if>
+      <if test="ifOverdue != null">
+        if_overdue,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="preRepaymentAmount != null">
+        pre_repayment_amount,
+      </if>
+      <if test="repaymentAmount != null">
+        repayment_amount,
+      </if>
+      <if test="totalRepaymentAmount != null">
+        total_repayment_amount,
+      </if>
+      <if test="creditUseUuid != null">
+        credit_use_uuid,
+      </if>
+      <if test="financeOrderId != null">
+        finance_order_id,
+      </if>
+      <if test="applyId != null">
+        apply_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="repaymentId != null">
+        #{repaymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifOverdue != null">
+        #{ifOverdue,jdbcType=BIT},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preRepaymentAmount != null">
+        #{preRepaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentAmount != null">
+        #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRepaymentAmount != null">
+        #{totalRepaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUseUuid != null">
+        #{creditUseUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="financeOrderId != null">
+        #{financeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderRepayment">
+    update order_repayment
+    <set>
+      <if test="ifOverdue != null">
+        if_overdue = #{ifOverdue,jdbcType=BIT},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preRepaymentAmount != null">
+        pre_repayment_amount = #{preRepaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentAmount != null">
+        repayment_amount = #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRepaymentAmount != null">
+        total_repayment_amount = #{totalRepaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUseUuid != null">
+        credit_use_uuid = #{creditUseUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="financeOrderId != null">
+        finance_order_id = #{financeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        apply_id = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where repayment_id = #{repaymentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderRepayment">
+    update order_repayment
+    set if_overdue = #{ifOverdue,jdbcType=BIT},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pre_repayment_amount = #{preRepaymentAmount,jdbcType=DECIMAL},
+      repayment_amount = #{repaymentAmount,jdbcType=DECIMAL},
+      total_repayment_amount = #{totalRepaymentAmount,jdbcType=DECIMAL},
+      credit_use_uuid = #{creditUseUuid,jdbcType=VARCHAR},
+      finance_order_id = #{financeOrderId,jdbcType=VARCHAR},
+      apply_id = #{applyId,jdbcType=VARCHAR}
+    where repayment_id = #{repaymentId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <select id="getOrderRepaymentBo" resultType="com.shangyong.thcore.bo.OrderRepaymentBo">
+    select 
+    apply_id applyId,
+    finance_order_id financeOrderId,
+    if_overdue ifOverdue,
+    create_time createTime
+    from order_repayment
+   where appid = #{appid,jdbcType=VARCHAR} and  order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

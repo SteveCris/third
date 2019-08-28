@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.User">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="mask_id_number" jdbcType="VARCHAR" property="maskIdNumber" />
+    <result column="mask_phone" jdbcType="VARCHAR" property="maskPhone" />
+    <result column="mask_user_name" jdbcType="VARCHAR" property="maskUserName" />
+    <result column="user_state" jdbcType="INTEGER" property="userState" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, id_number, mask_id_number, mask_phone, mask_user_name, user_state, channel, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.User">
+    insert into jdq_user (user_id, id_number, mask_id_number, 
+      mask_phone, mask_user_name, user_state, 
+      channel, create_time, modify_time
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{maskIdNumber,jdbcType=VARCHAR}, 
+      #{maskPhone,jdbcType=VARCHAR}, #{maskUserName,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER}, 
+      #{channel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.User">
+    insert into jdq_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="maskIdNumber != null">
+        mask_id_number,
+      </if>
+      <if test="maskPhone != null">
+        mask_phone,
+      </if>
+      <if test="maskUserName != null">
+        mask_user_name,
+      </if>
+      <if test="userState != null">
+        user_state,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maskIdNumber != null">
+        #{maskIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maskPhone != null">
+        #{maskPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maskUserName != null">
+        #{maskUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        #{userState,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.User">
+    update jdq_user
+    <set>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maskIdNumber != null">
+        mask_id_number = #{maskIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maskPhone != null">
+        mask_phone = #{maskPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maskUserName != null">
+        mask_user_name = #{maskUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        user_state = #{userState,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.User">
+    update jdq_user
+    set id_number = #{idNumber,jdbcType=VARCHAR},
+      mask_id_number = #{maskIdNumber,jdbcType=VARCHAR},
+      mask_phone = #{maskPhone,jdbcType=VARCHAR},
+      mask_user_name = #{maskUserName,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByIdNumberAndUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user
+    where mask_id_number = #{maskIdNumber,jdbcType=VARCHAR}
+      and mask_user_name = #{maskUserName,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

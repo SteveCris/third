@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thjdq.dao.UserCompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thjdq.entity.UserCompanyInfo">
+    <id column="user_company_info_id" jdbcType="VARCHAR" property="userCompanyInfoId" />
+    <result column="user_info_id" jdbcType="VARCHAR" property="userInfoId" />
+    <result column="jdq_order_id" jdbcType="VARCHAR" property="jdqOrderId" />
+    <result column="company_address" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="hiredate" jdbcType="VARCHAR" property="hiredate" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_tel" jdbcType="VARCHAR" property="companyTel" />
+    <result column="industry" jdbcType="INTEGER" property="industry" />
+    <result column="company_work_year" jdbcType="INTEGER" property="companyWorkYear" />
+    <result column="company_type" jdbcType="INTEGER" property="companyType" />
+    <result column="work_profession" jdbcType="INTEGER" property="workProfession" />
+    <result column="company_city" jdbcType="VARCHAR" property="companyCity" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_company_info_id, user_info_id, jdq_order_id, company_address, hiredate, company_name, 
+    company_tel, industry, company_work_year, company_type, work_profession, company_city, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jdq_user_company_info
+    where user_company_info_id = #{userCompanyInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from jdq_user_company_info
+    where user_company_info_id = #{userCompanyInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thjdq.entity.UserCompanyInfo">
+    insert into jdq_user_company_info (user_company_info_id, user_info_id, jdq_order_id, 
+      company_address, hiredate, company_name, 
+      company_tel, industry, company_work_year, 
+      company_type, work_profession, company_city, 
+      create_time, modify_time)
+    values (#{userCompanyInfoId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{jdqOrderId,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{hiredate,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyTel,jdbcType=VARCHAR}, #{industry,jdbcType=INTEGER}, #{companyWorkYear,jdbcType=INTEGER}, 
+      #{companyType,jdbcType=INTEGER}, #{workProfession,jdbcType=INTEGER}, #{companyCity,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thjdq.entity.UserCompanyInfo">
+    insert into jdq_user_company_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userCompanyInfoId != null">
+        user_company_info_id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id,
+      </if>
+      <if test="companyAddress != null">
+        company_address,
+      </if>
+      <if test="hiredate != null">
+        hiredate,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="companyTel != null">
+        company_tel,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="companyWorkYear != null">
+        company_work_year,
+      </if>
+      <if test="companyType != null">
+        company_type,
+      </if>
+      <if test="workProfession != null">
+        work_profession,
+      </if>
+      <if test="companyCity != null">
+        company_city,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userCompanyInfoId != null">
+        #{userCompanyInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate != null">
+        #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=INTEGER},
+      </if>
+      <if test="companyWorkYear != null">
+        #{companyWorkYear,jdbcType=INTEGER},
+      </if>
+      <if test="companyType != null">
+        #{companyType,jdbcType=INTEGER},
+      </if>
+      <if test="workProfession != null">
+        #{workProfession,jdbcType=INTEGER},
+      </if>
+      <if test="companyCity != null">
+        #{companyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thjdq.entity.UserCompanyInfo">
+    update jdq_user_company_info
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="jdqOrderId != null">
+        jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hiredate != null">
+        hiredate = #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=INTEGER},
+      </if>
+      <if test="companyWorkYear != null">
+        company_work_year = #{companyWorkYear,jdbcType=INTEGER},
+      </if>
+      <if test="companyType != null">
+        company_type = #{companyType,jdbcType=INTEGER},
+      </if>
+      <if test="workProfession != null">
+        work_profession = #{workProfession,jdbcType=INTEGER},
+      </if>
+      <if test="companyCity != null">
+        company_city = #{companyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_company_info_id = #{userCompanyInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thjdq.entity.UserCompanyInfo">
+    update jdq_user_company_info
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      jdq_order_id = #{jdqOrderId,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      hiredate = #{hiredate,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=INTEGER},
+      company_work_year = #{companyWorkYear,jdbcType=INTEGER},
+      company_type = #{companyType,jdbcType=INTEGER},
+      work_profession = #{workProfession,jdbcType=INTEGER},
+      company_city = #{companyCity,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where user_company_info_id = #{userCompanyInfoId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUserInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jdq_user_company_info
+    where user_info_id = #{userInfoId,jdbcType=VARCHAR}
+  </select>
+</mapper>

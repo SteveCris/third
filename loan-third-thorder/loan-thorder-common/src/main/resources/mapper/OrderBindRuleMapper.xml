@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderBindRuleMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderBindRule">
+    <id column="bind_r_id" jdbcType="VARCHAR" property="bindRId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="rule" jdbcType="VARCHAR" property="rule" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bind_r_id, appid, order_id, rule, create_time, ext, ext2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_bind_rule
+    where bind_r_id = #{bindRId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_bind_rule
+    where bind_r_id = #{bindRId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderBindRule">
+    insert into order_bind_rule (bind_r_id, appid, order_id, 
+      rule, create_time, ext, 
+      ext2)
+    values (#{bindRId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{rule,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderBindRule">
+    insert into order_bind_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bindRId != null">
+        bind_r_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="rule != null">
+        rule,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bindRId != null">
+        #{bindRId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null">
+        #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderBindRule">
+    update order_bind_rule
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null">
+        rule = #{rule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bind_r_id = #{bindRId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderBindRule">
+    update order_bind_rule
+    set appid = #{appid,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      rule = #{rule,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where bind_r_id = #{bindRId,jdbcType=VARCHAR}
+  </update>
+  <!--  -->
+  <select id="getOrderBindRuleVo" resultType="com.shangyong.thorder.vo.OrderBindRuleVo">
+    select 
+    rule
+    from order_bind_rule
+    where appid = #{appid,jdbcType=VARCHAR} and order_id=#{orderId,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="insertOrIgnore" parameterType="com.shangyong.thorder.entity.OrderBindRule">
+    insert into order_bind_rule (bind_r_id, appid, order_id, 
+      rule, create_time, ext, 
+      ext2)
+    values (#{bindRId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{rule,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR})
+  </insert>
+  
+</mapper>

@@ -1,0 +1,31 @@
+package com.shangyong.thzlqb.service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.shangyong.thzlqb.bo.CoreAuditUserInfoBo;
+
+/**
+ * 用户相关服务
+ * 
+ * @author caijunjun
+ * @date 2019年7月19日
+ */
+public interface ZlqbUserService {
+
+	/**
+	 * 
+	 * 获取审核用户信息
+	 * 
+	 * @param orderNo
+	 * @return
+	 */
+	CoreAuditUserInfoBo getCoreAuditUserInfoBo(String orderNo);
+
+	/**
+	 * 处理校验请求
+	 * 
+	 * @param request
+	 * @return
+	 */
+	JsonNode processCheckUser(ObjectNode request);
+}

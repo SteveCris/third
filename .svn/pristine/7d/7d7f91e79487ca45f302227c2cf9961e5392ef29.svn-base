@@ -1,0 +1,125 @@
+package com.shangyong.thbase.service.impl;
+
+import com.shangyong.common.utils.LocalDateUtil;
+import com.shangyong.thbase.dao.ThUserInfoMapper;
+import com.shangyong.thbase.dao.ThUserQuarantineMapper;
+import com.shangyong.thbase.entity.ThUserInfo;
+import com.shangyong.thbase.entity.ThUserQuarantine;
+import com.shangyong.thbase.enums.ParamConfigEnum;
+import com.shangyong.thbase.service.BaseUserService;
+import com.shangyong.thbase.service.ConfigService;
+import com.shangyong.thcore.dto.CheckUserInfoDto;
+import com.shangyong.thcore.event.dto.EventFailureResult;
+import com.shangyong.thcore.event.dto.EventHeader;
+import com.shangyong.thcore.event.dto.EventUserInfo;
+import com.shangyong.thcore.vo.BaseUserInfoVo;
+import com.shangyong.thcore.vo.ParamConfigVo;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class BaseUserServiceImpl implements BaseUserService {
+
+	private static final Logger log = LoggerFactory.getLogger(BaseUserServiceImpl.class);
+
+	@Autowired
+	private ThUserInfoMapper thUserInfoMapper;
+	@Autowired
+	private ThUserQuarantineMapper thUserQuarantineMapper;
+	@Autowired
+	private ConfigService configService;
+
+	@Override
+	public boolean processAuditEvent(EventHeader eventHeader, EventUserInfo eventUserInfo) {
+
+		ThUserInfo thUserInfo = new ThUserInfo();
+		BeanUtils.copyProperties(eventUserInfo, thUserInfo);
+		BeanUtils.copyProperties(eventHeader, thUserInfo);
+		thUserInfo.setUserInfoId(eventHeader.getMessageId());
+		thUserInfo.setCreateTime(new Date());
+		thUserInfo.setExt(DigestUtils.md5Hex(thUserInfo.getMobile()+thUserInfo.getIdentityNo()).toLowerCase());
+		thUserInfoMapper.insertOrIgnore(thUserInfo);
+		return true;
+	}
+
+	@Override
+	public boolean processFailureAuditEvent(EventHeader eventHeader, EventUserInfo eventUserInfo, EventFailureResult eventFailureResult) {
+
+		// 根据appid查询对应隔离日期
+		ParamConfigVo paramConfigVo = configService.getParamConfigVo(eventHeader.getAppid(), ParamConfigEnum.USER_QUARANTINE.getParamKey());
+		if (paramConfigVo == null) {
+			log.error("隔离日期参数未配置 appid:{} paramKey:{}", eventHeader.getAppid(), ParamConfigEnum.USER_QUARANTINE.getParamKey());
+			return true;
+		}
+
+		if (StringUtils.isEmpty(paramConfigVo.getParamValue())) {
+			log.error("隔离日期参数值为空 appid:{} paramKey:{}", eventHeader.getAppid(), ParamConfigEnum.USER_QUARANTINE.getParamKey());
+			return true;
+		}
+
+		Integer quarantineDays = Integer.valueOf(paramConfigVo.getParamValue());
+		if (quarantineDays < 0) {
+			log.error("隔离日期参数值设置错误 appid:{} paramKey:{} paramValue:{}", eventHeader.getAppid(), ParamConfigEnum.USER_QUARANTINE.getParamKey(), quarantineDays);
+			return true;
+		}
+
+		ThUserQuarantine thUserQuarantine = new ThUserQuarantine();
+		BeanUtils.copyProperties(eventUserInfo, thUserQuarantine);
+		BeanUtils.copyProperties(eventHeader, thUserQuarantine);
+		thUserQuarantine.setUserQuarantineId(eventHeader.getMessageId());
+		thUserQuarantine.setReason(eventFailureResult.getReason());
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.DATE, quarantineDays);
+		calendar.set(Calendar.HOUR_OF_DAY,23);
+		calendar.set(Calendar.MINUTE,59);
+		calendar.set(Calendar.SECOND,59);
+		thUserQuarantine.setQuarantineEndTime(calendar.getTime());
+		thUserQuarantine.setCreateTime(new Date());
+		thUserQuarantine.setPhoneIdNumberMd5(thUserQuarantine.getPhoneIdNumberMd5().toLowerCase());
+		thUserQuarantineMapper.insertOrIgnore(thUserQuarantine);
+		return true;
+	}
+
+	@Override
+	public BaseUserInfoVo checkAndGetUserInfo(CheckUserInfoDto checkUserInfoDto) {
+		List<BaseUserInfoVo> list = thUserInfoMapper.listBaseUserInfoVo(checkUserInfoDto.getIdentityNoPrefix() + "%",
+				checkUserInfoDto.getMobilePrefix() + "%");
+
+		BaseUserInfoVo currentBaseUserInfoVo = new BaseUserInfoVo();
+		for (BaseUserInfoVo baseUserInfoVo : list) {
+			String signMd5 = DigestUtils.md5Hex((baseUserInfoVo.getMobile()+baseUserInfoVo.getIdentityNo()));
+			if (signMd5.equalsIgnoreCase(checkUserInfoDto.getSignMd5())) {
+				currentBaseUserInfoVo = baseUserInfoVo;
+				currentBaseUserInfoVo.setIfExistUser(true);
+				break;
+			}
+		}
+
+		ThUserQuarantine thUserQuarantine = thUserQuarantineMapper.selectByAppidAndphoneIdNumberMd5(checkUserInfoDto.getAppid(), checkUserInfoDto.getSignMd5().toLowerCase());
+		if (thUserQuarantine != null) {
+
+			currentBaseUserInfoVo.setReason(thUserQuarantine.getReason());
+			// 现在时间是否小于等于隔离期
+//			if (!new Date().after(thUserQuarantine.getQuarantineEndTime())) {
+//				currentBaseUserInfoVo.setIfQuarantine(true);
+//			}
+			currentBaseUserInfoVo.setIfQuarantine(true);
+			Date quarantineEndTime= LocalDateUtil.plus(new Date(), 30, ChronoUnit.DAYS);
+			currentBaseUserInfoVo.setQuarantineEndTime(LocalDateUtil.dateToString(quarantineEndTime, "yyyy-MM-dd HH:mm:ss"));
+		}
+
+		return currentBaseUserInfoVo;
+	}
+
+}

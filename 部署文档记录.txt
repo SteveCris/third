@@ -1,0 +1,35 @@
+一、前端部署环境准备 h5部署（左锋）
+二、后端部署环境准备
+
+全部新增
+1、loan-thorder-api 双实例（留以后扩展，暂时启动一个）（蔡俊俊）
+2、loan-thorder-mq 双实例（留以后扩展，暂时启动一个）（蔡俊俊）
+3、loan-thjdq-api 单实例 （郑斌斌）
+4、loan-thbase-api 双实例（留以后扩展，暂时启动一个）（蔡俊俊）
+
+
+三、数据库准备
+third_base
+third_order
+third_jdq
+
+doc/sql/*
+
+四、中间件准备
+rabbitmq
+新建虚拟机 /third  --已加
+
+sender服务器 加入/third  --已加
+
+五、开始启动
+
+
+//////////////////注意事项//////////////////////
+1、redis 9库是否占用？
+2、启动脚本 与之前脚本有所区别
+启动脚本加以下三个启动项
+--eureka.instance.prefer-ip-address=false --spring.cloud.client.ipAddress=47.101.191.54   //如果需要自定义注册的ip
+--logdir=/app/zhd_logs/third/thorder-api1 //必须指定对应的日志地址
+3、svn正式发版截止当前时刻版本
+
+

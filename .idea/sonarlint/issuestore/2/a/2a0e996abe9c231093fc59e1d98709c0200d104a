@@ -1,0 +1,9 @@
+
+asquid:S4488J"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÚÆÙ‡
+fsquid:S44883"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¾÷®Âþÿÿÿÿ
+asquid:S4488y"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¸‚•î
+gsquid:S4488–"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‘ÔáÍúÿÿÿÿ
+csquid:S1192O"GDefine a constant instead of duplicating this literal "mobile" 4 times.(ç­Àîýÿÿÿÿ
+asquid:S4488f"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÐÉ°œ
+asquid:S4488Y"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Äúô¦
+`squid:S1192k"IDefine a constant instead of duplicating this literal "order_no" 5 times.(˜Ž±³

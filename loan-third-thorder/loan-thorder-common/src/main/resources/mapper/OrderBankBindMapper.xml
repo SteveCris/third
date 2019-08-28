@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangyong.thorder.dao.OrderBankBindMapper">
+  <resultMap id="BaseResultMap" type="com.shangyong.thorder.entity.OrderBankBind">
+    <id column="bind_id" jdbcType="VARCHAR" property="bindId" />
+    <result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
+    <result column="reserved_mobile" jdbcType="VARCHAR" property="reservedMobile" />
+    <result column="sign_no" jdbcType="VARCHAR" property="signNo" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="if_valid" jdbcType="BIT" property="ifValid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bind_id, identity_no, user_name, bank_card_no, bank_code, bank_name, bank_address, 
+    reserved_mobile, sign_no, card_type, ext, ext2, appid, order_id, if_valid, remark, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_bank_bind
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_bank_bind
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shangyong.thorder.entity.OrderBankBind">
+    insert into order_bank_bind (bind_id, identity_no, user_name, 
+      bank_card_no, bank_code, bank_name, 
+      bank_address, reserved_mobile, sign_no, 
+      card_type, ext, ext2, 
+      appid, order_id, if_valid, 
+      remark, create_time)
+    values (#{bindId,jdbcType=VARCHAR}, #{identityNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankAddress,jdbcType=VARCHAR}, #{reservedMobile,jdbcType=VARCHAR}, #{signNo,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=INTEGER}, #{ext,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
+      #{appid,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{ifValid,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangyong.thorder.entity.OrderBankBind">
+    insert into order_bank_bind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bindId != null">
+        bind_id,
+      </if>
+      <if test="identityNo != null">
+        identity_no,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankAddress != null">
+        bank_address,
+      </if>
+      <if test="reservedMobile != null">
+        reserved_mobile,
+      </if>
+      <if test="signNo != null">
+        sign_no,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="ifValid != null">
+        if_valid,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bindId != null">
+        #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null">
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedMobile != null">
+        #{reservedMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="signNo != null">
+        #{signNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangyong.thorder.entity.OrderBankBind">
+    update order_bank_bind
+    <set>
+      <if test="identityNo != null">
+        identity_no = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedMobile != null">
+        reserved_mobile = #{reservedMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="signNo != null">
+        sign_no = #{signNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        if_valid = #{ifValid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangyong.thorder.entity.OrderBankBind">
+    update order_bank_bind
+    set identity_no = #{identityNo,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      reserved_mobile = #{reservedMobile,jdbcType=VARCHAR},
+      sign_no = #{signNo,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      ext = #{ext,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      if_valid = #{ifValid,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where bind_id = #{bindId,jdbcType=VARCHAR}
+  </update>
+ <!--  -->
+  
+   <select id="getOrderBankVo" resultType="com.shangyong.thcore.vo.OrderBankVo">
+   SELECT
+	user_name userName,
+	bank_card_no bankCardNo,
+	bank_code bankCode,
+	bank_name bankName,
+	card_type cardType,
+	reserved_mobile reservedMobile,
+    sign_no signNo
+FROM
+	order_bank_bind 
+WHERE
+	appid = #{appid,jdbcType=VARCHAR} 
+	AND order_id = #{orderId,jdbcType=VARCHAR} 
+	AND if_valid = 1 
+  </select>
+  <select id="getOrderBankBo" resultType="com.shangyong.thcore.bo.OrderBankBo">
+   SELECT
+    identity_no identityNo,
+	user_name userName,
+	bank_card_no bankCardNo,
+	bank_code bankCode,
+	bank_name bankName,
+	sign_no signNo
+FROM
+	order_bank_bind 
+WHERE
+	appid = #{appid,jdbcType=VARCHAR} 
+	AND order_id = #{orderId,jdbcType=VARCHAR} 
+	AND if_valid = 1 
+  </select>
+  
+  
+  </mapper>

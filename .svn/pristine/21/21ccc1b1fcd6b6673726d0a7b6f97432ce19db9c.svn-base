@@ -1,0 +1,109 @@
+package com.shangyong.thzlqb.listener.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.shangyong.thcore.event.dto.EventActualLoan;
+import com.shangyong.thcore.event.dto.EventBankBind;
+import com.shangyong.thcore.event.dto.EventFailureResult;
+import com.shangyong.thcore.event.dto.EventHeader;
+import com.shangyong.thcore.event.dto.EventPreSign;
+import com.shangyong.thcore.event.dto.EventRepayment;
+import com.shangyong.thcore.event.dto.EventSign;
+import com.shangyong.thcore.event.dto.EventUserInfo;
+import com.shangyong.thzlqb.listener.service.CoreConsumerService;
+
+@Service
+public class CoreConsumerServiceImpl implements CoreConsumerService {
+
+
+	@Override
+	public boolean processAuditSuccess(EventHeader eventHeader, EventUserInfo eventUserInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processAuditFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processBankBindSuccess(EventHeader eventHeader, EventBankBind eventBankBind) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processBankBindFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processPreSignSuccess(EventHeader eventHeader, EventPreSign eventPreSign) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processPreSignFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processSignSuccess(EventHeader eventHeader, EventSign eventSign) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processSignFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processActualLoanSuccess(EventHeader eventHeader, EventActualLoan eventActualLoan) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processActualLoanFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processRepaymentSuccess(EventHeader eventHeader, EventRepayment eventRepayment) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processRepaymentFailure(EventHeader eventHeader, EventFailureResult eventFailureResult) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processPreCreditExpireEvent(EventHeader eventHeader) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processOverdue(String appid, String orderId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean processCancel(String appid, String orderId, String remark) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

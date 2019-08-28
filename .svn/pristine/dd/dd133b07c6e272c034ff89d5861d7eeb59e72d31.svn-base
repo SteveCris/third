@@ -1,0 +1,36 @@
+#============================default============================
+spring.profiles.active=test
+
+#注册中心
+eureka.client.serviceUrl.defaultZone=http://shangyong:loan@47.100.33.198:18000/eureka/,http://shangyong:loan@47.100.33.198:18001/eureka/
+
+#数据源配置
+spring.datasource.url=jdbc:mysql://172.19.122.16:3306/third_order?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+spring.datasource.username=test_sdj
+spring.datasource.password=CZ4F4hnM
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+#redis配置
+spring.redis.host=172.19.122.16
+spring.redis.port=6397
+spring.redis.password=Roothc!123
+spring.redis.database=1
+
+#druid数据源后台监控登录查看
+druid.login.username=admin
+druid.login.password=admin
+#============================config.properties============================
+#雪花 数据中心 0、1、2、3、....31这32个数字
+snowFlake.datacenterId=0
+#雪花算法 机器号码 0、1、2、3、....31这32个数字
+snowFlake.machineId=0
+
+#============================rabbit-mq-consumer.properties============================
+spring.rabbitmq.host=172.19.122.16
+spring.rabbitmq.port=5672
+spring.rabbitmq.virtualHost=/third
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+
+#前置授信过期时间
+credit.expire.first.interval=120
